@@ -6,7 +6,7 @@
   <link href="https://harmonyano.github.io/atom.xml" rel="self"/>
   
   <link href="https://harmonyano.github.io/"/>
-  <updated>2021-08-29T20:52:58.670Z</updated>
+  <updated>2021-08-30T01:51:52.237Z</updated>
   <id>https://harmonyano.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>更新archer主题 / 迁移Hexo博客</title>
+    <link href="https://harmonyano.github.io/2021-08-29-%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98--%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://harmonyano.github.io/2021-08-29-%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98--%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2/</id>
+    <published>2021-08-29T04:00:00.000Z</published>
+    <updated>2021-08-30T01:51:52.237Z</updated>
+    
+    <content type="html"><![CDATA[<p>重要文件不多，全在下面列出来了，记得把它们迁移好就行</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">. # 「Hexo 根目录」</span><br><span class="line">├── source # 博客源文件</span><br><span class="line">├── themes</span><br><span class="line">│   └── archer # 「Archer 主题目录」</span><br><span class="line">│       ├── source # 渲染用源文件</span><br><span class="line">│├── assets</span><br><span class="line">│└── favicon.ico # 网站缩略图标</span><br><span class="line">│├── avatar # 显示人物头像</span><br><span class="line">│├──intro # 网页头图</span><br><span class="line">│└── _config.yml # Archer 主题配置文件</span><br><span class="line">│</span><br><span class="line">└── _config.yml # Hexo 配置文件</span><br></pre></td></tr></table></figure><p>另外别忘记执行以下命令，安装必要插件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-json-content --save</span><br><span class="line">npm install hexo-wordcount --save</span><br><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;重要文件不多，全在下面列出来了，记得把它们迁移好就行&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Logistics" scheme="https://harmonyano.github.io/tags/Logistics/"/>
+    
+  </entry>
   
   <entry>
     <title>Install and Configure Aria2 on WSL</title>
@@ -177,6 +196,34 @@
   </entry>
   
   <entry>
+    <title>Python 常见问题</title>
+    <link href="https://harmonyano.github.io/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://harmonyano.github.io/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</id>
+    <published>2020-11-29T05:00:00.000Z</published>
+    <updated>2021-08-29T20:52:26.932Z</updated>
+    
+    <content type="html"><![CDATA[<span id="more"></span><ul><li><a href="https://blog.csdn.net/weixin_45459224/article/details/98340853">python 整型与二进制数值的相互转换</a></li><li><a href="https://blog.csdn.net/weixin_44731100/article/details/89156141">pyhton 的异或与 Hamming Distance</a></li><li><a href="https://blog.csdn.net/weixin_41432553/article/details/90411276">Python之正则表达式——查找</a></li><li><a href="https://blog.csdn.net/qq_42967398/article/details/88078788">Python类型强制转换</a></li><li><a href="https://www.geeksforgeeks.org/find-median-of-list-in-python/">Find Median of List in Python</a>: <code>statistics.median(list)</code></li><li><a href="https://reactgo.com/python-remove-leading-trailing-spaces/">How to remove the leading and trailing spaces in Python</a>: <code>my_string.strip()</code></li><li>合并一个 String List: <code>&quot;&quot;.join(str_lst)</code></li><li><a href="https://www.geeksforgeeks.org/python-union-two-lists/">Union of two lists</a></li></ul><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul><li>convert string to int: </li></ul><h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><ul><li><a href="https://www.cnblogs.com/shanchuan/p/12969451.html">python的filter基本用法</a>: <code>lst = list(filter(func, lst)), dct = dict(filter(func, dct)) </code></li><li><a href="https://www.cnblogs.com/kongweisi/p/10441776.html">python3中map()函数用法</a>: <code>map(func, list)</code></li><li><a href="https://python-reference.readthedocs.io/en/latest/docs/functions/reduce.html">Python reduce() 函数</a></li></ul><h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><ul><li><a href="https://www.cnblogs.com/wt714/p/12041069.html">python写入csv文件的几种方法</a></li><li><a href="https://blog.csdn.net/waple_0820/article/details/70049953">python写入csv文件的几种方法总结</a></li><li><a href="https://www.cnblogs.com/strongYaYa/p/7200357.html">python 获取当前文件夹下所有文件名</a></li></ul><h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接循环 df 循环的是 col 名</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> df:</span><br><span class="line">    <span class="built_in">print</span>(col)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 想要循环每一行的数据应使用 iterrows()</span></span><br><span class="line"><span class="comment"># row = (row_index: int, data: pd.Series)</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> df.iterrows():</span><br><span class="line">    <span class="built_in">print</span>(row)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 想要读取某一行的数据使用 loc[i]，返回 pd.Series</span></span><br><span class="line">row0 = df.loc[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># loc 用来过滤时如果有两个以上条件：只能用&amp;，用and会报错，此外也要用圆括号括起来 </span></span><br><span class="line">df.loc[ (df[<span class="string">&quot;att1&quot;</span>] == <span class="string">&quot;012&quot;</span>) &amp; (df[<span class="string">&quot;code&quot;</span>] == <span class="string">&quot;2A&quot;</span>) ]</span><br></pre></td></tr></table></figure><ul><li><a href="https://stackoverflow.com/a/42770541/12006199">AttributeError: ‘float’ object has no attribute ‘split’</a></li></ul><h2 id="Mathplotlib"><a href="#Mathplotlib" class="headerlink" title="Mathplotlib"></a>Mathplotlib</h2><ul><li><a href="https://stackoverflow.com/a/22642641/12006199">Change where y range starts in matplotlib</a>: <code>plt.ylim(bottom = x)</code></li><li><a href="https://www.pythonpool.com/matplotlib-figsize/">Rotate the labels in x-axis by 90 degrees</a>: this trick helps you when you have too long x-axis labels. <code>plt.xticks(rotation = 90 )</code></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/weixin_45459224/article/details/98340853&quot;&gt;python 整型与二进制数值的相互转换&lt;/a&gt;&lt;/li&gt;
+&lt;li</summary>
+      
+    
+    
+    
+    
+    <category term="Logistics" scheme="https://harmonyano.github.io/tags/Logistics/"/>
+    
+    <category term="Python" scheme="https://harmonyano.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>C++ 常见问题</title>
     <link href="https://harmonyano.github.io/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
     <id>https://harmonyano.github.io/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</id>
@@ -204,34 +251,6 @@
     <category term="Logistics" scheme="https://harmonyano.github.io/tags/Logistics/"/>
     
     <category term="C++" scheme="https://harmonyano.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 常见问题</title>
-    <link href="https://harmonyano.github.io/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
-    <id>https://harmonyano.github.io/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</id>
-    <published>2020-11-29T05:00:00.000Z</published>
-    <updated>2021-08-29T20:52:26.932Z</updated>
-    
-    <content type="html"><![CDATA[<span id="more"></span><ul><li><a href="https://blog.csdn.net/weixin_45459224/article/details/98340853">python 整型与二进制数值的相互转换</a></li><li><a href="https://blog.csdn.net/weixin_44731100/article/details/89156141">pyhton 的异或与 Hamming Distance</a></li><li><a href="https://blog.csdn.net/weixin_41432553/article/details/90411276">Python之正则表达式——查找</a></li><li><a href="https://blog.csdn.net/qq_42967398/article/details/88078788">Python类型强制转换</a></li><li><a href="https://www.geeksforgeeks.org/find-median-of-list-in-python/">Find Median of List in Python</a>: <code>statistics.median(list)</code></li><li><a href="https://reactgo.com/python-remove-leading-trailing-spaces/">How to remove the leading and trailing spaces in Python</a>: <code>my_string.strip()</code></li><li>合并一个 String List: <code>&quot;&quot;.join(str_lst)</code></li><li><a href="https://www.geeksforgeeks.org/python-union-two-lists/">Union of two lists</a></li></ul><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul><li>convert string to int: </li></ul><h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><ul><li><a href="https://www.cnblogs.com/shanchuan/p/12969451.html">python的filter基本用法</a>: <code>lst = list(filter(func, lst)), dct = dict(filter(func, dct)) </code></li><li><a href="https://www.cnblogs.com/kongweisi/p/10441776.html">python3中map()函数用法</a>: <code>map(func, list)</code></li><li><a href="https://python-reference.readthedocs.io/en/latest/docs/functions/reduce.html">Python reduce() 函数</a></li></ul><h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><ul><li><a href="https://www.cnblogs.com/wt714/p/12041069.html">python写入csv文件的几种方法</a></li><li><a href="https://blog.csdn.net/waple_0820/article/details/70049953">python写入csv文件的几种方法总结</a></li><li><a href="https://www.cnblogs.com/strongYaYa/p/7200357.html">python 获取当前文件夹下所有文件名</a></li></ul><h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接循环 df 循环的是 col 名</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> df:</span><br><span class="line">    <span class="built_in">print</span>(col)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 想要循环每一行的数据应使用 iterrows()</span></span><br><span class="line"><span class="comment"># row = (row_index: int, data: pd.Series)</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> df.iterrows():</span><br><span class="line">    <span class="built_in">print</span>(row)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 想要读取某一行的数据使用 loc[i]，返回 pd.Series</span></span><br><span class="line">row0 = df.loc[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># loc 用来过滤时如果有两个以上条件：只能用&amp;，用and会报错，此外也要用圆括号括起来 </span></span><br><span class="line">df.loc[ (df[<span class="string">&quot;att1&quot;</span>] == <span class="string">&quot;012&quot;</span>) &amp; (df[<span class="string">&quot;code&quot;</span>] == <span class="string">&quot;2A&quot;</span>) ]</span><br></pre></td></tr></table></figure><ul><li><a href="https://stackoverflow.com/a/42770541/12006199">AttributeError: ‘float’ object has no attribute ‘split’</a></li></ul><h2 id="Mathplotlib"><a href="#Mathplotlib" class="headerlink" title="Mathplotlib"></a>Mathplotlib</h2><ul><li><a href="https://stackoverflow.com/a/22642641/12006199">Change where y range starts in matplotlib</a>: <code>plt.ylim(bottom = x)</code></li><li><a href="https://www.pythonpool.com/matplotlib-figsize/">Rotate the labels in x-axis by 90 degrees</a>: this trick helps you when you have too long x-axis labels. <code>plt.xticks(rotation = 90 )</code></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/weixin_45459224/article/details/98340853&quot;&gt;python 整型与二进制数值的相互转换&lt;/a&gt;&lt;/li&gt;
-&lt;li</summary>
-      
-    
-    
-    
-    
-    <category term="Logistics" scheme="https://harmonyano.github.io/tags/Logistics/"/>
-    
-    <category term="Python" scheme="https://harmonyano.github.io/tags/Python/"/>
     
   </entry>
   
@@ -453,29 +472,6 @@
     <category term="Cornell" scheme="https://harmonyano.github.io/tags/Cornell/"/>
     
     <category term="20SP" scheme="https://harmonyano.github.io/tags/20SP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mutability</title>
-    <link href="https://harmonyano.github.io/2020-03-03-Mutability/"/>
-    <id>https://harmonyano.github.io/2020-03-03-Mutability/</id>
-    <published>2020-03-03T05:00:00.000Z</published>
-    <updated>2020-08-04T09:31:25.468Z</updated>
-    
-    <content type="html"><![CDATA[<p>From Textbook: <a href="https://www.cs.cornell.edu/courses/cs3110/2020sp/textbook/mut/intro.html">Mutability</a><span id="more"></span></p><hr><h2 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h2><h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ref</span> x</span><br><span class="line">!x</span><br><span class="line">x := e</span><br></pre></td></tr></table></figure><ul><li><code>ref x</code>: creates a reference using the <code>ref</code> keyword (<code>let x = ref 0</code> creates a location in memory whose contents are initialized to <code>0</code>)</li><li><code>!x</code>: dereferences <code>x</code> and returns the contents of the memory location</li><li><code>x := e</code>: is an assignment. It mutates the contents <code>x</code> to be <code>1</code>. Note that <code>x</code> itself still points to the same location (i.e., address) in memory. Variables really are immutable in that way. What changes is the contents of that memory location. Memory is mutable; variable bindings are not.</li></ul><h3 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h3><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> next_val = </span><br><span class="line">  <span class="keyword">let</span> counter = <span class="built_in">ref</span> <span class="number">0</span> </span><br><span class="line">  <span class="keyword">in</span> <span class="keyword">fun</span> <span class="literal">()</span> -&gt;</span><br><span class="line">    incr counter;</span><br><span class="line">    !counter</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> next_val_broken = <span class="keyword">fun</span> <span class="literal">()</span> -&gt;</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="built_in">ref</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">in</span> incr counter;</span><br><span class="line">     !counter</span><br><span class="line">     </span><br><span class="line">next_val_broken <span class="literal">()</span> = <span class="number">1</span> ... <span class="number">1</span> ... <span class="number">1</span></span><br><span class="line">next_val <span class="literal">()</span> = <span class="number">1</span> ... <span class="number">2</span> ... <span class="number">3</span> ...</span><br></pre></td></tr></table></figure><p>Look at how these two functions’ results differ. In the first example, <code>counter</code> is just a temporary variable later bound to the <code>fun() -&gt; ...</code> Therefore, <code>counter</code> will not be initiated every time we call <code>next_val </code>. It is evaluated only when the first time it is defined.</p><h2 id="Sequencing"><a href="#Sequencing" class="headerlink" title="Sequencing"></a>Sequencing</h2><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e1; e2; ... ; en</span><br></pre></td></tr></table></figure><p>The sentence above evaluates each one of <code>ei</code> in order from left to right, returning only <code>vn</code>.</p><blockquote><p>If the values <code>vi</code> previous expression <code>ei</code> evaluates to are not of type unit, the compiler will give you a warning because it makes no sense to throw away those values. To get rid of the warning (if you’re sure that’s what you need to do), there’s a function <code>ignore : &#39;a -&gt; unit</code> in the standard library. Using it, <code>ignore(2+3); 7</code> will compile without a warning. Of course, you could code up <code>ignore</code> yourself: <code>let ignore _ = ()</code>.</p></blockquote><p>This is a syntactic sugar of <code>let _ = e1 in e2</code></p><h2 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h2><ul><li>Physical Equality (<code>==,!=</code>): same address</li><li>Structural Equality (<code>=,&lt;&gt;</code>): same content</li></ul><h2 id="Mutable-Fields-in-Record"><a href="#Mutable-Fields-in-Record" class="headerlink" title="Mutable Fields (in Record)"></a>Mutable Fields (in Record)</h2><h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(* declare a record with mutable field *)</span></span><br><span class="line"><span class="keyword">type</span> point = &#123;x:<span class="built_in">int</span>; y:<span class="built_in">int</span>; <span class="keyword">mutable</span> c:<span class="built_in">string</span>&#125;</span><br><span class="line"><span class="keyword">let</span> p = &#123;x=<span class="number">0</span>; y=<span class="number">0</span>; c=<span class="string">&quot;red&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">(*mutate the field of that record*)</span></span><br><span class="line">p.c &lt;- <span class="string">&quot;white&quot;</span></span><br><span class="line"></span><br><span class="line">p.x &lt;- <span class="number">3</span></span><br><span class="line"># <span class="type">Error</span>: <span class="type">The</span> record field x is not <span class="keyword">mutable</span></span><br></pre></td></tr></table></figure><h3 id="Mutable-Stack"><a href="#Mutable-Stack" class="headerlink" title="Mutable Stack"></a>Mutable Stack</h3><h2 id="Arrays-and-Loops"><a href="#Arrays-and-Loops" class="headerlink" title="Arrays and Loops"></a>Arrays and Loops</h2><h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><ul><li>Array creation: <code>[|e0; e1; ...; en|]</code></li><li>Array indexing: <code>e1.(e2)</code></li><li>Array assignment: <code>e1.(e2) &lt;- e3</code></li></ul><h3 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h3><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> e1 <span class="keyword">do</span> e2 <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> i = <span class="built_in">ref</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> !i&lt;=<span class="number">2</span> <span class="keyword">do</span> print_endline(string_of_int v.(!i)); incr i <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x=e1 <span class="keyword">to</span> e2 <span class="keyword">do</span> e3 <span class="keyword">done</span></span><br><span class="line"><span class="keyword">for</span> x=e1 <span class="keyword">downto</span> e2 <span class="keyword">do</span> e3 <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span> <span class="keyword">to</span> <span class="number">2</span> <span class="keyword">do</span> print_endline(string_of_int v.(i)) <span class="keyword">done</span></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">2</span> <span class="keyword">downto</span> <span class="number">0</span> <span class="keyword">do</span> print_endline(string_of_int v.(i)) <span class="keyword">done</span></span><br></pre></td></tr></table></figure><ul><li><p><code>while</code> loops terminate when <code>e1</code> becomes false</p></li><li><p><code>for</code> loops execute once for each integer from <code>e1</code> to <code>e2</code></p></li><li><p><code>for..to</code> loops evaluate starting at <code>e1</code> and incrementing <code>x</code> each iteration; <code>for..downto</code> loops evaluate starting at <code>e1</code> and decrementing <code>x</code> each iteration</p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;From Textbook: &lt;a href=&quot;https://www.cs.cornell.edu/courses/cs3110/2020sp/textbook/mut/intro.html&quot;&gt;Mutability&lt;/a&gt;</summary>
-    
-    
-    
-    
-    <category term="Cornell" scheme="https://harmonyano.github.io/tags/Cornell/"/>
-    
-    <category term="20SP" scheme="https://harmonyano.github.io/tags/20SP/"/>
-    
-    <category term="CS3110" scheme="https://harmonyano.github.io/tags/CS3110/"/>
     
   </entry>
   
