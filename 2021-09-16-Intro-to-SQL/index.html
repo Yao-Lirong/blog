@@ -12,9 +12,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="author" content="Harmonyano">
+    <meta name="author" content="姚立嵘">
     <meta name="renderer" content="webkit">
-    <meta name="copyright" content="Harmonyano">
+    <meta name="copyright" content="姚立嵘">
     
         <meta name="keywords" content="Cornell,Programming">
     
@@ -22,19 +22,21 @@
     <meta name="description" content="提交实习申请后发来个小测验，给我做崩溃了，第一个要我做这种级别的SQL，我最多也就会个 select from where，超纲过于严重，只能回头补习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Intro to SQL">
-<meta property="og:url" content="https://harmonyano.github.io/2021-09-16-Intro-to-SQL/index.html">
-<meta property="og:site_name" content="Harmonyano&#39;s Blog">
+<meta property="og:url" content="http://yao-lirong.github.io/2021-09-16-Intro-to-SQL/index.html">
+<meta property="og:site_name" content="Yao Lirong&#39;s Blog">
 <meta property="og:description" content="提交实习申请后发来个小测验，给我做崩溃了，第一个要我做这种级别的SQL，我最多也就会个 select from where，超纲过于严重，只能回头补习">
 <meta property="og:locale">
+<meta property="og:image" content="https://dataschool.com/assets/images/how-to-teach-people-sql/sqlJoins/sqlJoins_7.png">
 <meta property="article:published_time" content="2021-09-16T04:00:00.000Z">
-<meta property="article:modified_time" content="2021-09-17T15:10:07.116Z">
-<meta property="article:author" content="Harmonyano">
+<meta property="article:modified_time" content="2021-09-20T23:39:28.509Z">
+<meta property="article:author" content="姚立嵘">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dataschool.com/assets/images/how-to-teach-people-sql/sqlJoins/sqlJoins_7.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>Intro to SQL · Harmonyano&#39;s Blog</title>
+    <title>Intro to SQL · Yao Lirong&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -211,7 +213,11 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Harmonyano's Blog" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Yao Lirong's Blog" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -248,7 +254,7 @@
         </span>
         <!-- back to home page text -->
         <span class="home-link header-element">
-            <a href=/>Harmonyano's Blog</a>
+            <a href=/>Yao Lirong's Blog</a>
         </span>
     </div>
     <!-- toggle banner for post layout -->
@@ -257,7 +263,7 @@
             <div class="banner">
         
             <div class="blog-title header-element">
-                <a href="/">Harmonyano&#39;s Blog</a>
+                <a href="/">Yao Lirong&#39;s Blog</a>
             </div>
             <div class="post-title header-element">
                 <a href="#" class="post-name">Intro to SQL</a>
@@ -325,7 +331,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.1k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -553,6 +559,38 @@
 <td>存储日期+时间，例如，2018-06-22 12:20:59</td>
 </tr>
 </tbody></table>
+<h2 id="Table-Constraints"><a href="#Table-Constraints" class="headerlink" title="Table Constraints"></a>Table Constraints</h2><table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PRIMARY KEY</code></td>
+<td>This means that the values in this column are unique, and each value can be used to identify a single row in this table.</td>
+</tr>
+<tr>
+<td><code>AUTOINCREMENT</code></td>
+<td>For integer values, this means that the value is automatically filled in and incremented with each row insertion.  Not supported in all databases.</td>
+</tr>
+<tr>
+<td><code>UNIQUE</code></td>
+<td>This means that the values in this column have to be unique, so you can’t insert another row with the same value in this column as another row in the table.  Differs from the <code>PRIMARY KEY</code> in that it doesn’t have to be a key for a row in the table.</td>
+</tr>
+<tr>
+<td><code>NOT NULL</code></td>
+<td>This means that the inserted value can not be <code>NULL</code>.</td>
+</tr>
+<tr>
+<td><code>CHECK (expression)</code></td>
+<td>This allows you to run a more complex expression to test whether the values inserted are valid. For example, you can check that values are positive, or greater than a specific size, or start with a certain prefix, etc.</td>
+</tr>
+<tr>
+<td><code>FOREIGN KEY</code></td>
+<td>This is a consistency check which ensures that each value in this column corresponds to another value in a column in another table. For example, if there are two tables, one listing all Employees by ID, and another listing their payroll information, the <code>FOREIGN KEY</code> can ensure that every row in the payroll table corresponds to a valid employee in the master Employee list.</td>
+</tr>
+</tbody></table>
 <h2 id="Table-Structure"><a href="#Table-Structure" class="headerlink" title="Table Structure"></a>Table Structure</h2><h3 id="Foreign-Key"><a href="#Foreign-Key" class="headerlink" title="Foreign Key"></a>Foreign Key</h3><p>A foreign key is a field (or collection of fields) in one table, that refers to  the primary key in another table.</p>
 <p>The foreign key constraint prevents invalid data from being inserted into the foreign key column, because it has to be one of the values contained in the parent table.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students </span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_class_id <span class="comment">-- name the constraint</span></span><br><span class="line"><span class="keyword">FOREIGN</span> KEY (class_id) <span class="comment">-- use class_id column in students as FK</span></span><br><span class="line"><span class="keyword">REFERENCES</span> classes (id); <span class="comment">-- links to id in table classes</span></span><br></pre></td></tr></table></figure>
@@ -568,11 +606,18 @@
 
 
 
-<h2 id="Querying"><a href="#Querying" class="headerlink" title="Querying"></a>Querying</h2><p>注意字符串用的都是单引号 <code>&#39; &#39;</code>. </p>
+<h2 id="Querying-Table"><a href="#Querying-Table" class="headerlink" title="Querying Table"></a>Querying Table</h2><p>注意字符串用的都是单引号 <code>&#39; &#39;</code>. </p>
 <h3 id="Conditionals"><a href="#Conditionals" class="headerlink" title="Conditionals"></a>Conditionals</h3><ul>
 <li><code>=</code>: equal</li>
 <li><code>&lt;&gt;</code>: not equal</li>
-<li><code>LIKE</code>: similar, <code>%</code> is wildcard. <code>&#39;ab%&#39;</code> matches  <code>&#39;ab&#39;，&#39;abc&#39;，&#39;abcd&#39;</code> </li>
+<li><code>LIKE</code>: case insensitive exact string comparison;<ul>
+<li> <code>%</code> is wildcard. <code>&#39;ab%&#39;</code> matches  ‘ab’，’abc’，’abcd’ </li>
+<li><code>_</code> is “appeared once”. <code>LIKE &quot;ab_&quot;</code> matches “abc”, but not “ab” or “abcd”</li>
+</ul>
+</li>
+<li><code>BETWEEN … AND …</code>: number is within range of two values (inclusive). e.g. <code>col_name BETWEEN 1.5 AND 10.5</code></li>
+<li><code>IN (…)</code>: number exists in a list. e.g. <code>col_name IN (2, 4, 6)</code></li>
+<li><code>NOT …</code>: to negate a predicate</li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- sometimes we don&#x27;t need FROM</span></span><br><span class="line"><span class="comment">-- this is usually used to test connection to data base</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">100</span> <span class="operator">+</span> <span class="number">200</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> (score <span class="operator">&lt;</span> <span class="number">80</span> <span class="keyword">OR</span> score <span class="operator">&gt;</span> <span class="number">90</span>) <span class="keyword">AND</span> gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> (<span class="keyword">NOT</span> class_id <span class="operator">&lt;&gt;</span> <span class="number">2</span>) <span class="keyword">AND</span> score <span class="keyword">LIKE</span> <span class="string">&#x27;8%&#x27;</span> ;</span><br></pre></td></tr></table></figure>
 
@@ -612,22 +657,60 @@
 </tr>
 </tbody></table>
 <p>其中，如果 <code>WHERE</code> 条件没有匹配到任何行，<code>COUNT()</code>会返回0，而<code>SUM()</code>、<code>AVG()</code>、<code>MAX()</code>和<code>MIN()</code>会返回<code>NULL</code>。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按照 class_id 分组(class_id=1, 2, 3, ... 各一组)， 分别返回每一组的总记录数</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 对于像 name 这种在一个组内并不是相同的值，会返回 NULL / 报错</span></span><br><span class="line"><span class="comment">-- 因此对于聚合查询，我们只能放入聚合查询的 col 名或者一些其他的聚合函数</span></span><br><span class="line"><span class="keyword">SELECT</span> name, class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每个班级男女分别的平均分</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, gender, <span class="built_in">AVG</span>(score) <span class="keyword">FROM</span> students </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> gender, class_id <span class="keyword">ORDER</span> <span class="keyword">BY</span> class_id, gender;</span><br></pre></td></tr></table></figure>
+<p>分完组后，我们不能再用 <code>WHERE</code> 对组进行筛选，以组为级别进行筛选需要 <code>HAVING</code>. </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按照 class_id 分组(class_id=1, 2, 3, ... 各一组)， 分别返回每一组的总记录数</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分完组后，</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">36</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 对于像 name 这种在一个组内并不是相同的值，会返回 NULL / 报错</span></span><br><span class="line"><span class="comment">-- 因此对于聚合查询，我们只能放入聚合查询的 col 名或者一些其他的聚合函数</span></span><br><span class="line"><span class="keyword">SELECT</span> name, class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每个班级男女分别的平均分</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, gender, <span class="built_in">AVG</span>(score) <span class="keyword">FROM</span> students </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> gender, class_id <span class="keyword">ORDER</span> <span class="keyword">BY</span> class_id, gender;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Multiple-Tables"><a href="#Multiple-Tables" class="headerlink" title="Multiple Tables"></a>Multiple Tables</h3><p>When you select from more than one table, database will return the Cartesian product of the results. </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    s.id sid, s.name, s.gender, s.score,</span><br><span class="line">    c.id cid, c.name cname</span><br><span class="line"><span class="keyword">FROM</span> students s, classes c</span><br><span class="line"><span class="keyword">WHERE</span> s.gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span> <span class="keyword">AND</span> c.id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> current_demographic_dim</span><br><span class="line">(current_demographic_key, current_salary_range, current_age_range)</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> demographic_key, salary_range, age_range</span><br><span class="line"><span class="keyword">from</span> SAMPLES.DEMOGRAPHIC_DIM;</span><br></pre></td></tr></table></figure>
+<h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><p>与前文的 <em>Multiple Tables</em> 不同的是，<em>Multiple Tables</em> 把所有结果先调出来再根据结果进行筛选，效率很慢；而我们的 <code>JOIN</code> 可以</p>
+<ul>
+<li><code>INNER JOIN</code>只返回同时存在于两张表的行数据。比如<code>students</code>表的<code>class_id</code>包含1，2，3，<code>classes</code>表的<code>id</code>包含1，2，3，4，所以，INNER JOIN根据条件<code>s.class_id = c.id</code>返回的结果集仅包含1，2，3。</li>
+<li><code>RIGHT OUTER JOIN</code>返回右表都存在的行。如果某一行仅在右表存在，那么结果集就会以<code>NULL</code>填充剩下的字段。</li>
+<li><code>LEFT OUTER JOIN</code>则返回左表都存在的行。如果我们给students表增加一行，并添加class_id=5，由于classes表并不存在id=5的行，所以，LEFT OUTER JOIN的结果会增加一行，对应的<code>class_name</code>是<code>NULL</code>：</li>
+<li><code>FULL OUTER JOIN</code>，它会把两张表的所有记录全部选择出来，并且，自动把对方不存在的列填充为NULL：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Join 指令模板</span></span><br><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> tableA ??? <span class="keyword">JOIN</span> tableB <span class="keyword">ON</span> tableA.column1 <span class="operator">=</span> tableB.column2;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 上文使用的例子对应的指令</span></span><br><span class="line"><span class="keyword">SELECT</span> s.id, s.name, s.class_id, c.name class_name, s.gender, s.score</span><br><span class="line"><span class="keyword">FROM</span> students s</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> classes c</span><br><span class="line"><span class="keyword">ON</span> s.class_id <span class="operator">=</span> c.id;</span><br></pre></td></tr></table></figure>
 
+<p><img src="https://dataschool.com/assets/images/how-to-teach-people-sql/sqlJoins/sqlJoins_7.png" alt="Join in Graphs"></p>
+<h3 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h3><p>An alternative to <code>NULL</code> values in your database is to have <em>data-type appropriate default values</em>, like 0 for numerical data, empty strings for text data, etc.  But if your database needs to store incomplete  data, then <code>NULL</code> values can be appropriate if the default values will skew later analysis (for example,  when taking averages of numerical data).</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- select all non-null values</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">column</span>, another_column, … <span class="keyword">FROM</span> mytable</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IS</span><span class="operator">/</span><span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Operating-on-Rows"><a href="#Operating-on-Rows" class="headerlink" title="Operating on Rows"></a>Operating on Rows</h2><h3 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h3><p>When we insert something into the table, we don’t have to specify value of the primary key column. Because the primary key is automatically calculated by the database. </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (col1, col2, ...) </span><br><span class="line"><span class="keyword">VALUES</span> (v1, v2, ...)</span><br><span class="line">	   (v1, v2, ...);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students (class_id, name, gender, score) <span class="keyword">VALUES</span></span><br><span class="line">  (<span class="number">1</span>, <span class="string">&#x27;大宝&#x27;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">87</span>),</span><br><span class="line">  (<span class="number">2</span>, <span class="string">&#x27;二宝&#x27;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">81</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>We can update a record in the table.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table_name <span class="keyword">SET</span> col1<span class="operator">=</span>v1, col2<span class="operator">=</span>v2, ... <span class="keyword">WHERE</span> ...;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- update a single record</span></span><br><span class="line">UPDATE students <span class="keyword">SET</span> name<span class="operator">=</span><span class="string">&#x27;大牛&#x27;</span>, score<span class="operator">=</span><span class="number">66</span> <span class="keyword">WHERE</span> id<span class="operator">=</span><span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- update multiple records</span></span><br><span class="line">UPDATE students <span class="keyword">SET</span> name<span class="operator">=</span><span class="string">&#x27;小牛&#x27;</span>, score<span class="operator">=</span><span class="number">77</span> <span class="keyword">WHERE</span> id<span class="operator">&gt;=</span><span class="number">5</span> <span class="keyword">AND</span> id<span class="operator">&lt;=</span><span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- add 10 points to all scores below 80</span></span><br><span class="line">UPDATE students <span class="keyword">SET</span> score<span class="operator">=</span>score<span class="operator">+</span><span class="number">10</span> <span class="keyword">WHERE</span> score<span class="operator">&lt;</span><span class="number">80</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> ...;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- delete multiple records </span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> id<span class="operator">&gt;=</span><span class="number">5</span> <span class="keyword">AND</span> id<span class="operator">&lt;=</span><span class="number">7</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Operating-on-Table"><a href="#Operating-on-Table" class="headerlink" title="Operating on Table"></a>Operating on Table</h2><h3 id="Create-Table"><a href="#Create-Table" class="headerlink" title="Create Table"></a>Create Table</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> table_name (    </span><br><span class="line">    column_name <span class="operator">*</span>DataType<span class="operator">*</span> <span class="operator">*</span>TableConstraint<span class="operator">*</span> <span class="keyword">DEFAULT</span> <span class="operator">*</span>default_value<span class="operator">*</span>,    </span><br><span class="line">    another_column_name <span class="operator">*</span>DataType<span class="operator">*</span> <span class="operator">*</span>TableConstraint<span class="operator">*</span> <span class="keyword">DEFAULT</span> <span class="operator">*</span>default_value<span class="operator">*</span>,    </span><br><span class="line">    … );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Movies <span class="keyword">table</span> schema</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> movies (</span><br><span class="line">    id <span class="type">INTEGER</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    title TEXT,</span><br><span class="line">    director TEXT,</span><br><span class="line">    <span class="keyword">year</span> <span class="type">INTEGER</span></span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Alter-Table"><a href="#Alter-Table" class="headerlink" title="Alter Table"></a>Alter Table</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- add a column to table</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> mytable </span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">column</span> <span class="operator">*</span>DataType<span class="operator">*</span> <span class="operator">*</span>OptionalTableConstraint<span class="operator">*</span> <span class="keyword">DEFAULT</span> default_value;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- remove a column from table</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> mytable</span><br><span class="line"><span class="keyword">DROP</span> column_to_be_deleted;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- renaming the table</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> mytable</span><br><span class="line">RENAME <span class="keyword">TO</span> new_table_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Delete-Table"><a href="#Delete-Table" class="headerlink" title="Delete Table"></a>Delete Table</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> mytable;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> current_demographic_dim</span><br><span class="line">(current_demographic_key, current_salary_range, current_age_range)</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> demographic_key, salary_range, age_range</span><br><span class="line"><span class="keyword">from</span> SAMPLES.DEMOGRAPHIC_DIM;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实用SQL语句"><a href="#实用SQL语句" class="headerlink" title="实用SQL语句"></a><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1177760294764384/1246617682185952">实用SQL语句</a></h3><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1177760294764384">廖雪峰的SQL教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://sqlbolt.com/">SQLBolt</a></li>
+</ol>
 
     </article>
     <!-- license -->
     
         <div class="license-wrapper">
-            <p>原文作者：<a href="https://harmonyano.github.io">Harmonyano</a>
-            <p>原文链接：<a href="https://harmonyano.github.io/2021-09-16-Intro-to-SQL/">https://harmonyano.github.io/2021-09-16-Intro-to-SQL/</a>
-            <p>发表日期：<a href="https://harmonyano.github.io/2021-09-16-Intro-to-SQL/">September 16th 2021, 12:00:00 am</a>
-            <p>更新日期：<a href="https://harmonyano.github.io/2021-09-16-Intro-to-SQL/">September 17th 2021, 11:10:07 am</a>
+            <p>原文作者：<a href="http://yao-lirong.github.io">姚立嵘</a>
+            <p>原文链接：<a href="http://yao-lirong.github.io/2021-09-16-Intro-to-SQL/">http://yao-lirong.github.io/2021-09-16-Intro-to-SQL/</a>
+            <p>发表日期：<a href="http://yao-lirong.github.io/2021-09-16-Intro-to-SQL/">September 16th 2021, 12:00:00 am</a>
+            <p>更新日期：<a href="http://yao-lirong.github.io/2021-09-16-Intro-to-SQL/">September 20th 2021, 7:39:28 pm</a>
             <p>版权声明：本文采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
@@ -686,25 +769,29 @@
             
     
         
+    
+        
             
-                <a href="mailto:Harmonyanop@gmail.com" class="iconfont-archer email" title=email ></a>
+                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
         
             
-                <a href="//github.com/Harmonyano" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title=twitter></a>
             
         
     
+        
+            
+                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title=linkedin></a>
+            
         
     
         
             
                 <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
             
-        
-    
         
     
         
@@ -785,7 +872,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Type"><span class="toc-number">1.</span> <span class="toc-text">Data Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-Structure"><span class="toc-number">2.</span> <span class="toc-text">Table Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Foreign-Key"><span class="toc-number">2.1.</span> <span class="toc-text">Foreign Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Indexing"><span class="toc-number">2.2.</span> <span class="toc-text">Indexing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unique"><span class="toc-number">2.3.</span> <span class="toc-text">Unique</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Querying"><span class="toc-number">3.</span> <span class="toc-text">Querying</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conditionals"><span class="toc-number">3.1.</span> <span class="toc-text">Conditionals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Projections"><span class="toc-number">3.2.</span> <span class="toc-text">Projections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Orders"><span class="toc-number">3.3.</span> <span class="toc-text">Orders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partial-Results"><span class="toc-number">3.4.</span> <span class="toc-text">Partial Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Groups"><span class="toc-number">3.5.</span> <span class="toc-text">Groups</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiple-Tables"><span class="toc-number">3.6.</span> <span class="toc-text">Multiple Tables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Join"><span class="toc-number">3.7.</span> <span class="toc-text">Join</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View"><span class="toc-number">4.</span> <span class="toc-text">View</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Type"><span class="toc-number">1.</span> <span class="toc-text">Data Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-Constraints"><span class="toc-number">2.</span> <span class="toc-text">Table Constraints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-Structure"><span class="toc-number">3.</span> <span class="toc-text">Table Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Foreign-Key"><span class="toc-number">3.1.</span> <span class="toc-text">Foreign Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Indexing"><span class="toc-number">3.2.</span> <span class="toc-text">Indexing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unique"><span class="toc-number">3.3.</span> <span class="toc-text">Unique</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Querying-Table"><span class="toc-number">4.</span> <span class="toc-text">Querying Table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conditionals"><span class="toc-number">4.1.</span> <span class="toc-text">Conditionals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Projections"><span class="toc-number">4.2.</span> <span class="toc-text">Projections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Orders"><span class="toc-number">4.3.</span> <span class="toc-text">Orders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partial-Results"><span class="toc-number">4.4.</span> <span class="toc-text">Partial Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Groups"><span class="toc-number">4.5.</span> <span class="toc-text">Groups</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiple-Tables"><span class="toc-number">4.6.</span> <span class="toc-text">Multiple Tables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Join"><span class="toc-number">4.7.</span> <span class="toc-text">Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Null"><span class="toc-number">4.8.</span> <span class="toc-text">Null</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operating-on-Rows"><span class="toc-number">5.</span> <span class="toc-text">Operating on Rows</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Insert"><span class="toc-number">5.1.</span> <span class="toc-text">Insert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Update"><span class="toc-number">5.2.</span> <span class="toc-text">Update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Delete"><span class="toc-number">5.3.</span> <span class="toc-text">Delete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operating-on-Table"><span class="toc-number">6.</span> <span class="toc-text">Operating on Table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-Table"><span class="toc-number">6.1.</span> <span class="toc-text">Create Table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alter-Table"><span class="toc-number">6.2.</span> <span class="toc-text">Alter Table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Delete-Table"><span class="toc-number">6.3.</span> <span class="toc-text">Delete Table</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">7.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View"><span class="toc-number">7.1.</span> <span class="toc-text">View</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8SQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">7.2.</span> <span class="toc-text">实用SQL语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">8.</span> <span class="toc-text">Reference</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1084,46 +1171,7 @@
         
         
         
-        
-        
-        
-        
-        
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1656,7 +1704,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 58
+        Total : 57
         </div>
         <!-- search  -->
         
@@ -1748,13 +1796,13 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/29</span>
-            <a class="archive-post-title" href="/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++ 常见问题</a>
+            <a class="archive-post-title" href="/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Python 常见问题</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/29</span>
-            <a class="archive-post-title" href="/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Python 常见问题</a>
+            <a class="archive-post-title" href="/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++ 常见问题</a>
         </li>
     
         
@@ -1791,12 +1839,6 @@
         <li class="archive-post-item">
             <span class="archive-post-date">09/05</span>
             <a class="archive-post-title" href="/2020-09-05-Windows%E4%B8%8B%E9%85%8D%E7%BD%AEPostgreSQL/">Windows下配置PostgreSQL</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/03</span>
-            <a class="archive-post-title" href="/2020-08-03-%E5%9C%A3%E8%AF%9E%E4%B9%8B%E5%90%BB/">圣诞之吻</a>
         </li>
     
         
@@ -1919,13 +1961,13 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2019-11-21-import-Junit-and-JavaFx-into-VSCode/">Import Junit and JavaFx into VSCode</a>
+            <a class="archive-post-title" href="/2019-11-21-shortest-path-algorithm/">Shortest path algorithm</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2019-11-21-shortest-path-algorithm/">Shortest path algorithm</a>
+            <a class="archive-post-title" href="/2019-11-21-import-Junit-and-JavaFx-into-VSCode/">Import Junit and JavaFx into VSCode</a>
         </li>
     
         
@@ -2015,13 +2057,13 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/30</span>
-            <a class="archive-post-title" href="/P1309%20%E7%91%9E%E5%A3%AB%E8%BD%AE/">P1309 瑞士轮</a>
+            <a class="archive-post-title" href="/P1090%20%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90/">P1090 合并果子</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/30</span>
-            <a class="archive-post-title" href="/P1090%20%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90/">P1090 合并果子</a>
+            <a class="archive-post-title" href="/P1309%20%E7%91%9E%E5%A3%AB%E8%BD%AE/">P1309 瑞士轮</a>
         </li>
     
         
@@ -2072,19 +2114,9 @@
                 Java
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Android">
-                <span class="iconfont-archer">&#xe606;</span>
-                Android
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CS3110">
-                <span class="iconfont-archer">&#xe606;</span>
-                CS3110
             </span>
         
             <span class="sidebar-tag-name" data-tags="20SP">
@@ -2097,6 +2129,11 @@
                 CS2043
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CS3110">
+                <span class="iconfont-archer">&#xe606;</span>
+                CS3110
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="网络日志">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络日志
@@ -2107,24 +2144,9 @@
                 CS4320
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Game">
+            <span class="sidebar-tag-name" data-tags="20FA">
                 <span class="iconfont-archer">&#xe606;</span>
-                Game
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CS4820">
-                <span class="iconfont-archer">&#xe606;</span>
-                CS4820
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Latex">
-                <span class="iconfont-archer">&#xe606;</span>
-                Latex
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="C++">
-                <span class="iconfont-archer">&#xe606;</span>
-                C++
+                20FA
             </span>
         
             <span class="sidebar-tag-name" data-tags="Python">
@@ -2132,9 +2154,14 @@
                 Python
             </span>
         
-            <span class="sidebar-tag-name" data-tags="20FA">
+            <span class="sidebar-tag-name" data-tags="Android">
                 <span class="iconfont-archer">&#xe606;</span>
-                20FA
+                Android
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Latex">
+                <span class="iconfont-archer">&#xe606;</span>
+                Latex
             </span>
         
             <span class="sidebar-tag-name" data-tags="Tsinghua">
@@ -2142,14 +2169,24 @@
                 Tsinghua
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Linux">
+            <span class="sidebar-tag-name" data-tags="CS4820">
                 <span class="iconfont-archer">&#xe606;</span>
-                Linux
+                CS4820
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="C++">
+                <span class="iconfont-archer">&#xe606;</span>
+                C++
             </span>
         
             <span class="sidebar-tag-name" data-tags="Git">
                 <span class="iconfont-archer">&#xe606;</span>
                 Git
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
             </span>
         
             <span class="sidebar-tag-name" data-tags="Reading">
@@ -2185,7 +2222,7 @@
         <script>
     var siteMeta = {
         root: "/",
-        author: "Harmonyano"
+        author: "姚立嵘"
     }
 </script>
 
