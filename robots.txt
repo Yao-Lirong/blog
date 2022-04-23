@@ -5,6 +5,7 @@ Disallow: /avatar/
 Disallow: /scripts/
 Disallow: /font/
 Disallow: /lib/
+Disallow: /verifier/
 Allow: /
 Allow: /archives/
 Allow: /categories/
