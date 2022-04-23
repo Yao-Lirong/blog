@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang>
     <!-- title -->
 
 
@@ -18,7 +18,7 @@
     
         <meta name="keywords" content="Cornell,Yao,Lirong,姚立嵘,Programming">
     
-    <meta name="description" content="">
+    <meta name="description" content>
     <meta name="description" content="User InterfaceImages &amp; Texts wrap content: android:layout_height&#x3D;&quot;wrap_content&quot; dp: density-independent pixel text size: android:textsize&#x3D;&quot;20sp&quot; sp: scalar-independent pixel b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Udacity: Android Basics">
@@ -264,7 +264,7 @@
         </span>
         <!-- back to home page text -->
         <span class="home-link header-element">
-            <a href=/>Yao Lirong's Blog</a>
+            <a href="/">Yao Lirong's Blog</a>
         </span>
     </div>
     <!-- toggle banner for post layout -->
@@ -339,7 +339,7 @@
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
+                    <div class="post-intro-tags">
     
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Android">Android</a>
@@ -506,12 +506,12 @@
   )
 </script>
 
-            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;">
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
         <hr>
-<h2 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a><a target="_blank" rel="noopener" href="https://classroom.udacity.com/courses/ud834">User Interface</a></h2><h3 id="Images-amp-Texts"><a href="#Images-amp-Texts" class="headerlink" title="Images &amp; Texts"></a><a target="_blank" rel="noopener" href="https://classroom.udacity.com/courses/ud834/lessons/4027328704/concepts/42531586160923">Images &amp; Texts</a></h3><ul>
+<h2 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://classroom.udacity.com/courses/ud834">User Interface</a></h2><h3 id="Images-amp-Texts"><a href="#Images-amp-Texts" class="headerlink" title="Images &amp; Texts"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://classroom.udacity.com/courses/ud834/lessons/4027328704/concepts/42531586160923">Images &amp; Texts</a></h3><ul>
 <li>wrap content: <code>android:layout_height=&quot;wrap_content&quot;</code></li>
 <li>dp: density-independent pixel</li>
 <li>text size: <code>android:textsize=&quot;20sp&quot;</code></li>
@@ -520,7 +520,7 @@
 </ul>
 <span id="more"></span>
 
-<h3 id="View-Groups"><a href="#View-Groups" class="headerlink" title="View Groups"></a><a target="_blank" rel="noopener" href="https://classroom.udacity.com/courses/ud834/lessons/4330701752/concepts/42402386170923">View Groups</a></h3><h4 id="Linear-Layout"><a href="#Linear-Layout" class="headerlink" title="Linear Layout"></a>Linear Layout</h4><ul>
+<h3 id="View-Groups"><a href="#View-Groups" class="headerlink" title="View Groups"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://classroom.udacity.com/courses/ud834/lessons/4330701752/concepts/42402386170923">View Groups</a></h3><h4 id="Linear-Layout"><a href="#Linear-Layout" class="headerlink" title="Linear Layout"></a>Linear Layout</h4><ul>
 <li>linear layout: similar to Hbox and Vbox in javaFX, one linear layout can contain many other linear layouts </li>
 <li>weight values: give different weights to layouts to determine what proportion of the space they should take in the screen</li>
 </ul>
@@ -534,7 +534,7 @@
 <li><p>relative layout to others: <code>android:layout_to(Right/Left)Of=&quot;@id/pic&quot;</code></p>
 </li>
 </ul>
-<h2 id="Multiscreen-Apps"><a href="#Multiscreen-Apps" class="headerlink" title="Multiscreen Apps"></a><a target="_blank" rel="noopener" href="https://classroom.udacity.com/courses/ud839">Multiscreen Apps</a></h2><h3 id="Add-texts-to-the-Layout"><a href="#Add-texts-to-the-Layout" class="headerlink" title="Add texts to the Layout"></a><a target="_blank" rel="noopener" href="https://classroom.udacity.com/courses/ud839/lessons/7709673667/concepts/79237803670923">Add texts to the Layout</a></h3><h4 id="with-List"><a href="#with-List" class="headerlink" title="with List"></a>with List</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; words;</span><br><span class="line"></span><br><span class="line"><span class="comment">//findViewById only returns a View, we should downcast it to a LinearLayout</span></span><br><span class="line">LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String word:words)&#123;</span><br><span class="line">    <span class="comment">//TextView takes into a context, in this case is &quot;this&quot;</span></span><br><span class="line">    TextView wordView = <span class="keyword">new</span> TextView(<span class="keyword">this</span>);</span><br><span class="line">    wordView.setText(word);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//add wordView to the this View of List(LinearLayout)</span></span><br><span class="line">    rootView.addView(wordView);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Multiscreen-Apps"><a href="#Multiscreen-Apps" class="headerlink" title="Multiscreen Apps"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://classroom.udacity.com/courses/ud839">Multiscreen Apps</a></h2><h3 id="Add-texts-to-the-Layout"><a href="#Add-texts-to-the-Layout" class="headerlink" title="Add texts to the Layout"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://classroom.udacity.com/courses/ud839/lessons/7709673667/concepts/79237803670923">Add texts to the Layout</a></h3><h4 id="with-List"><a href="#with-List" class="headerlink" title="with List"></a>with List</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; words;</span><br><span class="line"></span><br><span class="line"><span class="comment">//findViewById only returns a View, we should downcast it to a LinearLayout</span></span><br><span class="line">LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String word:words)&#123;</span><br><span class="line">    <span class="comment">//TextView takes into a context, in this case is &quot;this&quot;</span></span><br><span class="line">    TextView wordView = <span class="keyword">new</span> TextView(<span class="keyword">this</span>);</span><br><span class="line">    wordView.setText(word);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//add wordView to the this View of List(LinearLayout)</span></span><br><span class="line">    rootView.addView(wordView);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>However, a <code>LinearLayout</code> is not scrollable and can easily go beyond the screen. Therefore, we should use an <code>ArrayAdapter</code></p>
 <h4 id="with-ArrayAdapter"><a href="#with-ArrayAdapter" class="headerlink" title="with ArrayAdapter"></a>with ArrayAdapter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayAdapter&lt;Word&gt; itemsAdapter = <span class="keyword">new</span> WordAdapter(<span class="keyword">this</span>, words);</span><br><span class="line">ListView listView = (ListView) findViewById(R.id.list);</span><br><span class="line">listView.setAdapter(itemsAdapter);</span><br></pre></td></tr></table></figure>
@@ -546,10 +546,10 @@
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yao-lirong.github.io">Yao</a>
-            <p>原文链接：<a href="http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/">http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/</a>
-            <p>发表日期：<a href="http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/">November 23rd 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/">December 17th 2019, 10:02:23 pm</a>
-            <p>版权声明：本文采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
+            </p><p>原文链接：<a href="http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/">http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/</a>
+            </p><p>发表日期：<a href="http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/">November 23rd 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="http://yao-lirong.github.io/2019-11-23-Android-Basics-User-Interface/">December 17th 2019, 10:02:23 pm</a>
+            </p><p>版权声明：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
     <!-- paginator -->
@@ -615,25 +615,25 @@
     
         
             
-                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
             
         
     
         
             
-                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title=twitter></a>
+                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
             
         
     
         
             
-                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title=linkedin></a>
+                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
             
         
     
         
             
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
             
         
     
@@ -669,7 +669,7 @@
     
         
             
-                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title=friendA></a>
+                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title="friendA"></a>
             
         
     
@@ -683,7 +683,7 @@
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="external nofollow noopener noreferrer">Archer</a></span>
     </div>
     <!-- website approve for Chinese user -->
     
@@ -701,17 +701,7 @@
         </div>
         <!-- toc -->
         
-            <div class="toc-wrapper toc-wrapper-loding" style=
-
-
-
-
-
-
-
-    top:50vh;
-
->
+            <div class="toc-wrapper toc-wrapper-loding" style="top:50vh;">
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
@@ -1994,7 +1984,7 @@
             <a class="archive-post-title" href="/hello-world/">Hello World</a>
         </li>
     
-    </div>
+    </ul></div>
 </div>
 
         <div class="sidebar-panel-tags">

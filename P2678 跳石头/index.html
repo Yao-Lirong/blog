@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang>
     <!-- title -->
 
 
@@ -18,7 +18,7 @@
     
         <meta name="keywords" content="Cornell,Yao,Lirong,姚立嵘,Programming">
     
-    <meta name="description" content="">
+    <meta name="description" content>
     <meta name="description" content="题目来源：洛谷P2678 跳石头  这是一道标准的 “最大值最小”或“最小值最大“ 的题，遇到这种题，我们就可以使用 贪心+二分查找 的方法来做 二分答案&#x2F;二分查找有序（单调）的，有界的就可以用二分法查找。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P2678 跳石头">
@@ -264,7 +264,7 @@
         </span>
         <!-- back to home page text -->
         <span class="home-link header-element">
-            <a href=/>Yao Lirong's Blog</a>
+            <a href="/">Yao Lirong's Blog</a>
         </span>
     </div>
     <!-- toggle banner for post layout -->
@@ -339,7 +339,7 @@
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
+                    <div class="post-intro-tags">
     
     
         <a class="post-tag" href="javascript:void(0);" data-tags="NOI">NOI</a>
@@ -506,11 +506,11 @@
   )
 </script>
 
-            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;">
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>题目来源：<a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P2678">洛谷P2678 跳石头</a></p>
+        <p>题目来源：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.luogu.org/problemnew/show/P2678">洛谷P2678 跳石头</a></p>
 <hr>
 <p>这是一道标准的 “最大值最小”或“最小值最大“ 的题，遇到这种题，我们就可以使用 <strong>贪心+二分查找</strong> 的方法来做</p>
 <h2 id="二分答案-二分查找"><a href="#二分答案-二分查找" class="headerlink" title="二分答案/二分查找"></a>二分答案/二分查找</h2><p>有序（单调）的，有界的就可以用二分法查找。<span id="more"></span></p>
@@ -529,7 +529,7 @@
 </li>
 </ol>
 <p>总结来说，可以使用二分查找的条件：解的上下界确定(l=0,r=L),可以写出判断条件(f(x)&lt;=m),解具有区间单调性(在某个值之前条件都成立，之后都不成立)</p>
-<p><del>本题和 P2855 <a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P2855">River Hopscotch</a> 是同一道题</del></p>
+<p><del>本题和 P2855 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.luogu.org/problemnew/show/P2855">River Hopscotch</a> 是同一道题</del></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> rocks[<span class="number">50003</span>],ending,num,removed,result;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finding</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin&gt;&gt;ending&gt;&gt;num&gt;&gt;removed;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=num;i++) cin&gt;&gt;rocks[i];</span><br><span class="line">    rocks[<span class="number">0</span>]=<span class="number">0</span>; rocks[num+<span class="number">1</span>]=ending;</span><br><span class="line">    <span class="built_in">sort</span>(rocks+<span class="number">1</span>,rocks+num+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">finding</span>(<span class="number">0</span>,ending);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;result;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finding</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid=(m+n)/<span class="number">2</span>, removing=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> now=<span class="number">0</span>,pointer=<span class="number">0</span>;<span class="comment">///now 表示我们现在所在的位置，pointer 表示下一个可以跳到的位置</span></span><br><span class="line">    <span class="keyword">while</span>(pointer&lt;num)&#123;<span class="comment">///人家这个方法直接一步子迈过去了，根本不需要记录哪个石头被拿掉了，或者判定一个原本有石头的地方被没被拿掉，毕竟题目本身就叫跳石头，为什么要一个个石头看呢，直接跳不就好了</span></span><br><span class="line">        pointer++;</span><br><span class="line">        <span class="keyword">if</span>(rocks[pointer]-rocks[now]&lt;mid)<span class="comment">///我们认为mid是最短跳跃距离，如果有某种情况使得跳跃距离比这个最短的还短，我们就需要拿走这块石头来增大这个地方的跳跃距离，使其大于最短跳跃距离</span></span><br><span class="line">            removing++;</span><br><span class="line">        <span class="keyword">else</span><span class="comment">//如果比最短距离长的话，我们就可以跳过去</span></span><br><span class="line">            now=pointer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(m&lt;=n)&#123;</span><br><span class="line">        <span class="comment">///这个地方我写 m&lt;n 或者 m&lt;=n 有区别吗？我的m到最后的时候只能通过mid+1这一种方式更新，+1又不影响/2以后mid的值，所以这两个判定不是一样的吗？</span></span><br><span class="line">        <span class="comment">///确实判定的时候没什么区别，最后都会更新到m=4 n=4 mid=4，但是 m&lt;n 运行到 m=4 n=4 mid=4 会发现 m!&lt;n 所以不会更新 result</span></span><br><span class="line">        <span class="keyword">if</span>(removing&gt;removed) <span class="built_in">finding</span>(m,mid<span class="number">-1</span>);</span><br><span class="line">        <span class="comment">///如果我们以mid为最小距离的情况下移动的石块比我们本应该移动的石块多的话，说明这个答案是不合法的，并且所有大于mid的都不合法（越大于mid移动的石块只会越来越多），所以减少 最小移动距离 使得我们不要移动那么多石块</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(removing&lt;=removed) &#123; result=mid; <span class="built_in">finding</span>(mid+<span class="number">1</span>,n);&#125;</span><br><span class="line">        <span class="comment">///如果以mid为最小距离的情况下移动的石块比我们本应该移动的石块多的话，说明这个答案合法，但是因为我们要寻找最大的最小值，所以增大 最小距离 看看有没有更优的解</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">25 5 2 </span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">11</span></span><br><span class="line"><span class="comment">14</span></span><br><span class="line"><span class="comment">17 </span></span><br><span class="line"><span class="comment">21</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 
@@ -538,7 +538,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l=<span class="number">1</span>,r=ll;<span class="comment">/// 1 是答案的最小值，ll是答案的最大值 </span></span><br><span class="line"><span class="keyword">while</span>(l&lt;=r) &#123; <span class="comment">///当左右边界重合的时候就是答案，退出循环 </span></span><br><span class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>,q=<span class="built_in">check</span>(mid);<span class="comment">//“&gt;&gt;1”相当于“/2” </span></span><br><span class="line">	<span class="keyword">if</span>(check) <span class="comment">///当该距离满足条件的时候 </span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">///去寻找右半部分，看看还有没有符合条件的更大的值</span></span><br><span class="line">        ll=mid+<span class="number">1</span>;<span class="comment">///ll上mid右边，找右半部分 </span></span><br><span class="line">        ans=mid;<span class="comment">///记录答案（更新中） </span></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">        l=mid+<span class="number">1</span>;<span class="comment">///若这个值不满足，就找左部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>下面是一个二分查找的样例</p>
-<h3 id="P1824-Aggressive-Cows"><a href="#P1824-Aggressive-Cows" class="headerlink" title="P1824 Aggressive Cows"></a>P1824 <a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P1824">Aggressive Cows</a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> stall[<span class="number">100005</span>],cow_num,stall_num,ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finding</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin&gt;&gt;stall_num&gt;&gt;cow_num;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=stall_num;i++) cin&gt;&gt;stall[i];</span><br><span class="line">    <span class="built_in">sort</span>(stall+<span class="number">1</span>,stall+stall_num+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">finding</span>(<span class="number">1</span>,stall[stall_num]);</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finding</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span><span class="comment">//看到一个符合要求的就填进去，最后看填进去的cow和一共有的是多是少</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid=(m+n)/<span class="number">2</span>,now=<span class="number">1</span>,pointer=<span class="number">1</span>,cow_mid=<span class="number">1</span>;<span class="comment">///cow_mid 从1开始，如果从0开始实际上算的是间距，n+1才是牛的数量</span></span><br><span class="line">    <span class="keyword">while</span>(pointer&lt;stall_num)&#123;</span><br><span class="line">        pointer++;</span><br><span class="line">        <span class="keyword">if</span>(stall[pointer]-stall[now]&gt;=mid)&#123;<span class="comment">///这里注意是 &gt;= 只要比最短的距离(mid)大，我们就可以放一头奶牛在这里</span></span><br><span class="line">            cow_mid++; now=pointer;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(m&lt;=n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cow_mid&gt;=cow_num) &#123;ans=mid; <span class="built_in">finding</span>(mid+<span class="number">1</span>,n);&#125; <span class="comment">///如果这次放的比我们需要放的多，说明我们的最短间距太小了，所以要增大最短间距</span></span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">finding</span>(m,mid<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="P1824-Aggressive-Cows"><a href="#P1824-Aggressive-Cows" class="headerlink" title="P1824 Aggressive Cows"></a>P1824 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.luogu.org/problemnew/show/P1824">Aggressive Cows</a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> stall[<span class="number">100005</span>],cow_num,stall_num,ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finding</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin&gt;&gt;stall_num&gt;&gt;cow_num;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=stall_num;i++) cin&gt;&gt;stall[i];</span><br><span class="line">    <span class="built_in">sort</span>(stall+<span class="number">1</span>,stall+stall_num+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">finding</span>(<span class="number">1</span>,stall[stall_num]);</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finding</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span><span class="comment">//看到一个符合要求的就填进去，最后看填进去的cow和一共有的是多是少</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid=(m+n)/<span class="number">2</span>,now=<span class="number">1</span>,pointer=<span class="number">1</span>,cow_mid=<span class="number">1</span>;<span class="comment">///cow_mid 从1开始，如果从0开始实际上算的是间距，n+1才是牛的数量</span></span><br><span class="line">    <span class="keyword">while</span>(pointer&lt;stall_num)&#123;</span><br><span class="line">        pointer++;</span><br><span class="line">        <span class="keyword">if</span>(stall[pointer]-stall[now]&gt;=mid)&#123;<span class="comment">///这里注意是 &gt;= 只要比最短的距离(mid)大，我们就可以放一头奶牛在这里</span></span><br><span class="line">            cow_mid++; now=pointer;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(m&lt;=n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cow_mid&gt;=cow_num) &#123;ans=mid; <span class="built_in">finding</span>(mid+<span class="number">1</span>,n);&#125; <span class="comment">///如果这次放的比我们需要放的多，说明我们的最短间距太小了，所以要增大最短间距</span></span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">finding</span>(m,mid<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </article>
@@ -546,10 +546,10 @@
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yao-lirong.github.io">Yao</a>
-            <p>原文链接：<a href="http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/</a>
-            <p>发表日期：<a href="http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">June 3rd 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">June 27th 2019, 8:27:21 am</a>
-            <p>版权声明：本文采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
+            </p><p>原文链接：<a href="http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/</a>
+            </p><p>发表日期：<a href="http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">June 3rd 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="http://yao-lirong.github.io/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">June 27th 2019, 8:27:21 am</a>
+            </p><p>版权声明：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
     <!-- paginator -->
@@ -615,25 +615,25 @@
     
         
             
-                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
             
         
     
         
             
-                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title=twitter></a>
+                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
             
         
     
         
             
-                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title=linkedin></a>
+                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
             
         
     
         
             
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
             
         
     
@@ -669,7 +669,7 @@
     
         
             
-                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title=friendA></a>
+                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title="friendA"></a>
             
         
     
@@ -683,7 +683,7 @@
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="external nofollow noopener noreferrer">Archer</a></span>
     </div>
     <!-- website approve for Chinese user -->
     
@@ -701,17 +701,7 @@
         </div>
         <!-- toc -->
         
-            <div class="toc-wrapper toc-wrapper-loding" style=
-
-
-
-
-
-
-
-    top:50vh;
-
->
+            <div class="toc-wrapper toc-wrapper-loding" style="top:50vh;">
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
@@ -1994,7 +1984,7 @@
             <a class="archive-post-title" href="/hello-world/">Hello World</a>
         </li>
     
-    </div>
+    </ul></div>
 </div>
 
         <div class="sidebar-panel-tags">

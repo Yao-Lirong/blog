@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang>
     <!-- title -->
 
 
@@ -18,7 +18,7 @@
     
         <meta name="keywords" content="Cornell,Yao,Lirong,姚立嵘,Programming">
     
-    <meta name="description" content="">
+    <meta name="description" content>
     <meta name="description" content="Tutorial Install Aria2c: sudo apt install aria2c and a web-based GUI: AriaNg  Create configuration files: 123mkdir ~&#x2F;.aria2touch ~&#x2F;.aria2&#x2F;aria2.session #用于保存日志touch ~&#x2F;.aria2&#x2F;aria2.conf #创建配置文件  A te">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install and Configure Aria2 on WSL">
@@ -265,7 +265,7 @@
         </span>
         <!-- back to home page text -->
         <span class="home-link header-element">
-            <a href=/>Yao Lirong's Blog</a>
+            <a href="/">Yao Lirong's Blog</a>
         </span>
     </div>
     <!-- toggle banner for post layout -->
@@ -340,7 +340,7 @@
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
+                    <div class="post-intro-tags">
     
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Logistics">Logistics</a>
@@ -509,7 +509,7 @@
   )
 </script>
 
-            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;">
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
@@ -517,19 +517,19 @@
 
 <h2 id="Tutorial"><a href="#Tutorial" class="headerlink" title="Tutorial"></a>Tutorial</h2><ol>
 <li><p>Install Aria2c: <code>sudo apt install aria2c</code></p>
-<p>and a web-based GUI: <a target="_blank" rel="noopener" href="https://github.com/mayswind/AriaNg/">AriaNg</a></p>
+<p>and a web-based GUI: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mayswind/AriaNg/">AriaNg</a></p>
 </li>
 <li><p>Create configuration files:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.aria2</span><br><span class="line">touch ~/.aria2/aria2.session <span class="comment">#用于保存日志</span></span><br><span class="line">touch ~/.aria2/aria2.conf <span class="comment">#创建配置文件</span></span><br></pre></td></tr></table></figure>
 
-<p>A template for “aria2.conf” can be downloaded from <a target="_blank" rel="noopener" href="http://aria2c.com/archiver/aria2.conf">aria2c.com</a>. You should change the <code>dir</code> field to be download path, change <code>input-file</code> and <code>save-session</code> to be the path of <code>aria2.session</code>. <code>aria2.conf</code> doesn’t support environment variable, so everything is at best written in absolute path.</p>
+<p>A template for “aria2.conf” can be downloaded from <a target="_blank" rel="external nofollow noopener noreferrer" href="http://aria2c.com/archiver/aria2.conf">aria2c.com</a>. You should change the <code>dir</code> field to be download path, change <code>input-file</code> and <code>save-session</code> to be the path of <code>aria2.session</code>. <code>aria2.conf</code> doesn’t support environment variable, so everything is at best written in absolute path.</p>
 </li>
 <li><p>Run Aria2c with this configuration: <code>aria2c --conf-path=/home/&lt;username&gt;/.aria2/aria2.conf</code>. It will remember this as its configuration file and use it to start the service from now on. We can also add argument <code>-D</code> so Aria2c runs as daemon in the background. (Since the aria2c’s default configure file path is in <code>~/.aria2/</code>, we don’t really need the <code>--conf-path</code> argument; but use it to specify a conf path if you put it somewhere else)</p>
 </li>
 <li><p>设置 <code>aria2c</code> 开机自动启动：编写脚本 <code>myStartUp.sh</code> 并放入 <code>/etc/init.d/</code>. (Remember to change its privilege to everyone)</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Short-Description: My Startup Services</span></span><br><span class="line"></span><br><span class="line">aria2c -D --conf-path=/home/&lt;username&gt;/.aria2/aria2.conf</span><br></pre></td></tr></table></figure>
 
-<p>More on Start Service on WSL startup, refer to this <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47733615">answer</a></p>
+<p>More on Start Service on WSL startup, refer to this <a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/47733615">answer</a></p>
 </li>
 </ol>
 <h2 id="Caution"><a href="#Caution" class="headerlink" title="Caution"></a>Caution</h2><p>On WSL, when you start <code>aria2</code> service the first time, note: (full command means the above command with <code>--conf-path</code>, but since our conf path is the same as default path, we can take )</p>
@@ -540,9 +540,9 @@
 <p>Anything else than this full command or use this full command some time after Windows boot could cause problem. The problem is showing “Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Permission denied” even though no process is using port 6800. The reason for this problem is not clear.</p>
 <p>After staring <code>aria2</code> once with the full command, we can shut it down and then start it in the background with <code>aria2c -D --conf-path=/home/&lt;username&gt;/.config/aria2/aria2.conf</code>. Now everything will work fine. </p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhuxiaoxi/p/7714457.html">Linux中配置Aria2 RPC Server</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ssooking/p/6094740.html">linux设置开机自启动</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47733615">WSL 服务自动启动的正确方法</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/zhuxiaoxi/p/7714457.html">Linux中配置Aria2 RPC Server</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/ssooking/p/6094740.html">linux设置开机自启动</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/47733615">WSL 服务自动启动的正确方法</a></li>
 </ol>
 
     </article>
@@ -550,10 +550,10 @@
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yao-lirong.github.io">Yao</a>
-            <p>原文链接：<a href="http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/">http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/</a>
-            <p>发表日期：<a href="http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/">June 28th 2021, 12:00:00 am</a>
-            <p>更新日期：<a href="http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/">August 29th 2021, 4:52:58 pm</a>
-            <p>版权声明：本文采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
+            </p><p>原文链接：<a href="http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/">http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/</a>
+            </p><p>发表日期：<a href="http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/">June 28th 2021, 12:00:00 am</a>
+            </p><p>更新日期：<a href="http://yao-lirong.github.io/2021-06-28-Install-and-Configure-Aria2-on-Linux/">August 29th 2021, 4:52:58 pm</a>
+            </p><p>版权声明：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
     <!-- paginator -->
@@ -619,25 +619,25 @@
     
         
             
-                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
             
         
     
         
             
-                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title=twitter></a>
+                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
             
         
     
         
             
-                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title=linkedin></a>
+                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
             
         
     
         
             
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
             
         
     
@@ -673,7 +673,7 @@
     
         
             
-                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title=friendA></a>
+                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title="friendA"></a>
             
         
     
@@ -687,7 +687,7 @@
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="external nofollow noopener noreferrer">Archer</a></span>
     </div>
     <!-- website approve for Chinese user -->
     
@@ -705,17 +705,7 @@
         </div>
         <!-- toc -->
         
-            <div class="toc-wrapper toc-wrapper-loding" style=
-
-
-
-
-
-
-
-    top:50vh;
-
->
+            <div class="toc-wrapper toc-wrapper-loding" style="top:50vh;">
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
@@ -1998,7 +1988,7 @@
             <a class="archive-post-title" href="/hello-world/">Hello World</a>
         </li>
     
-    </div>
+    </ul></div>
 </div>
 
         <div class="sidebar-panel-tags">

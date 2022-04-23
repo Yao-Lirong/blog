@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang>
     <!-- title -->
 
 
@@ -18,7 +18,7 @@
     
         <meta name="keywords" content="Cornell,Yao,Lirong,姚立嵘,Programming">
     
-    <meta name="description" content="">
+    <meta name="description" content>
     <meta name="description" content="From Lecture: Heaps and priority queues  Priority Queue1234567interface PriorityQueue&lt;E&gt; &amp;#123;        void increasePriority(E x, int priority)            &#x2F;&#x2F;constructor 	PriorityQueue (ElemOps&amp;l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Priority Queue and Heap">
@@ -266,7 +266,7 @@
         </span>
         <!-- back to home page text -->
         <span class="home-link header-element">
-            <a href=/>Yao Lirong's Blog</a>
+            <a href="/">Yao Lirong's Blog</a>
         </span>
     </div>
     <!-- toggle banner for post layout -->
@@ -341,7 +341,7 @@
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
+                    <div class="post-intro-tags">
     
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Cornell">Cornell</a>
@@ -512,11 +512,11 @@
   )
 </script>
 
-            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;">
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>From Lecture: <a target="_blank" rel="noopener" href="https://www.cs.cornell.edu/courses/cs2112/2019fa/lectures/lecture.html?id=heaps">Heaps and priority queues</a></p>
+        <p>From Lecture: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cs.cornell.edu/courses/cs2112/2019fa/lectures/lecture.html?id=heaps">Heaps and priority queues</a></p>
 <hr>
 <h2 id="Priority-Queue"><a href="#Priority-Queue" class="headerlink" title="Priority Queue"></a>Priority Queue</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">PriorityQueue</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">increasePriority</span><span class="params">(E x, <span class="keyword">int</span> priority)</span></span></span><br><span class="line"><span class="function">        </span></span><br><span class="line"><span class="function">    <span class="comment">//constructor </span></span></span><br><span class="line"><span class="function">	<span class="title">PriorityQueue</span> <span class="params">(ElemOps&lt;E&gt; ops)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -561,7 +561,7 @@
 <h4 id="Resizable-Array"><a href="#Resizable-Array" class="headerlink" title="Resizable Array"></a>Resizable Array</h4><p>You can store your heap in a resizable array with a load factor as we’ve seen in the HashTables.</p>
 <h4 id="Code-in-C"><a href="#Code-in-C" class="headerlink" title="Code in C++"></a>Code in C++</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M=<span class="number">1000000</span>,INF=<span class="number">10e9</span>; <span class="keyword">int</span> n=<span class="number">0</span>,a[M];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swim</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">int</span>)</span></span>;<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="function"><span class="keyword">int</span> <span class="title">extract</span><span class="params">()</span></span>; <span class="function"><span class="keyword">int</span> <span class="title">head</span><span class="params">()</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>; <span class="function"><span class="keyword">int</span> <span class="title">height</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* 堆排序小测试</span></span><br><span class="line"><span class="comment">    int num; cin&gt;&gt;num;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;num;i++) &#123;int now; cin&gt;&gt;now; add(now);&#125;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;num;i++) cout&lt;&lt;&quot;extracted&quot;&lt;&lt;extract()&lt;&lt;endl&lt;&lt;endl;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 洛谷P3378 模板 堆</span></span><br><span class="line"><span class="comment">    int result[M/2],ans=0; int num; cin&gt;&gt;num;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;num;i++)&#123;</span></span><br><span class="line"><span class="comment">        int command; cin&gt;&gt;command;</span></span><br><span class="line"><span class="comment">        switch(command)&#123;</span></span><br><span class="line"><span class="comment">            case 1:</span></span><br><span class="line"><span class="comment">                int adding; cin&gt;&gt;adding; add(adding);</span></span><br><span class="line"><span class="comment">                break;</span></span><br><span class="line"><span class="comment">            case 2:</span></span><br><span class="line"><span class="comment">                result[ans++]=head(); break;</span></span><br><span class="line"><span class="comment">            case 3:</span></span><br><span class="line"><span class="comment">                extract(); break;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;ans;i++) cout&lt;&lt;result[i]&lt;&lt;endl;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* heapify 时间测试</span></span><br><span class="line"><span class="comment">    理论上来说sink比swim要快(需要的操作少)</span></span><br><span class="line"><span class="comment">    但是大概因为我的sink的实现方法太烂，所以竟然 swim 快一点</span></span><br><span class="line"><span class="comment">    int max = 100000;n=max;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;max;i++) a[i] = max-i;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    auto t0 = std::chrono::system_clock::now();</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    for (int i = (n/2); i &gt; 0; i--) sink(i);</span></span><br><span class="line"><span class="comment">    //for(int i=2;i&lt;=n;i++) &#123;swim(i);&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    auto t1 = std::chrono::system_clock::now();</span></span><br><span class="line"><span class="comment">    using milliseconds = std::chrono::duration&lt;double, std::milli&gt;;</span></span><br><span class="line"><span class="comment">    milliseconds ms = t1 - t0;</span></span><br><span class="line"><span class="comment">    std::cout &lt;&lt; &quot; time taken by my code: &quot; &lt;&lt; ms.count() &lt;&lt; &#x27;\n&#x27;;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swim</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(a[i/<span class="number">2</span>]&gt;=a[i]&amp;&amp;i&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//注意边界的选择：i&lt;=1的话上面已经没东西了，就没有再上游的必要了</span></span><br><span class="line">        <span class="built_in">swap</span>(a[i/<span class="number">2</span>],a[i]);</span><br><span class="line">        i = i/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=i*<span class="number">2</span>, r=i*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>((a[i]&gt;=a[l]||a[i]&gt;=a[r])&amp;&amp;i&lt;<span class="built_in">pow</span>(<span class="number">2</span>,<span class="built_in">height</span>(n)))&#123;<span class="comment">//叶子的上一层才需要下沉，叶子那一层没有东西可以沉</span></span><br><span class="line">        <span class="keyword">if</span>(a[l]&lt;=a[r]&amp;&amp;l&lt;=n)&#123;</span><br><span class="line">            <span class="comment">//l&lt;=n判断这个孩子结点确实在堆中，而不是一个堆外但在数组中的结点</span></span><br><span class="line">            <span class="comment">//有问题，这个地方如果不把每个删掉的元素设为INF的话，r会一直存在在数组中；</span></span><br><span class="line">            <span class="comment">//考虑2 1 (0) 的情况，其中0是已经被删掉的元素，但是因为a[r]=0&lt;a[l]=1所以2不会sink</span></span><br><span class="line">            <span class="comment">//如果将数组初始化成INF的话，就不需要在不在堆内l&lt;=n这个条件判断了</span></span><br><span class="line">            <span class="comment">//但是内存占用会极大提高，因为整个长为M的数组都被初始化了</span></span><br><span class="line">            <span class="built_in">swap</span>(a[i],a[l]);</span><br><span class="line">            i = l; l=i*<span class="number">2</span>; r=i*<span class="number">2</span>+<span class="number">1</span>; <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (a[l]&gt;a[r]&amp;&amp;r&lt;=n)&#123;</span><br><span class="line">            <span class="built_in">swap</span>(a[i],a[r]);</span><br><span class="line">            i = r; l=i*<span class="number">2</span>; r=i*<span class="number">2</span>+<span class="number">1</span>; <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a[++n] = i;</span><br><span class="line">    <span class="built_in">swim</span>(n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extract</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = a[<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">swap</span>(a[<span class="number">1</span>],a[n]);</span><br><span class="line">    a[n--]=INF;</span><br><span class="line">    <span class="built_in">sink</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">head</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> a[<span class="number">1</span>];&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  returns the height of a complete binary tree with n nodes</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">height</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">int</span> digit=<span class="number">0</span>; <span class="keyword">while</span>(x&gt;<span class="number">0</span>) &#123;x=x&gt;&gt;<span class="number">1</span>; digit++;&#125; <span class="keyword">return</span> digit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>; cout&lt;&lt;endl;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="0-1-Based"><a href="#0-1-Based" class="headerlink" title="0-1 Based"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yrbbest/p/5290262.html">0-1 Based</a></h4><p>上面是用Binary heap设计一个 Max-oriented Priority Queue， 数组是1-based。  假如遇到面试官问怎么heapify怎么办？  下面我们就对上面代码进行少许改动，变为0-based，可以直接对数组进行max -  heapify。</p>
+<h4 id="0-1-Based"><a href="#0-1-Based" class="headerlink" title="0-1 Based"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/yrbbest/p/5290262.html">0-1 Based</a></h4><p>上面是用Binary heap设计一个 Max-oriented Priority Queue， 数组是1-based。  假如遇到面试官问怎么heapify怎么办？  下面我们就对上面代码进行少许改动，变为0-based，可以直接对数组进行max -  heapify。</p>
 <ol>
 <li>heapify()方法: 可以看出我们的heapify方法基本没有变化，除了把N / 2变成了数组的长度 nums.length / 2</li>
 <li>sink()方法 : 这里我们要注意一下边界条件。 先设置len = nums.length，这里len就相当于之前的N， 然后再进行比较的时候，我们要把每次的 j 都减1，从1-based改变为 0-based，其他代码都不需要改变</li>
@@ -574,10 +574,10 @@
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yao-lirong.github.io">Yao</a>
-            <p>原文链接：<a href="http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/">http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/</a>
-            <p>发表日期：<a href="http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/">November 26th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/">December 17th 2019, 10:24:37 pm</a>
-            <p>版权声明：本文采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
+            </p><p>原文链接：<a href="http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/">http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/</a>
+            </p><p>发表日期：<a href="http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/">November 26th 2019, 12:00:00 am</a>
+            </p><p>更新日期：<a href="http://yao-lirong.github.io/2019-11-26-Priority-Queue-and-Heap/">December 17th 2019, 10:24:37 pm</a>
+            </p><p>版权声明：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
     <!-- paginator -->
@@ -643,25 +643,25 @@
     
         
             
-                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
             
         
     
         
             
-                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title=twitter></a>
+                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
             
         
     
         
             
-                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title=linkedin></a>
+                <a href="//www.linkedin.com/in/lirong-yao-cornell/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
             
         
     
         
             
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
             
         
     
@@ -697,7 +697,7 @@
     
         
             
-                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title=friendA></a>
+                <a href="//magolor.github.io" class="iconfont-archer friendA" target="_blank" title="friendA"></a>
             
         
     
@@ -711,7 +711,7 @@
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="external nofollow noopener noreferrer">Archer</a></span>
     </div>
     <!-- website approve for Chinese user -->
     
@@ -729,17 +729,7 @@
         </div>
         <!-- toc -->
         
-            <div class="toc-wrapper toc-wrapper-loding" style=
-
-
-
-
-
-
-
-    top:50vh;
-
->
+            <div class="toc-wrapper toc-wrapper-loding" style="top:50vh;">
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
@@ -2022,7 +2012,7 @@
             <a class="archive-post-title" href="/hello-world/">Hello World</a>
         </li>
     
-    </div>
+    </ul></div>
 </div>
 
         <div class="sidebar-panel-tags">
