@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yao-lirong.github.io/verifier/baidu_verify_code-JhnBOyJv4Y.html</loc>
-    
-    <lastmod>2022-04-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yao-lirong.github.io/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
     
     <lastmod>2022-04-18</lastmod>
@@ -597,20 +588,6 @@
   </url>
   
   <url>
-    <loc>https://yao-lirong.github.io/tags/Android/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yao-lirong.github.io/tags/CS3110/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yao-lirong.github.io/tags/Logistics/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -618,14 +595,21 @@
   </url>
   
   <url>
-    <loc>https://yao-lirong.github.io/tags/Hexo/</loc>
+    <loc>https://yao-lirong.github.io/tags/Java/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yao-lirong.github.io/tags/Java/</loc>
+    <loc>https://yao-lirong.github.io/tags/Android/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yao-lirong.github.io/tags/Hexo/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -640,6 +624,20 @@
   
   <url>
     <loc>https://yao-lirong.github.io/tags/CS2043/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yao-lirong.github.io/tags/CS3110/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yao-lirong.github.io/tags/%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -667,14 +665,7 @@
   </url>
   
   <url>
-    <loc>https://yao-lirong.github.io/tags/Latex/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yao-lirong.github.io/tags/CS4820/</loc>
+    <loc>https://yao-lirong.github.io/tags/Tsinghua/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -688,14 +679,14 @@
   </url>
   
   <url>
-    <loc>https://yao-lirong.github.io/tags/Tsinghua/</loc>
+    <loc>https://yao-lirong.github.io/tags/Latex/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yao-lirong.github.io/tags/%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
+    <loc>https://yao-lirong.github.io/tags/CS4820/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
