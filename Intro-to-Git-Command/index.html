@@ -28,10 +28,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0">
 <meta property="article:published_time" content="2019-02-10T05:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-31T00:22:57.002Z">
+<meta property="article:modified_time" content="2022-06-08T19:43:59.585Z">
 <meta property="article:author" content="Yao Lirong">
-<meta property="article:tag" content="Logistics">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Manual">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -348,16 +347,14 @@
                     <div class="post-intro-tags">
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Logistics">Logistics</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Git">Git</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Manual">Manual</a>
     
 </div>
 
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">375</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">415</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -523,10 +520,12 @@
 <li><code>git add File_Name</code>: add “File_Name” to repository</li>
 <li><code>git add .</code> : add all files </li>
 <li><code>git commit -m &quot;message&quot;</code>: commit changes and tell others what changes have been made </li>
+<li><code>git commit -m &quot;Title&quot; -m &quot;Description ..&quot;</code>: commit with a short title then long description</li>
 </ul>
 <span id="more"></span>
 
-<hr>
+
+
 <h2 id="Way-back-Machine"><a href="#Way-back-Machine" class="headerlink" title="Way-back Machine"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013743858312764dca7ad6d0754f76aa562e3789478044000">Way-back Machine</a></h2><ul>
 <li><code>git status</code>: tell you which files have been changed </li>
 <li><code>git diff</code>: check what content exactly has been changed in each file</li>
@@ -562,7 +561,6 @@
 </ol>
 </li>
 </ol>
-<hr>
 <h2 id="Managing-Branch"><a href="#Managing-Branch" class="headerlink" title="Managing Branch"></a>Managing Branch</h2><h3 id="Creating-and-Deleting-Branch"><a href="#Creating-and-Deleting-Branch" class="headerlink" title="Creating and Deleting Branch"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000">Creating and Deleting Branch</a></h3><ul>
 <li>查看分支：<code>git branch</code></li>
 <li>创建分支：<code>git branch &lt;name&gt;</code></li>
@@ -570,7 +568,10 @@
 <li>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></li>
 <li>删除分支：<code>git branch -d &lt;name&gt;</code></li>
 </ul>
-<h3 id="Solving-Conflicts"><a href="#Solving-Conflicts" class="headerlink" title="Solving Conflicts"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840202368c74be33fbd884e71b570f2cc3c0d1dcf000">Solving Conflicts</a></h3>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><ul>
+<li>Keep a local copy of files, don’t update with server change: <code>git update-index --skip-worktree &lt;path-name&gt;</code> from <a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/a/40272289/12006199">Stackoverflow</a></li>
+</ul>
+
     </article>
     <!-- license -->
     
@@ -578,7 +579,7 @@
             <p>Author：<a href="https://yao-lirong.github.io">Yao Lirong</a>
             </p><p>Link：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">https://yao-lirong.github.io/Intro-to-Git-Command/</a>
             </p><p>Publish date：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">February 10th 2019, 12:00:00 am</a>
-            </p><p>Update date：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">August 30th 2021, 8:22:57 pm</a>
+            </p><p>Update date：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">June 8th 2022, 3:43:59 pm</a>
             </p><p>License：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
@@ -725,7 +726,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-repository"><span class="toc-number">1.</span> <span class="toc-text">Creating repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Way-back-Machine"><span class="toc-number">2.</span> <span class="toc-text">Way-back Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Time-Travelling"><span class="toc-number">2.1.</span> <span class="toc-text">Time Travelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Undo-Changes"><span class="toc-number">2.2.</span> <span class="toc-text">Undo Changes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deleting-Files"><span class="toc-number">2.3.</span> <span class="toc-text">Deleting Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Branch"><span class="toc-number">3.</span> <span class="toc-text">Managing Branch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-Deleting-Branch"><span class="toc-number">3.1.</span> <span class="toc-text">Creating and Deleting Branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solving-Conflicts"><span class="toc-number">3.2.</span> <span class="toc-text">Solving Conflicts</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-repository"><span class="toc-number">1.</span> <span class="toc-text">Creating repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Way-back-Machine"><span class="toc-number">2.</span> <span class="toc-text">Way-back Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Time-Travelling"><span class="toc-number">2.1.</span> <span class="toc-text">Time Travelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Undo-Changes"><span class="toc-number">2.2.</span> <span class="toc-text">Undo Changes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deleting-Files"><span class="toc-number">2.3.</span> <span class="toc-text">Deleting Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Branch"><span class="toc-number">3.</span> <span class="toc-text">Managing Branch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-Deleting-Branch"><span class="toc-number">3.1.</span> <span class="toc-text">Creating and Deleting Branch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">4.</span> <span class="toc-text">Others</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1034,26 +1035,7 @@
         
         
         
-        
-        
-        
-        
-        
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1624,7 +1606,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 59
         </div>
         <!-- search  -->
         
@@ -1653,7 +1635,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/09</span>
-            <a class="archive-post-title" href="/2022-04-09-%E8%A7%86%E9%A2%91%E7%BC%96%E8%BE%91-(FFmpeg-DaVinci)/">视频编辑 (FFmpeg DaVinci)</a>
+            <a class="archive-post-title" href="/2022-04-09-%E8%A7%86%E9%A2%91%E7%BC%96%E8%BE%91-(FFmpeg-DaVinci)/">Video Editing (FFmpeg DaVinci)</a>
         </li>
     
         
@@ -1668,7 +1650,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
-            <a class="archive-post-title" href="/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2021 网络日志</a>
+            <a class="archive-post-title" href="/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2021 Web Journal</a>
         </li>
     
         
@@ -1680,7 +1662,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span>
-            <a class="archive-post-title" href="/2021-08-31-Introduction-to-C/">Introduction to C</a>
+            <a class="archive-post-title" href="/2021-08-31-Introduction-to-C/">C Manual</a>
         </li>
     
         
@@ -1728,7 +1710,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/11</span>
-            <a class="archive-post-title" href="/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/">Cornell/Tsinghua 20FA 总结</a>
+            <a class="archive-post-title" href="/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/">Looking Back on Cornell/Tsinghua</a>
         </li>
     
         
@@ -1743,25 +1725,25 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
-            <a class="archive-post-title" href="/2020-12-31-2020-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2020 网络日志</a>
+            <a class="archive-post-title" href="/2020-12-31-2020-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2020 Web Journal</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/29</span>
-            <a class="archive-post-title" href="/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Python 常见问题</a>
+            <a class="archive-post-title" href="/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Python Manual</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/29</span>
-            <a class="archive-post-title" href="/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++ 常见问题</a>
+            <a class="archive-post-title" href="/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++ Manual</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/23</span>
-            <a class="archive-post-title" href="/2020-11-23-Latex-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/">Latex 实用技巧手册</a>
+            <a class="archive-post-title" href="/2020-11-23-Latex-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/">Latex Manual</a>
         </li>
     
         
@@ -1773,7 +1755,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">10/02</span>
-            <a class="archive-post-title" href="/2020-10-02-INFO1998-Intro-to-Machine-Learning/">INFO1998 Intro to Machine Learning</a>
+            <a class="archive-post-title" href="/2020-10-02-INFO1998-Intro-to-Machine-Learning/">INFO1998 Intro to Machine Learning (sklearn, pandas)</a>
         </li>
     
         
@@ -1803,7 +1785,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/27</span>
-            <a class="archive-post-title" href="/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/">Cornell 20SP 总结</a>
+            <a class="archive-post-title" href="/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/">Looking Back on Cornell 20SP</a>
         </li>
     
         
@@ -1878,7 +1860,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/22</span>
-            <a class="archive-post-title" href="/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/">Cornell 19FA 总结</a>
+            <a class="archive-post-title" href="/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/">Looking Back on Cornell 19FA</a>
         </li>
     
         
@@ -1897,12 +1879,6 @@
         <li class="archive-post-item">
             <span class="archive-post-date">11/26</span>
             <a class="archive-post-title" href="/2019-11-26-Priority-Queue-and-Heap/">Priority Queue and Heap</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/23</span>
-            <a class="archive-post-title" href="/2019-11-23-Android-Basics-User-Interface/">Udacity: Android Basics</a>
         </li>
     
         
@@ -2041,11 +2017,6 @@
                 Cornell
             </span>
         
-            <span class="sidebar-tag-name" data-tags="19FA">
-                <span class="iconfont-archer">&#xe606;</span>
-                19FA
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CS2112">
                 <span class="iconfont-archer">&#xe606;</span>
                 CS2112
@@ -2056,54 +2027,9 @@
                 Logistics
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Java">
-                <span class="iconfont-archer">&#xe606;</span>
-                Java
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Android">
-                <span class="iconfont-archer">&#xe606;</span>
-                Android
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="20SP">
-                <span class="iconfont-archer">&#xe606;</span>
-                20SP
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CS2043">
-                <span class="iconfont-archer">&#xe606;</span>
-                CS2043
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CS3110">
                 <span class="iconfont-archer">&#xe606;</span>
                 CS3110
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络日志">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络日志
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CS4320">
-                <span class="iconfont-archer">&#xe606;</span>
-                CS4320
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="20FA">
-                <span class="iconfont-archer">&#xe606;</span>
-                20FA
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Python">
-                <span class="iconfont-archer">&#xe606;</span>
-                Python
             </span>
         
             <span class="sidebar-tag-name" data-tags="Tsinghua">
@@ -2111,39 +2037,24 @@
                 Tsinghua
             </span>
         
-            <span class="sidebar-tag-name" data-tags="C++">
+            <span class="sidebar-tag-name" data-tags="Review">
                 <span class="iconfont-archer">&#xe606;</span>
-                C++
+                Review
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Latex">
+            <span class="sidebar-tag-name" data-tags="Manual">
                 <span class="iconfont-archer">&#xe606;</span>
-                Latex
+                Manual
             </span>
         
-            <span class="sidebar-tag-name" data-tags="CS4820">
+            <span class="sidebar-tag-name" data-tags="Journal">
                 <span class="iconfont-archer">&#xe606;</span>
-                CS4820
+                Journal
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Linux">
+            <span class="sidebar-tag-name" data-tags="Book">
                 <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Git">
-                <span class="iconfont-archer">&#xe606;</span>
-                Git
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Reading">
-                <span class="iconfont-archer">&#xe606;</span>
-                Reading
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CS2024">
-                <span class="iconfont-archer">&#xe606;</span>
-                CS2024
+                Book
             </span>
         
     </div>
