@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yao-lirong.github.io/2020-10-13-Algorithm-Design-%E5%8F%8A-CS4820-%E4%B8%80%E8%88%AC%E6%80%A7%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/2021-09-16-Intro-to-SQL/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/2021-05-28-Introduction-to-TensorFlow-1.x/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
     <loc>https://yao-lirong.github.io/Intro-to-Git-Command/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
     <loc>https://yao-lirong.github.io/hello-world/</loc>
-    <lastmod>2022-06-08</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
@@ -22,10 +46,6 @@
   </url>
   <url>
     <loc>https://yao-lirong.github.io/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2022-06-08</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/2021-09-16-Intro-to-SQL/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
@@ -45,15 +65,19 @@
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
+    <loc>https://yao-lirong.github.io/2020-06-24-Kinekt-as-Web-Cam/</loc>
+    <lastmod>2022-06-08</lastmod>
+  </url>
+  <url>
     <loc>https://yao-lirong.github.io/2020-09-05-Windows%E4%B8%8B%E9%85%8D%E7%BD%AEPostgreSQL/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/2021-06-23-On-Intelligence/</loc>
+    <loc>https://yao-lirong.github.io/2020-09-29-Add-Open-with-Windows-Terminalto-Right-Click-Menu/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/2021-05-28-Introduction-to-TensorFlow-1.x/</loc>
+    <loc>https://yao-lirong.github.io/2021-06-23-On-Intelligence/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
@@ -66,10 +90,6 @@
   </url>
   <url>
     <loc>https://yao-lirong.github.io/2021-02-11-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(3)/</loc>
-    <lastmod>2022-06-08</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
@@ -89,19 +109,11 @@
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/2020-10-13-Algorithm-Design-%E5%8F%8A-CS4820-%E4%B8%80%E8%88%AC%E6%80%A7%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2022-06-08</lastmod>
-  </url>
-  <url>
     <loc>https://yao-lirong.github.io/2020-10-02-INFO1998-Intro-to-Machine-Learning/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
     <loc>https://yao-lirong.github.io/2020-09-07-CS2024-C++-Programming/</loc>
-    <lastmod>2022-06-08</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
@@ -145,10 +157,6 @@
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2022-06-08</lastmod>
-  </url>
-  <url>
     <loc>https://yao-lirong.github.io/2019-12-05-Problem-Analysis/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
@@ -187,14 +195,6 @@
   <url>
     <loc>https://yao-lirong.github.io/2021-08-29-%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98--%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2022-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/2020-09-29-Add-Open-with-Windows-Terminalto-Right-Click-Menu/</loc>
-    <lastmod>2020-10-02</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/2020-06-24-Kinekt-as-Web-Cam/</loc>
-    <lastmod>2020-06-24</lastmod>
   </url>
   <url>
     <loc>https://yao-lirong.github.io/2019-07-07-P1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2/</loc>
