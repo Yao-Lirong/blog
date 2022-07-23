@@ -466,6 +466,49 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2020-02-06-Higher-Order-Functions/">
+                
+                <span class="abstract-title-text">Higher-Order Functions</span>
+            </a>
+            <div class="abstract-content">
+                <p>From Textbook: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cs.cornell.edu/courses/cs3110/2020sp/textbook/hop/intro.html">Higher Order Programming</a></p>
+<hr>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>higher-order: functions as values, you can pass functions as arguments into other functions, functions at the same level as other variables</li>
+<li>lower-order: languages like C, functions as something higher than other variables</li>
+</ul>
+<p>Pipeline is a higher-order function. </p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pipeline x f = f x</span><br><span class="line"><span class="keyword">let</span> (|&gt;) = pipeline</span><br><span class="line"><span class="keyword">let</span> x = <span class="number">5</span> |&gt; double  <span class="comment">(* 10 *)</span></span><br></pre></td></tr></table></figure>
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/06/08">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/06</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class="abstract-tags">
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CS3110">CS3110</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2020-02-04-Advanced-Data-Types/">
                 
                 <span class="abstract-title-text">Advanced Data Types</span>
@@ -804,48 +847,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2019-11-21-shortest-path-algorithm/">
-                
-                <span class="abstract-title-text">Shortest path algorithm</span>
-            </a>
-            <div class="abstract-content">
-                <p>From Lecture: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cs.cornell.edu/courses/cs2112/2019fa/lectures/lecture.html?id=ssp">Dijkstra’s shortest path algorithm</a></p>
-<hr>
-<h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2><ul>
-<li>white: <code>dist == infinity</code></li>
-<li>gray: <code>dist &lt; infinity</code>, in queue</li>
-<li>black: <code>dist &lt; infinity</code>, not in queue</li>
-</ul>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/06/08">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/21</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class="abstract-tags">
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CS2112">CS2112</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -938,10 +939,14 @@
             
                 
                     <span>
-                        <a href="//magolor.cn" target="_black">陈醉 (Zui Chen)</a>
+                        <a href="https://caffreyr.github.io/" target="_blank" rel="external nofollow noopener noreferrer">CaffreyR (Guorun Wang)</a>
                     </span>
                 
             
+                
+                    <span>
+                        <a href="https://magolor.cn" target="_blank" rel="external nofollow noopener noreferrer">陈醉 (Zui Chen)</a>
+                    </span>
                 
             
                 
@@ -1365,7 +1370,24 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1922,7 +1944,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 59
+        Total : 60
         </div>
         <!-- search  -->
         
@@ -2003,6 +2025,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">05/28</span>
             <a class="archive-post-title" href="/2021-05-28-Introduction-to-TensorFlow-1.x/">TensorFlow 1.x Manual</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span>
+            <a class="archive-post-title" href="/2021-05-15-Setting-up-a-Server/">Setting up a Server</a>
         </li>
     
         
