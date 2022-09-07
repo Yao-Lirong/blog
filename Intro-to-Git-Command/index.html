@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0">
 <meta property="article:published_time" content="2019-02-10T05:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-08T19:43:59.585Z">
+<meta property="article:modified_time" content="2022-09-05T03:44:54.606Z">
 <meta property="article:author" content="Yao Lirong">
 <meta property="article:tag" content="Manual">
 <meta name="twitter:card" content="summary">
@@ -354,7 +354,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">415</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">607</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -561,6 +561,12 @@
 </ol>
 </li>
 </ol>
+<h2 id="Remote-Repository"><a href="#Remote-Repository" class="headerlink" title="Remote Repository"></a>Remote Repository</h2><h3 id="Changing-Git-Remote-URL"><a href="#Changing-Git-Remote-URL" class="headerlink" title="Changing Git Remote URL"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://devconnected.com/how-to-change-git-remote-origin/">Changing Git Remote URL</a></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url &lt;remote_name&gt; &lt;remote_url&gt; # remote name is usually &quot;origin&quot;</span><br><span class="line">git remote -v # verbose print info to check changed successfully </span><br></pre></td></tr></table></figure>
+
+<h2 id="Push-to-Different-Remote-Branch"><a href="#Push-to-Different-Remote-Branch" class="headerlink" title="Push to Different Remote Branch"></a>Push to Different Remote Branch</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push &lt;remote_name&gt; &lt;branch_name&gt;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="Managing-Branch"><a href="#Managing-Branch" class="headerlink" title="Managing Branch"></a>Managing Branch</h2><h3 id="Creating-and-Deleting-Branch"><a href="#Creating-and-Deleting-Branch" class="headerlink" title="Creating and Deleting Branch"></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000">Creating and Deleting Branch</a></h3><ul>
 <li>查看分支：<code>git branch</code></li>
 <li>创建分支：<code>git branch &lt;name&gt;</code></li>
@@ -568,8 +574,25 @@
 <li>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></li>
 <li>删除分支：<code>git branch -d &lt;name&gt;</code></li>
 </ul>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><ul>
+<li><p>show configuration: <code>git config -l --local</code> <code>git config -l --global</code></p>
+</li>
+<li><p>modify configuration: </p>
+<ul>
+<li><p>For this current repo:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name &quot;Your Name Here&quot;</span><br><span class="line">git config user.email your@email.com</span><br></pre></td></tr></table></figure></li>
+<li><p>For global settings: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name Here&quot;</span><br><span class="line">git config --global user.email your@email.com</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Quick look up a specific attribute: <code>git config user.name</code></p>
+</li>
+<li><p>If you are using HTTPS remote, it will ask for your username and password each time you push/pull from the remote. You can then cache your credentials with the following command for 7200 seconds (2 hour). If ignore the part in the quote, the credentials will be saved forever. </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper &#x27;cache --timeout 7200&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><ul>
 <li>Keep a local copy of files, don’t update with server change: <code>git update-index --skip-worktree &lt;path-name&gt;</code> from <a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/a/40272289/12006199">Stackoverflow</a></li>
+<li>When use GitHub, use https to track remote branch. SSH works weird when you have multiple accounts on your local machine. </li>
 </ul>
 
     </article>
@@ -579,7 +602,7 @@
             <p>Author：<a href="https://yao-lirong.github.io">Yao Lirong</a>
             </p><p>Link：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">https://yao-lirong.github.io/Intro-to-Git-Command/</a>
             </p><p>Publish date：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">February 10th 2019, 12:00:00 am</a>
-            </p><p>Update date：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">June 8th 2022, 3:43:59 pm</a>
+            </p><p>Update date：<a href="https://yao-lirong.github.io/Intro-to-Git-Command/">September 4th 2022, 11:44:54 pm</a>
             </p><p>License：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
@@ -726,7 +749,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-repository"><span class="toc-number">1.</span> <span class="toc-text">Creating repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Way-back-Machine"><span class="toc-number">2.</span> <span class="toc-text">Way-back Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Time-Travelling"><span class="toc-number">2.1.</span> <span class="toc-text">Time Travelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Undo-Changes"><span class="toc-number">2.2.</span> <span class="toc-text">Undo Changes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deleting-Files"><span class="toc-number">2.3.</span> <span class="toc-text">Deleting Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Branch"><span class="toc-number">3.</span> <span class="toc-text">Managing Branch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-Deleting-Branch"><span class="toc-number">3.1.</span> <span class="toc-text">Creating and Deleting Branch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">4.</span> <span class="toc-text">Others</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-repository"><span class="toc-number">1.</span> <span class="toc-text">Creating repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Way-back-Machine"><span class="toc-number">2.</span> <span class="toc-text">Way-back Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Time-Travelling"><span class="toc-number">2.1.</span> <span class="toc-text">Time Travelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Undo-Changes"><span class="toc-number">2.2.</span> <span class="toc-text">Undo Changes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deleting-Files"><span class="toc-number">2.3.</span> <span class="toc-text">Deleting Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remote-Repository"><span class="toc-number">3.</span> <span class="toc-text">Remote Repository</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Changing-Git-Remote-URL"><span class="toc-number">3.1.</span> <span class="toc-text">Changing Git Remote URL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-to-Different-Remote-Branch"><span class="toc-number">4.</span> <span class="toc-text">Push to Different Remote Branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Branch"><span class="toc-number">5.</span> <span class="toc-text">Managing Branch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-Deleting-Branch"><span class="toc-number">5.1.</span> <span class="toc-text">Creating and Deleting Branch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration"><span class="toc-number">6.</span> <span class="toc-text">Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">7.</span> <span class="toc-text">Others</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1040,13 +1063,27 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1609,7 +1646,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 64
         </div>
         <!-- search  -->
         
@@ -1627,6 +1664,18 @@
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
             <a class="archive-post-title" href="/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2022 Web Journal</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span>
+            <a class="archive-post-title" href="/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">Deploy a Reddit Bot on Heroku</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/11</span>
+            <a class="archive-post-title" href="/2022-06-11-JavaScript-Manual/">JavaScript Manual</a>
         </li>
     
         
@@ -1664,6 +1713,12 @@
     
         
         <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span>
+            <a class="archive-post-title" href="/2021-09-10-Java-Quick-Guide/">Java Quick Guide</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span>
             <a class="archive-post-title" href="/2021-08-31-Introduction-to-C/">C Manual</a>
         </li>
@@ -1690,6 +1745,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">05/28</span>
             <a class="archive-post-title" href="/2021-05-28-Introduction-to-TensorFlow-1.x/">TensorFlow 1.x Manual</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span>
+            <a class="archive-post-title" href="/2021-05-24-Look-Back-on-Cornell-21SP/">Look Back on Cornell 21SP</a>
         </li>
     
         

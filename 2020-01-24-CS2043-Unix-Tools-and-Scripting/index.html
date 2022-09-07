@@ -27,7 +27,7 @@
 <meta property="og:description" content="AboutThe goal of CS2043 is to introduce you to the UNIX&#x2F;Linux “command line” and its accompanying tools. When done with this class you should feel comfortable navigating any UNIX shell prompt, install">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-24T05:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-08T19:26:42.384Z">
+<meta property="article:modified_time" content="2022-08-21T01:27:50.553Z">
 <meta property="article:author" content="Yao Lirong">
 <meta property="article:tag" content="Manual">
 <meta name="twitter:card" content="summary">
@@ -352,7 +352,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">2.3k</span>Reading time: <span class="post-count reading-time">14 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.7k</span>Reading time: <span class="post-count reading-time">16 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -634,8 +634,8 @@
 <li>local variables: only in current shell  </li>
 </ul>
 <h4 id="Shebang"><a href="#Shebang" class="headerlink" title="Shebang"></a>Shebang</h4><ul>
-<li><code>#!/bin/sh</code>: execute the file using Bourne shell (<code>sh</code>)</li>
-<li><code>#!/bin/bash</code>: execute the file using bash shell (<code>bash</code>)</li>
+<li><code>#!/bin/sh</code>: execute the file using Bourne shell (<code>sh</code>): describes the shell programming language, usually its implementation points to <code>/bin/bash</code> </li>
+<li><code>#!/bin/bash</code>: execute the file using bash shell (<code>bash</code>): an <code>sh</code>-compatible implementation with modern implementation</li>
 </ul>
 <h4 id="exit-code"><a href="#exit-code" class="headerlink" title="exit code"></a>exit code</h4><p>returned value of main will be printed out if executing the script in Linux </p>
 <p><code>exit N</code>: exit with status N</p>
@@ -753,30 +753,46 @@
 <li><code>a+</code>: search for a with 1 or multiple appearance </li>
 <li><code>.</code>: wildcard</li>
 </ul>
-<h2 id="Lec11-Sed-Cut-and-Paste"><a href="#Lec11-Sed-Cut-and-Paste" class="headerlink" title="Lec11 Sed, Cut, and Paste"></a>Lec11 Sed, Cut, and Paste</h2><ul>
-<li><code>sed</code>: <ul>
-<li>Replace: <code>sed &#39;s/no spoon /a fork/g&#39; no_spoon.txt</code>: replace (<code>s/</code>) every occurrence in the whole document (globally: <code>/g</code>) of “no spoon” with “a fork”</li>
-<li>Delete: <code>sed &#39;/[Dd]avid/d&#39; david.txt</code>: executes delete command (<code>/d</code>)</li>
+<h2 id="Lec11-Sed-Cut-and-Paste"><a href="#Lec11-Sed-Cut-and-Paste" class="headerlink" title="Lec11 Sed, Cut, and Paste"></a>Lec11 Sed, Cut, and Paste</h2><h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p><code>cut -c M-N file</code>: print out the Mth to Nth characters (<code>-c</code>) in file</p>
+<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><p>sed is the Stream EDitor</p>
+<ul>
+<li>Print <code>sed &#39;/pattern/p&#39;</code>: print out all occurrences that meet <code>pattern</code>. </li>
+<li>Replace <code>sed &#39;s/pattern1/pattern2/&#39;</code>: <code>sed &#39;s/no spoon /a fork/g&#39; no_spoon.txt</code>: replace every occurrence in the whole document (globally: <code>/g</code>) of “no spoon” with “a fork”</li>
+<li>Delete <code>sed &#39;/pattern/d&#39;</code>: <code>sed &#39;/[Dd]avid/d&#39; david.txt</code>: executes delete command (<code>/d</code>)</li>
+<li>Extended regular expression <code>sed -E &#39;...&#39;</code>: let <code>sed</code> to use the more usual version of regex, where <code>+ ? ()</code> have special meanings. See here for an explanation of <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.gnu.org/software/sed/manual/html_node/BRE-vs-ERE.html">Extended Syntax</a></li>
 </ul>
+<h3 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h3><p><code>xargs</code>: can read from stdin, so it can pass output from other commands to scripts that only take in arguments, not from stdin. </p>
+<ul>
+<li><p><code>xargs -n 1 &lt;command&gt;</code>: only feeds 1 arguments to the next command. See the next <code>grep 688</code> for an example</p>
 </li>
-<li><code>xargs</code>: can read from stdin, so it can pass output from other commands to scripts that only take in arguments, not from stdin. </li>
-<li><code>shift &lt;number&gt;</code>: drop the first <code>&lt;number&gt;</code> arguments</li>
-<li><code>paste</code>: merge multiple files <ul>
+<li><p><code>xargs -I &#39;&#123;&#125;&#39; &lt;command&gt; &#39;&#123;&#125;&#39;</code>: <code>-I</code> specify where to use the the argument read in by <code>xargs</code>. Specifically, for the results fed into <code>xargs</code>, we give them a name <code>&#123;&#125;</code>, when we later run the next command, replace occurrence of <code>&#123;&#125;</code> in that command with those results. </p>
+<p>e.g. <code> grep 688 ./ | xargs -n 1 -I &#39;&#123;&#125;&#39; mv &#39;&#123;&#125;&#39; ./results/</code> for each of the file that was found to contain <code>688</code> in their name, move that file to <code>results/</code> </p>
+<p>we can also use a token other than <code>&#123;&#125;</code>, for example <code>cat directories.txt | xargs -I % sh -c &#39;echo %; mkdir %&#39;</code> </p>
+</li>
+</ul>
+<h3 id="shift-amp-paste"><a href="#shift-amp-paste" class="headerlink" title="shift &amp; paste"></a>shift &amp; paste</h3><p><code>shift &lt;number&gt;</code>: drop the first <code>&lt;number&gt;</code> arguments</p>
+<p><code>paste</code>: merge multiple files </p>
+<ul>
 <li><code>paste –d , names.txt phones.txt &gt; result.csv</code>: merge names and phones together, <code>-d</code>delimit them with ‘,’</li>
 <li><code>paste –d , -s names.txt phones.txt &gt; result.csv</code>: merge file serially (<code>-s</code>) instead of in parallel </li>
 </ul>
-</li>
-</ul>
-<h2 id="LEC12-awk-gawk-and-Process-Substitution"><a href="#LEC12-awk-gawk-and-Process-Substitution" class="headerlink" title="LEC12 awk, gawk, and Process Substitution"></a>LEC12 awk, gawk, and Process Substitution</h2><h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><ul>
+<h2 id="LEC12-awk-gawk-and-Process-Substitution"><a href="#LEC12-awk-gawk-and-Process-Substitution" class="headerlink" title="LEC12 awk, gawk, and Process Substitution"></a>LEC12 awk, gawk, and Process Substitution</h2><h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>Use <code>awk</code> on delimited fields on a per-line basis</p>
+<p>The basic structure of an awk program is:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BEGIN &#123;commands&#125;</span><br><span class="line">pattern1 &#123; commands1 &#125;</span><br><span class="line">pattern2 &#123; commands2 &#125;</span><br><span class="line">END &#123;commands&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
 <li><code>awk &#39;/[Mm]onster/ &#123;print&#125;&#39; frankenstein.txt</code>: find regex <code>[Mm]onste</code> and print the lines out.<ul>
-<li><code>awk &#39;/[Mm]onster/&#39; frankenstein.txt</code>: if not specified, the default action is to print</li>
+<li><code>awk &#39;/[Mm]onster/&#39; frankenstein.txt</code>: if not specified, the default action is to print the whole line</li>
 <li><code>awk &#39;/[Mm]onster/ &#123;print $0&#125;&#39; frankenstein.txt</code>: <code>$0</code> refers the whole line</li>
 </ul>
 </li>
 <li><code>awk &#39;/[Mm]onster/ &#123;print $1&#125;&#39; frankenstein.txt</code>: prints the first word of the line contains our pattern</li>
 <li><code>awk &#39;/Ron/&#123;print $3&#125;&#39; marks.txt</code>: prints the third column of the line containing ‘Ron’ in the file ‘marks.txt’</li>
 <li><code>awk &#39;BEGIN&#123;x=5; y=10; z=x+y; print z&#125;&#39;</code>: arithmetics in awk</li>
-<li><code>&amp;&amp; ||  a?b:c !(a&amp;&amp;b)</code>: also work in awk</li>
+</ul>
+<p><code>&amp;&amp; || a?b:c !(a&amp;&amp;b)</code>: also work in awk. </p>
+<p>If you want to do regular expression, you need to enclose them with <code>/regular expression/</code> </p>
+<ul>
 <li><code>awk &#39;/s/?/8./:/9./ &#123;print&#125;&#39; marks.txt</code>: If there’s an ‘s’, look for grade in 80s, otherwise grade in 90s</li>
 <li><code>awk &#39;!/s/ &#123;print&#125;&#39; marks.txt</code>:  Look for all lines that do not contain an ‘s’</li>
 </ul>
@@ -790,6 +806,15 @@
 
 <h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">arr = ( use parentheses and seperate items by space )</span><br><span class="line">my_arr = ( &quot;a string&quot; 1 ) % can be of multiple types</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> You can also customize the indexes inside the array (so its more like a dictionary instead of a traditional array)</span></span><br><span class="line">my_arr[44] = &quot;string&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> perform an array operation by <span class="variable">$&#123;expr&#125;</span></span></span><br><span class="line">echo &quot;Index 51: $&#123;arr[51]&#125;&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">iterate through the array as individual items</span></span><br><span class="line">for x in &quot;$&#123;arr[@]&#125;&quot;; do echo &quot;$x&quot;; done</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">iterate through the array as a joined long series</span></span><br><span class="line">for x in &quot;$&#123;arr[*]&#125;&quot;; do echo &quot;$x&quot;; done</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">iterate through the list of indexes</span></span><br><span class="line">for idx in &quot;$&#123;!new_arr[@]&#125;&quot;; do echo “$idx”; done</span><br></pre></td></tr></table></figure>
 
+<h2 id="Lec99-Practical-Tasks"><a href="#Lec99-Practical-Tasks" class="headerlink" title="Lec99 Practical Tasks"></a>Lec99 Practical Tasks</h2><ul>
+<li><code>find . -name &quot;*.png&quot; -type f -print0 | xargs -0 rm -v -rf &quot;&#123;&#125;&quot;</code> <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.howtogeek.com/435164/how-to-use-the-xargs-command-on-linux/">reference</a><ul>
+<li><code>find . -name &quot;*.png&quot; -type f</code>: search files (<code>type -f</code>) with this name </li>
+<li><code>-print0</code>: names will be terminated by a null character, and spaces and strange characters will be catered for.</li>
+<li><code>xargs -0</code>: <code>xargs</code> is also going to consider filenames to be null-terminated, and spaces and strange characters will not cause problems.</li>
+<li><code>rm -v -rf &quot;&#123;&#125;&quot;</code>: The “{}” is replaced by each filename.</li>
+</ul>
+</li>
+</ul>
 
     </article>
     <!-- license -->
@@ -798,7 +823,7 @@
             <p>Author：<a href="https://yao-lirong.github.io">Yao Lirong</a>
             </p><p>Link：<a href="https://yao-lirong.github.io/2020-01-24-CS2043-Unix-Tools-and-Scripting/">https://yao-lirong.github.io/2020-01-24-CS2043-Unix-Tools-and-Scripting/</a>
             </p><p>Publish date：<a href="https://yao-lirong.github.io/2020-01-24-CS2043-Unix-Tools-and-Scripting/">January 24th 2020, 12:00:00 am</a>
-            </p><p>Update date：<a href="https://yao-lirong.github.io/2020-01-24-CS2043-Unix-Tools-and-Scripting/">June 8th 2022, 3:26:42 pm</a>
+            </p><p>Update date：<a href="https://yao-lirong.github.io/2020-01-24-CS2043-Unix-Tools-and-Scripting/">August 20th 2022, 9:27:50 pm</a>
             </p><p>License：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
     
@@ -945,7 +970,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About"><span class="toc-number">1.</span> <span class="toc-text">About</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC02-File-System-01-24"><span class="toc-number">2.</span> <span class="toc-text">LEC02 File System (01&#x2F;24)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Root-Directory"><span class="toc-number">2.1.</span> <span class="toc-text">Root Directory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC03-Permission-01-27"><span class="toc-number">3.</span> <span class="toc-text">LEC03 Permission (01&#x2F;27)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC04-More-Commands-01-29"><span class="toc-number">4.</span> <span class="toc-text">LEC04 More Commands (01&#x2F;29)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC05-Zipping-01-31"><span class="toc-number">5.</span> <span class="toc-text">LEC05 Zipping (01&#x2F;31)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Zipping"><span class="toc-number">5.1.</span> <span class="toc-text">Zipping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Piping"><span class="toc-number">5.2.</span> <span class="toc-text">Piping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redirection"><span class="toc-number">5.3.</span> <span class="toc-text">Redirection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC06-Loops-and-Variables-02-03"><span class="toc-number">6.</span> <span class="toc-text">LEC06 Loops and Variables (02&#x2F;03)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment-and-Variables"><span class="toc-number">6.1.</span> <span class="toc-text">Environment and Variables</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shebang"><span class="toc-number">6.1.1.</span> <span class="toc-text">Shebang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exit-code"><span class="toc-number">6.1.2.</span> <span class="toc-text">exit code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#executing-multiple-commands-in-a-row"><span class="toc-number">6.1.3.</span> <span class="toc-text">executing multiple commands in a row</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scripting"><span class="toc-number">6.2.</span> <span class="toc-text">Scripting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Variables"><span class="toc-number">6.2.1.</span> <span class="toc-text">Variables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if-statement"><span class="toc-number">6.2.2.</span> <span class="toc-text">if statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for-loop"><span class="toc-number">6.2.3.</span> <span class="toc-text">for loop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while-loop"><span class="toc-number">6.2.4.</span> <span class="toc-text">while loop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Comparing-Values"><span class="toc-number">6.2.5.</span> <span class="toc-text">Comparing Values</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Numbers"><span class="toc-number">6.2.5.1.</span> <span class="toc-text">Numbers</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Strings"><span class="toc-number">6.2.5.2.</span> <span class="toc-text">Strings</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Path-Testing"><span class="toc-number">6.2.6.</span> <span class="toc-text">Path Testing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Arithmetic-Expression"><span class="toc-number">6.2.7.</span> <span class="toc-text">Arithmetic Expression</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Passing-Arguments"><span class="toc-number">6.2.8.</span> <span class="toc-text">Passing Arguments</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec07-Your-Shell-Job-and-Processes-02-05"><span class="toc-number">7.</span> <span class="toc-text">Lec07 Your Shell, Job, and Processes (02&#x2F;05)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Monitoring"><span class="toc-number">7.1.</span> <span class="toc-text">Resource Monitoring</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Commands"><span class="toc-number">7.1.1.</span> <span class="toc-text">Commands</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Examples"><span class="toc-number">7.1.2.</span> <span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modifying-Processes"><span class="toc-number">7.2.</span> <span class="toc-text">Modifying Processes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jobs"><span class="toc-number">7.3.</span> <span class="toc-text">Jobs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec08-Your-Shell-02-10"><span class="toc-number">8.</span> <span class="toc-text">Lec08 Your Shell (02&#x2F;10)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec10-Shell-Expansions-and-Search-02-14"><span class="toc-number">9.</span> <span class="toc-text">Lec10 Shell Expansions and Search (02&#x2F;14)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Grammar-of-Shell-Expansions"><span class="toc-number">9.1.</span> <span class="toc-text">Grammar of Shell Expansions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GREP"><span class="toc-number">9.2.</span> <span class="toc-text">GREP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Regular-Expressions"><span class="toc-number">9.3.</span> <span class="toc-text">Regular Expressions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec11-Sed-Cut-and-Paste"><span class="toc-number">10.</span> <span class="toc-text">Lec11 Sed, Cut, and Paste</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC12-awk-gawk-and-Process-Substitution"><span class="toc-number">11.</span> <span class="toc-text">LEC12 awk, gawk, and Process Substitution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#awk"><span class="toc-number">11.1.</span> <span class="toc-text">awk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Process-Substitution"><span class="toc-number">11.2.</span> <span class="toc-text">Process Substitution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC13-Advanced-Bash-Scripting"><span class="toc-number">12.</span> <span class="toc-text">LEC13 Advanced Bash Scripting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Condition-Statements-case"><span class="toc-number">12.1.</span> <span class="toc-text">Condition Statements: case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arrays"><span class="toc-number">12.2.</span> <span class="toc-text">Arrays</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About"><span class="toc-number">1.</span> <span class="toc-text">About</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC02-File-System-01-24"><span class="toc-number">2.</span> <span class="toc-text">LEC02 File System (01&#x2F;24)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Root-Directory"><span class="toc-number">2.1.</span> <span class="toc-text">Root Directory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC03-Permission-01-27"><span class="toc-number">3.</span> <span class="toc-text">LEC03 Permission (01&#x2F;27)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC04-More-Commands-01-29"><span class="toc-number">4.</span> <span class="toc-text">LEC04 More Commands (01&#x2F;29)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC05-Zipping-01-31"><span class="toc-number">5.</span> <span class="toc-text">LEC05 Zipping (01&#x2F;31)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Zipping"><span class="toc-number">5.1.</span> <span class="toc-text">Zipping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Piping"><span class="toc-number">5.2.</span> <span class="toc-text">Piping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redirection"><span class="toc-number">5.3.</span> <span class="toc-text">Redirection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC06-Loops-and-Variables-02-03"><span class="toc-number">6.</span> <span class="toc-text">LEC06 Loops and Variables (02&#x2F;03)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment-and-Variables"><span class="toc-number">6.1.</span> <span class="toc-text">Environment and Variables</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shebang"><span class="toc-number">6.1.1.</span> <span class="toc-text">Shebang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exit-code"><span class="toc-number">6.1.2.</span> <span class="toc-text">exit code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#executing-multiple-commands-in-a-row"><span class="toc-number">6.1.3.</span> <span class="toc-text">executing multiple commands in a row</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scripting"><span class="toc-number">6.2.</span> <span class="toc-text">Scripting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Variables"><span class="toc-number">6.2.1.</span> <span class="toc-text">Variables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if-statement"><span class="toc-number">6.2.2.</span> <span class="toc-text">if statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for-loop"><span class="toc-number">6.2.3.</span> <span class="toc-text">for loop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while-loop"><span class="toc-number">6.2.4.</span> <span class="toc-text">while loop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Comparing-Values"><span class="toc-number">6.2.5.</span> <span class="toc-text">Comparing Values</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Numbers"><span class="toc-number">6.2.5.1.</span> <span class="toc-text">Numbers</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Strings"><span class="toc-number">6.2.5.2.</span> <span class="toc-text">Strings</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Path-Testing"><span class="toc-number">6.2.6.</span> <span class="toc-text">Path Testing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Arithmetic-Expression"><span class="toc-number">6.2.7.</span> <span class="toc-text">Arithmetic Expression</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Passing-Arguments"><span class="toc-number">6.2.8.</span> <span class="toc-text">Passing Arguments</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec07-Your-Shell-Job-and-Processes-02-05"><span class="toc-number">7.</span> <span class="toc-text">Lec07 Your Shell, Job, and Processes (02&#x2F;05)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Monitoring"><span class="toc-number">7.1.</span> <span class="toc-text">Resource Monitoring</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Commands"><span class="toc-number">7.1.1.</span> <span class="toc-text">Commands</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Examples"><span class="toc-number">7.1.2.</span> <span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modifying-Processes"><span class="toc-number">7.2.</span> <span class="toc-text">Modifying Processes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jobs"><span class="toc-number">7.3.</span> <span class="toc-text">Jobs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec08-Your-Shell-02-10"><span class="toc-number">8.</span> <span class="toc-text">Lec08 Your Shell (02&#x2F;10)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec10-Shell-Expansions-and-Search-02-14"><span class="toc-number">9.</span> <span class="toc-text">Lec10 Shell Expansions and Search (02&#x2F;14)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Grammar-of-Shell-Expansions"><span class="toc-number">9.1.</span> <span class="toc-text">Grammar of Shell Expansions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GREP"><span class="toc-number">9.2.</span> <span class="toc-text">GREP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Regular-Expressions"><span class="toc-number">9.3.</span> <span class="toc-text">Regular Expressions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec11-Sed-Cut-and-Paste"><span class="toc-number">10.</span> <span class="toc-text">Lec11 Sed, Cut, and Paste</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cut"><span class="toc-number">10.1.</span> <span class="toc-text">cut</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed"><span class="toc-number">10.2.</span> <span class="toc-text">sed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xargs"><span class="toc-number">10.3.</span> <span class="toc-text">xargs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shift-amp-paste"><span class="toc-number">10.4.</span> <span class="toc-text">shift &amp; paste</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC12-awk-gawk-and-Process-Substitution"><span class="toc-number">11.</span> <span class="toc-text">LEC12 awk, gawk, and Process Substitution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#awk"><span class="toc-number">11.1.</span> <span class="toc-text">awk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Process-Substitution"><span class="toc-number">11.2.</span> <span class="toc-text">Process Substitution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEC13-Advanced-Bash-Scripting"><span class="toc-number">12.</span> <span class="toc-text">LEC13 Advanced Bash Scripting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Condition-Statements-case"><span class="toc-number">12.1.</span> <span class="toc-text">Condition Statements: case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arrays"><span class="toc-number">12.2.</span> <span class="toc-text">Arrays</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lec99-Practical-Tasks"><span class="toc-number">13.</span> <span class="toc-text">Lec99 Practical Tasks</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1259,13 +1284,27 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1828,7 +1867,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 64
         </div>
         <!-- search  -->
         
@@ -1846,6 +1885,18 @@
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
             <a class="archive-post-title" href="/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2022 Web Journal</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span>
+            <a class="archive-post-title" href="/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">Deploy a Reddit Bot on Heroku</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/11</span>
+            <a class="archive-post-title" href="/2022-06-11-JavaScript-Manual/">JavaScript Manual</a>
         </li>
     
         
@@ -1883,6 +1934,12 @@
     
         
         <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span>
+            <a class="archive-post-title" href="/2021-09-10-Java-Quick-Guide/">Java Quick Guide</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span>
             <a class="archive-post-title" href="/2021-08-31-Introduction-to-C/">C Manual</a>
         </li>
@@ -1909,6 +1966,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">05/28</span>
             <a class="archive-post-title" href="/2021-05-28-Introduction-to-TensorFlow-1.x/">TensorFlow 1.x Manual</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span>
+            <a class="archive-post-title" href="/2021-05-24-Look-Back-on-Cornell-21SP/">Look Back on Cornell 21SP</a>
         </li>
     
         
