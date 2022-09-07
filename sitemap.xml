@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yao-lirong.github.io/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
-    
-    <lastmod>2022-09-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yao-lirong.github.io/2022-06-11-JavaScript-Manual/</loc>
     
     <lastmod>2022-09-07</lastmod>
@@ -22,7 +13,16 @@
   <url>
     <loc>https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/</loc>
     
-    <lastmod>2022-09-05</lastmod>
+    <lastmod>2022-09-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yao-lirong.github.io/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
+    
+    <lastmod>2022-09-07</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
