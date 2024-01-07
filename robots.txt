@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /css/
+Disallow: /avatar/
+Disallow: /scripts/
+Disallow: /font/
+Disallow: /lib/
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /about/
+Allow: /page/
+Sitemap: https://yao-lirong.github.io/sitemap.xml,https://yao-lirong.github.io/baidusitemap.xml
