@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <!-- title -->
-
-
-    
-
 <!-- keywords -->
-
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="Yao Lirong">
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Yao Lirong">
-    
         <meta name="keywords" content="Cornell,AI,CS,Computer Science,Artificial Intelligence,Yao,Lirong,姚立嵘,Programming">
-    
     <meta name="description" content="姚立嵘 (Yao Lirong)'s Personal Website">
     <meta name="description" content="I’ve created a bot to send warm welcomes to newly admitted Cornell prefrosh.">
 <meta property="og:type" content="article">
@@ -27,14 +18,13 @@
 <meta property="og:description" content="I’ve created a bot to send warm welcomes to newly admitted Cornell prefrosh.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-07T01:20:16.279Z">
+<meta property="article:modified_time" content="2022-09-07T01:20:18.000Z">
 <meta property="article:author" content="Yao Lirong">
 <meta property="article:tag" content="Manual">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
-    
     <title>Deploy a Reddit Bot on Heroku · Yao Lirong&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -157,7 +147,7 @@
 
     header,
     footer,
-    .back-top,
+    .footer-fixed-btn,
     .sidebar,
     .container,
     .site-intro-meta,
@@ -180,7 +170,13 @@
         left: 0;
         width: calc(100% + 300px);
         height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background: repeating-linear-gradient(
+            -45deg,
+            #444 0,
+            #444 80px,
+            #333 80px,
+            #333 160px
+        );
         background-position: center center;
         transform: translate3d(-226px, 0, 0);
         animation: gradient-move 2.5s ease-out 0s infinite;
@@ -196,34 +192,27 @@
     }
 </style>
 
-    <link rel="preload" href="/css/style.css?v=20210823" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/dark.css?v=20210823" as="style">
-    <link rel="stylesheet" href="/css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="/css/mobile.css?v=20210823" media="(max-width: 960px)">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-fancybox" rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-base" rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-mobile" rel="preload" href="/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
+    <link id="stylesheet-theme-dark" rel="preload" href="/css/dark.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js?v=20210823" as="script">
-    <link rel="preload" href="/scripts/dark.js?v=20210823" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
     <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
     <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
-    
-    <link rel="canonical" href="https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">
-    <meta name="baidu-site-verification" content="code-JhnBOyJv4Y">
     <!-- algolia -->
+
+    <!-- 百度统计 -->
     
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
+    <!-- CNZZ 统计 -->
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-225410555-1"></script>
         <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-            ga('create', 'UA-225410555-1', 'auto');
-            ga('send', 'pageview');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-225410555-1');
         </script>
     
 <!-- hexo injector head_end start -->
@@ -240,9 +229,7 @@
             document.write('<script src="/lib/jquery.min.js" />')
         }
     </script>
-    
         <body class="post-body">
-    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -251,12 +238,8 @@
     </div>
     <!-- sidebar menu button -->
     <div class="header-element">
-        
-            <div class="header-sidebar-menu">
-        
-            
-                <div style="padding-left: 1px;">&#xe775;</div>
-            
+        <div class="header-sidebar-menu">
+            <div style="padding-left: 1px;">&#xe775;</div>
         </div>
     </div>
     <!-- header actions -->
@@ -270,102 +253,64 @@
             <a href="/">Yao Lirong's Blog</a>
         </span>
     </div>
-    <!-- toggle banner for post layout -->
-    
-        
-            <div class="banner">
-        
-            <div class="blog-title header-element">
-                <a href="/">Yao Lirong&#39;s Blog</a>
-            </div>
-            <div class="post-title header-element">
-                <a href="#" class="post-name">Deploy a Reddit Bot on Heroku</a>
-            </div>
+    <!-- toggle banner -->
+    <div class="banner">
+        <div class="blog-title header-element">
+            <a href="/">Yao Lirong&#39;s Blog</a>
         </div>
-    
+        <div class="post-title header-element">
+            <a href="#" class="post-name">Deploy a Reddit Bot on Heroku</a>
+        </div>
+    </div>
 </header>
 
         <!-- fixed footer -->
         <footer class="footer-fixed">
+    <!-- donate button -->
+
     <!-- back to top button -->
-    <div class="footer-fixed-element">
-        
-            <div class="back-top back-top-hidden">
-        
-        
-            <div>&#xe639;</div>
-        
-        </div>
+    <div class="footer-fixed-btn footer-fixed-btn--hidden back-top">
+        <div>&#xe639;</div>
     </div>
 </footer>
 
         <!-- wrapper -->
         <div class="wrapper">
-            <div class="site-intro" style="
-
-
-
-
-
-
-
-    height:50vh;
-
+            <div class="site-intro" style="    height:50vh;
 ">
-    
     <!-- 主页  -->
-    
-        
     <!-- 404页  -->
-            
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
                 Deploy a Reddit Bot on Heroku
             <!-- 404 -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-                
             <!-- 404 -->
-            
         </p>
         <!-- 文章页 meta -->
-        
             <div class="post-intros">
                 <!-- 文章页标签  -->
-                
                     <div class="post-intro-tags">
-    
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="Manual">Manual</a>
-    
 </div>
 
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">342</span>Reading time: <span class="post-count reading-time">2 min</span></span>
-                    </div>
-                
+                <!-- 文章字数统计 -->
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
                     <span class="post-intro-time">2022/09/04</span>
                     <!-- busuanzi -->
-                    
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                             <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
-                    
                     <!-- 文章分享 -->
                     <span class="share-wrapper">
                         <span class="iconfont-archer share-icon">&#xe71d;</span>
@@ -382,7 +327,6 @@
                     </span>
                 </div>
             </div>
-        
     </div>
 </div>
 
@@ -509,196 +453,136 @@
   )
 </script>
 
-            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;">
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" alt="loading">
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>I’ve created a bot to send warm welcomes to newly admitted Cornell prefrosh. </p>
+        <p>I’ve created a bot to send warm welcomes to newly admitted Cornell
+prefrosh.</p>
 <span id="more"></span>
-
-<h2 id="Simple-Auto-Reply-Bot"><a href="#Simple-Auto-Reply-Bot" class="headerlink" title="Simple Auto-Reply Bot"></a>Simple Auto-Reply Bot</h2><p>This <a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/tutorials/reply_bot.html">Let Me Google It For You Bot</a> tutorial perfectly explains how to listen to reddit post stream and reply to a post. </p>
+<h2 id="simple-auto-reply-bot">Simple Auto-Reply Bot</h2>
+<p>This <a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/tutorials/reply_bot.html">Let
+Me Google It For You Bot</a> tutorial perfectly explains how to listen
+to reddit post stream and reply to a post.</p>
 <p>We use the following code to declare a reddit bot:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reddit = praw.Reddit(</span><br><span class="line">    client_id=<span class="string">&quot;CLIENT_ID&quot;</span>,</span><br><span class="line">    client_secret=<span class="string">&quot;CLIENT_SECRET&quot;</span>,</span><br><span class="line">    username=<span class="string">&quot;USERNAME&quot;</span>,</span><br><span class="line">    password=<span class="string">&quot;PASSWORD&quot;</span>,</span><br><span class="line">    user_agent=<span class="string">&quot;LMGTFY (by u/USERNAME)&quot;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>If we want to put our code onto GitHub, this will expose our client secret and account password. Therefore, we can make a separate file called <a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/getting_started/configuration/prawini.html"><code>praw.ini</code></a>, where we specify these private information. Note an <code>ini</code> file cannot contain most special characters, so you need to change your password to only words and digits. </p>
+<p>If we want to put our code onto GitHub, this will expose our client
+secret and account password. Therefore, we can make a separate file
+called <a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/getting_started/configuration/prawini.html"><code>praw.ini</code></a>,
+where we specify these private information. Note an <code>ini</code>
+file cannot contain most special characters, so you need to change your
+password to only words and digits.</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[bot527]</span></span><br><span class="line"><span class="attr">client_id</span>=d123071240924w</span><br><span class="line"><span class="attr">client_secret</span>=D123412541254</span><br><span class="line"><span class="attr">username</span>=Harmonya<span class="literal">no</span></span><br><span class="line"><span class="attr">password</span>=YouthinkIwillTellYouThisHuh</span><br><span class="line"><span class="attr">user_agent</span>=bot</span><br></pre></td></tr></table></figure>
-
-<p>With this, we can declare our bot with the following command. Note the customize name “bot527” need to match in both the <code>ini</code> file and the declaration . </p>
+<p>With this, we can declare our bot with the following command. Note
+the customize name “bot527” need to match in both the <code>ini</code>
+file and the declaration .</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reddit = praw.Reddit(<span class="string">&quot;bot527&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Deploy-on-Heroku"><a href="#Deploy-on-Heroku" class="headerlink" title="Deploy on Heroku"></a>Deploy on Heroku</h2><p>Create a Heroku app, follow the instructions in Deploy/Heroku Git tab. </p>
+<h2 id="deploy-on-heroku">Deploy on Heroku</h2>
+<p>Create a Heroku app, follow the instructions in Deploy/Heroku Git
+tab.</p>
 <p>For a Heroku app to run, it needs several additional files:</p>
-<ol>
-<li><p><code>Runtime.txt</code>: Though it’s in question whether this is really needed or not (the app runs normally too without it?)</p>
+<ol type="1">
+<li><p><code>Runtime.txt</code>: Though it’s in question whether this is
+really needed or not (the app runs normally too without it?)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python-3.7.9</span><br></pre></td></tr></table></figure></li>
-<li><p><code>Procfile</code>: This is a Heroku specific file that declares what command Heroku should execute to start your app. A detailed explanation in <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.reddit.com/r/redditdev/comments/kyrn1u/i_want_to_run_my_reddit_bot_on_heroku_what_do_i/gjid6jt/">here</a> </p>
+<li><p><code>Procfile</code>: This is a Heroku specific file that
+declares what command Heroku should execute to start your app. A
+detailed explanation in <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.reddit.com/r/redditdev/comments/kyrn1u/i_want_to_run_my_reddit_bot_on_heroku_what_do_i/gjid6jt/">here</a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker: python bot.py</span><br></pre></td></tr></table></figure></li>
-<li><p><code>requirements.txt</code>: python package requirements, obtained by <code>pip freeze &gt; requirements.txt</code></p>
+<li><p><code>requirements.txt</code>: python package requirements,
+obtained by <code>pip freeze &gt; requirements.txt</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">praw==7.6.0</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>Finally, after you deploying all the codes to Heroku, DON”T FORGET THE MOST IMPORTNAT PART: you need to turn on the resources tab on Heroku for your worker (spent 1h figuring this out). For where to find it, watch <a target="_blank" rel="external nofollow noopener noreferrer" href="https://youtu.be/BPvg9bndP1U?t=747">this video</a> </p>
-<h2 id="Submit-amp-Edit-a-Post"><a href="#Submit-amp-Edit-a-Post" class="headerlink" title="Submit &amp; Edit a Post"></a>Submit &amp; Edit a Post</h2><ul>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/code_overview/models/subreddit.html#praw.models.Subreddit.submit">Submit a Post onto a Subreddit</a>: <code>submission = reddit.subreddit(&quot;test&quot;).submit(&quot;title&quot;, selftext=text)</code></li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/code_overview/models/submission.html#praw.models.Submission.edit">Edit an Existed Post</a>: <code>submission.edit(body=submission.body + &quot;edited&quot;)</code></li>
+<p>Finally, after you deploying all the codes to Heroku, DON”T FORGET
+THE MOST IMPORTNAT PART: you need to turn on the resources tab on Heroku
+for your worker (spent 1h figuring this out). For where to find it,
+watch <a target="_blank" rel="external nofollow noopener noreferrer" href="https://youtu.be/BPvg9bndP1U?t=747">this video</a></p>
+<h2 id="submit-edit-a-post">Submit &amp; Edit a Post</h2>
+<ul>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/code_overview/models/subreddit.html#praw.models.Subreddit.submit">Submit
+a Post onto a Subreddit</a>:
+<code>submission = reddit.subreddit("test").submit("title", selftext=text)</code></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://praw.readthedocs.io/en/latest/code_overview/models/submission.html#praw.models.Submission.edit">Edit
+an Existed Post</a>:
+<code>submission.edit(body=submission.body + "edited")</code></li>
 </ul>
 
     </article>
     <!-- license -->
-    
         <div class="license-wrapper">
             <p>Author：<a href="https://yao-lirong.github.io">Yao Lirong</a>
             </p><p>Link：<a href="https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/</a>
             </p><p>Publish date：<a href="https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">September 4th 2022, 12:00:00 am</a>
-            </p><p>Update date：<a href="https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">September 6th 2022, 9:20:16 pm</a>
+            </p><p>Update date：<a href="https://yao-lirong.github.io/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">September 6th 2022, 9:20:18 pm</a>
             </p><p>License：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
         </div>
-    
     <!-- paginator -->
     <ul class="post-paginator">
         <li class="next">
-            
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/" title="2022 Web Journal">
-                    <div class="nextTitle">2022 Web Journal</div>
+                <a href="/2022-11-01-%E8%A7%A6%E4%B9%90-&-RPG-Codex-RPG%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E8%AE%A8%E8%AE%BA/" title="触乐 & RPG Codex: RPG文本写作讨论">
+                    <div class="nextTitle">触乐 & RPG Codex: RPG文本写作讨论</div>
                 </a>
-            
         </li>
         <li class="previous">
-            
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2022-06-11-JavaScript-Manual/" title="JavaScript Manual">
-                    <div class="prevTitle">JavaScript Manual</div>
+                <a href="/2022-08-23-How-to-Succeed-in-CS6784-(also-in-Academic-Life-in-General)/" title="How to Succeed in CS6784 (also in Academic Life in General)">
+                    <div class="prevTitle">How to Succeed in CS6784 (also in Academic Life in General)</div>
                 </a>
-            
         </li>
     </ul>
     <!-- comment -->
-    
         <div class="post-comment">
             <!-- 来必力 City 版安装代码 -->
 
-
             
-
             
-
             
-
             <!-- utteranc评论 -->
-
 
             <!-- partial('_partial/comment/changyan') -->
             <!--PC版-->
 
-
             
             
-
+            
         </div>
-    
     <!-- timeliness note -->
     <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
-    
     <!-- Mathjax -->
-    
+    <!---->
 </main>
 
                 <!-- profile -->
-                
             </div>
             <footer class="footer footer-unloaded">
     <!-- social  -->
-    
         <div class="social">
-            
-    
-        
-    
-        
-            
-                <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
+                            <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
                 <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
-            
-        
-    
-        
-            
                 <a href="//www.linkedin.com/in/yao-lirong/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
-            
-        
-    
-        
-            
                 <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
 
         </div>
-    
     <!-- powered by Hexo  -->
     <div class="copyright">
         <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="external nofollow noopener noreferrer">Archer</a></span>
     </div>
     <!-- website approve for Chinese user -->
-    
     <!-- 不蒜子  -->
-    
         <div class="busuanzi-container">
-            
-             
                 <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-            
         </div>
-    	
 </footer>
 
         </div>
         <!-- toc -->
-        
             <div class="toc-wrapper toc-wrapper-loding" style="top:50vh;">
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple-Auto-Reply-Bot"><span class="toc-number">1.</span> <span class="toc-text">Simple Auto-Reply Bot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-on-Heroku"><span class="toc-number">2.</span> <span class="toc-text">Deploy on Heroku</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Submit-amp-Edit-a-Post"><span class="toc-number">3.</span> <span class="toc-text">Submit &amp; Edit a Post</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#simple-auto-reply-bot"><span class="toc-number">1.</span> <span class="toc-text">Simple Auto-Reply Bot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deploy-on-heroku"><span class="toc-number">2.</span> <span class="toc-text">Deploy on Heroku</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#submit-edit-a-post"><span class="toc-number">3.</span> <span class="toc-text">Submit &amp; Edit a Post</span></a></li></ol>
             </div>
-        
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
@@ -709,7 +593,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
         <div class="sidebar-panel-archives">
     <!-- 在 ejs 中将 archive 按照时间排序 -->
-    
         
         
         
@@ -782,1361 +665,368 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 72
         </div>
         <!-- search  -->
-        
     </div>
-    
     <div class="post-archive">
-    
-        
-            
-            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/2024-12-25-Matryoshka-Representation-Learning,-Adaptive-Retrieval-and-Binary-Vector-Search/">Matryoshka Representation Learning, Adaptive Retrieval and Binary Vector Search</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span>
+            <a class="archive-post-title" href="/2024-10-15-YouTube-Recommendation-Algorithms-(2016)/">YouTube Recommendation Algorithms (2016)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2024-09-22-Running-MobileBert-on-Android-with-TensorFlow-Lite/">Running MobileBert on Android with TensorFlow Lite</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/09</span>
+            <a class="archive-post-title" href="/2024-09-09-Variational-Inference/">Variational Inference</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/2024-08-23-Hyper-Parameter-Tuning-with-Optuna/">Hyper-Parameter Tuning with Optuna</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span>
+            <a class="archive-post-title" href="/2024-07-02-KV-Cache/">KV Cache</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span>
+            <a class="archive-post-title" href="/2024-06-17-Conducting-Multi-Round-Conversation-with-Transformers/">Conducting Multi-Round Conversation with Transformers</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span>
+            <a class="archive-post-title" href="/2024-05-14-GPT-4o-Release/">GPT-4o Release</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span>
+            <a class="archive-post-title" href="/2024-04-22-CLIP/">CLIP</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span>
+            <a class="archive-post-title" href="/2024-04-08-Gradient-Scaling/">Gradient Scaling</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span>
+            <a class="archive-post-title" href="/2024-03-13-Decoupled-Weight-Decay-Regularization-(SGDW-&-AdamW)/">Decoupled Weight Decay Regularization (SGDW & AdamW)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span>
+            <a class="archive-post-title" href="/2024-03-01-Mixed-Precision-Training/">Mixed-Precision Training</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span>
+            <a class="archive-post-title" href="/2024-02-22-Parameter-and-FLOP-Count-in-Transformer-Model/">Parameter and FLOP Count in Transformer Model</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span>
+            <a class="archive-post-title" href="/2024-02-09-Memory-Pinning-and-Transfer-Data-between-Host-(CPU)-and-Device-(GPU)/">Memory Pinning and Transfer Data between Host (CPU) and Device (GPU)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span>
+            <a class="archive-post-title" href="/2024-01-27-Switching-Personal-Webpage-Theme-to-al-folio/">Switching Personal Homepage Theme to al-folio</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/21</span>
+            <a class="archive-post-title" href="/2024-01-21-Visual-Information-Theory/">Visual Information Theory</a>
+        </li>
+                </ul>
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
-            
-        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span>
+            <a class="archive-post-title" href="/2023-12-01-Quantization/">Quantization</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span>
+            <a class="archive-post-title" href="/2023-11-20-Fine-Tuning-LLMs-Prompt-Tuning,-Adapter,-LoRA/">Fine-Tuning LLMs: Prompt Tuning, Adapter, LoRA</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/2023-11-16-Graph-Networks-&-GraphCast/">Graph Networks & GraphCast</a>
+        </li>
         <li class="archive-post-item">
             <span class="archive-post-date">04/04</span>
             <a class="archive-post-title" href="/2023-04-04-First-Time-Debugging-with-ChatGPT/">First Time Debugging with ChatGPT</a>
         </li>
-    
-        
-            
-            
-                
                 </ul>
-            
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
-            
-        
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
             <a class="archive-post-title" href="/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2022 Web Journal</a>
         </li>
-    
-        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2022-11-01-%E8%A7%A6%E4%B9%90-&-RPG-Codex-RPG%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E8%AE%A8%E8%AE%BA/">触乐 & RPG Codex: RPG文本写作讨论</a>
+        </li>
         <li class="archive-post-item">
             <span class="archive-post-date">09/04</span>
             <a class="archive-post-title" href="/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">Deploy a Reddit Bot on Heroku</a>
         </li>
-    
-        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/2022-08-23-How-to-Succeed-in-CS6784-(also-in-Academic-Life-in-General)/">How to Succeed in CS6784 (also in Academic Life in General)</a>
+        </li>
         <li class="archive-post-item">
             <span class="archive-post-date">06/11</span>
             <a class="archive-post-title" href="/2022-06-11-JavaScript-Manual/">JavaScript Manual</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">04/23</span>
             <a class="archive-post-title" href="/2022-04-23-%E5%8D%9A%E5%AE%A2SEO%E4%BC%98%E5%8C%96/">博客SEO优化</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">04/09</span>
             <a class="archive-post-title" href="/2022-04-09-%E8%A7%86%E9%A2%91%E7%BC%96%E8%BE%91-(FFmpeg-DaVinci)/">Video Editing (FFmpeg DaVinci)</a>
         </li>
-    
-        
-            
-            
-                
                 </ul>
-            
             <div class="archive-year"> 2021 </div>
             <ul class="year-list">
-            
-        
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
             <a class="archive-post-title" href="/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2021 Web Journal</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">12/15</span>
             <a class="archive-post-title" href="/2021-12-15-Look-Back-on-Cornell-21FA/">Look Back on Cornell 21FA</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">09/16</span>
             <a class="archive-post-title" href="/2021-09-16-Intro-to-SQL/">SQL Manual</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">09/10</span>
             <a class="archive-post-title" href="/2021-09-10-Java-Quick-Guide/">Java Quick Guide</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span>
             <a class="archive-post-title" href="/2021-08-31-Introduction-to-C/">C Manual</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">08/29</span>
             <a class="archive-post-title" href="/2021-08-29-%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98--%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2/">更新archer主题 / 迁移Hexo博客</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/28</span>
             <a class="archive-post-title" href="/2021-06-28-Install-and-Configure-Aria2-on-Linux/">Install and Configure Aria2 on WSL</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/23</span>
             <a class="archive-post-title" href="/2021-06-23-On-Intelligence/">On Intelligence</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">05/28</span>
             <a class="archive-post-title" href="/2021-05-28-Introduction-to-TensorFlow-1.x/">TensorFlow 1.x Manual</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">05/24</span>
             <a class="archive-post-title" href="/2021-05-24-Look-Back-on-Cornell-21SP/">Look Back on Cornell 21SP</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">05/15</span>
             <a class="archive-post-title" href="/2021-05-15-Setting-up-a-Server/">Setting up a Server</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">02/11</span>
             <a class="archive-post-title" href="/2021-02-11-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(3)/">Tsinghua DSA 作业总结 (3)</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">02/10</span>
             <a class="archive-post-title" href="/2021-02-10-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(2)/">Tsinghua DSA 作业总结 (2)</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">02/09</span>
             <a class="archive-post-title" href="/2021-02-09-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(1)/">Tsinghua DSA 作业总结 (1)</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">01/11</span>
             <a class="archive-post-title" href="/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/">Look Back on Cornell/Tsinghua 20FA</a>
         </li>
-    
-        
-            
-            
-                
                 </ul>
-            
             <div class="archive-year"> 2020 </div>
             <ul class="year-list">
-            
-        
         <li class="archive-post-item">
             <span class="archive-post-date">12/31</span>
             <a class="archive-post-title" href="/2020-12-31-2020-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2020 Web Journal</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">11/29</span>
             <a class="archive-post-title" href="/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++ Manual</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">11/29</span>
             <a class="archive-post-title" href="/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Python Manual</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">11/23</span>
             <a class="archive-post-title" href="/2020-11-23-Latex-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/">LaTeX Manual</a>
         </li>
-    
-        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/17</span>
+            <a class="archive-post-title" href="/2020-11-17-Python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">Python网络爬虫与信息提取</a>
+        </li>
         <li class="archive-post-item">
             <span class="archive-post-date">10/13</span>
             <a class="archive-post-title" href="/2020-10-13-Algorithm-Design-%E5%8F%8A-CS4820-%E4%B8%80%E8%88%AC%E6%80%A7%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/">CS4820 及 Algorithm Design 一般性内容总结</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">10/02</span>
             <a class="archive-post-title" href="/2020-10-02-INFO1998-Intro-to-Machine-Learning/">INFO1998 Intro to Machine Learning (sklearn, pandas)</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">09/29</span>
             <a class="archive-post-title" href="/2020-09-29-Add-Open-with-Windows-Terminalto-Right-Click-Menu/">Add "Open with Windows Terminal" to Right-Click Menu</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">09/07</span>
             <a class="archive-post-title" href="/2020-09-07-CS2024-C++-Programming/">CS2024 C++ Programming</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">09/05</span>
             <a class="archive-post-title" href="/2020-09-05-Windows%E4%B8%8B%E9%85%8D%E7%BD%AEPostgreSQL/">Windows下配置PostgreSQL</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/24</span>
             <a class="archive-post-title" href="/2020-06-24-Kinekt-as-Web-Cam/">Kinect as Web Cam</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">05/27</span>
             <a class="archive-post-title" href="/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/">Look Back on Cornell 20SP</a>
         </li>
-    
-        
         <li class="archive-post-item">
-            <span class="archive-post-date">03/03</span>
-            <a class="archive-post-title" href="/2020-03-03-Mutability/">Mutability</a>
+            <span class="archive-post-date">03/15</span>
+            <a class="archive-post-title" href="/2020-03-15-Introduction-to-Vim/">Introduction to Vim</a>
         </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/18</span>
-            <a class="archive-post-title" href="/2020-02-18-Specifications/">Specifications</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/13</span>
-            <a class="archive-post-title" href="/2020-02-13-Code-Reuse-with-Modules/">Code Reuse with Modules</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/11</span>
-            <a class="archive-post-title" href="/2020-02-11-Modules/">Modules</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/06</span>
-            <a class="archive-post-title" href="/2020-02-06-Higher-Order-Functions/">Higher-Order Functions</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/04</span>
-            <a class="archive-post-title" href="/2020-02-04-Advanced-Data-Types/">Advanced Data Types</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/30</span>
-            <a class="archive-post-title" href="/2020-01-30-Standard-Data-Types/">Standard Data Types</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/28</span>
-            <a class="archive-post-title" href="/2020-01-28-Functions/">Functions</a>
-        </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">01/24</span>
             <a class="archive-post-title" href="/2020-01-24-CS2043-Unix-Tools-and-Scripting/">CS2043 Unix Tools and Scripting</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">01/20</span>
             <a class="archive-post-title" href="/2020-01-20-Installing-Ocaml-on-Linux/">Installing and Configuring Ocaml on Linux</a>
         </li>
-    
-        
-            
-            
-                
                 </ul>
-            
             <div class="archive-year"> 2019 </div>
             <ul class="year-list">
-            
-        
         <li class="archive-post-item">
             <span class="archive-post-date">12/22</span>
             <a class="archive-post-title" href="/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/">Look Back on Cornell 19FA</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">12/17</span>
             <a class="archive-post-title" href="/2019-12-17-add-pdf-file-to-hexo/">Add pdf file to hexo</a>
         </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/05</span>
-            <a class="archive-post-title" href="/2019-12-05-Problem-Analysis/">Problem Analysis</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/26</span>
-            <a class="archive-post-title" href="/2019-11-26-Priority-Queue-and-Heap/">Priority Queue and Heap</a>
-        </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
             <a class="archive-post-title" href="/2019-11-21-import-Junit-and-JavaFx-into-VSCode/">Import Junit and JavaFx into VSCode</a>
         </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2019-11-21-shortest-path-algorithm/">Shortest path algorithm</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/20</span>
-            <a class="archive-post-title" href="/2019-11-20-Graph-(Recitation)/">Graph (Recitation)</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/19</span>
-            <a class="archive-post-title" href="/2019-11-19-Graph-Traversal/">Graph Traversal</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/12</span>
-            <a class="archive-post-title" href="/2019-11-12-synchronization/">Synchronization</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/07</span>
-            <a class="archive-post-title" href="/2019-11-07-Concurrency/">Concurrency</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/17</span>
-            <a class="archive-post-title" href="/2019-10-17-Designing-and-documenting-interfaces-and-implementations/">Designing and documenting interfaces and implementations</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/30</span>
-            <a class="archive-post-title" href="/2019-09-30-Value-Representation,-Hashing,-and-Generics/">Value Representation, Hashing, and Generics</a>
-        </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">07/07</span>
             <a class="archive-post-title" href="/2019-07-07-P1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2/">P1162 填涂颜色</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">07/04</span>
             <a class="archive-post-title" href="/2019-07-04-P1141-01%E8%BF%B7%E5%AE%AB/">P1141 01迷宫</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">07/02</span>
             <a class="archive-post-title" href="/2019-07-02-P1118-Backward-Digital-Sums/">P1118 Backward Digital Sums</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/26</span>
             <a class="archive-post-title" href="/P1019%20%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/">P1019 单词接龙</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/17</span>
             <a class="archive-post-title" href="/P1101%20%E5%8D%95%E8%AF%8D%E6%96%B9%E9%98%B5/">P1101 单词方阵</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/16</span>
             <a class="archive-post-title" href="/P1219%20%E5%85%AB%E7%9A%87%E5%90%8E/">P1219 八皇后</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/04</span>
             <a class="archive-post-title" href="/P1031%20%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/">P1031 均分纸牌</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">06/03</span>
             <a class="archive-post-title" href="/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">P2678 跳石头</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">05/30</span>
             <a class="archive-post-title" href="/P1090%20%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90/">P1090 合并果子</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">05/30</span>
             <a class="archive-post-title" href="/P1309%20%E7%91%9E%E5%A3%AB%E8%BD%AE/">P1309 瑞士轮</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">02/10</span>
             <a class="archive-post-title" href="/Intro-to-Git-Command/">Introduction to Git Command</a>
         </li>
-    
-        
         <li class="archive-post-item">
             <span class="archive-post-date">02/09</span>
             <a class="archive-post-title" href="/hello-world/">Hello World</a>
         </li>
-    
-    </ul></div>
+            </ul>
+    </div>
 </div>
 
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
-        
             <span class="sidebar-tag-name" data-tags="NOI">
                 <span class="iconfont-archer">&#xe606;</span>
                 NOI
             </span>
-        
-            <span class="sidebar-tag-name" data-tags="CS2112">
-                <span class="iconfont-archer">&#xe606;</span>
-                CS2112
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Logistics">
                 <span class="iconfont-archer">&#xe606;</span>
                 Logistics
             </span>
-        
             <span class="sidebar-tag-name" data-tags="Cornell">
                 <span class="iconfont-archer">&#xe606;</span>
                 Cornell
             </span>
-        
             <span class="sidebar-tag-name" data-tags="Review">
                 <span class="iconfont-archer">&#xe606;</span>
                 Review
             </span>
-        
             <span class="sidebar-tag-name" data-tags="CS3110">
                 <span class="iconfont-archer">&#xe606;</span>
                 CS3110
             </span>
-        
+            <span class="sidebar-tag-name" data-tags="Vim">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vim
+            </span>
             <span class="sidebar-tag-name" data-tags="Manual">
                 <span class="iconfont-archer">&#xe606;</span>
                 Manual
             </span>
-        
             <span class="sidebar-tag-name" data-tags="Journal">
                 <span class="iconfont-archer">&#xe606;</span>
                 Journal
             </span>
-        
             <span class="sidebar-tag-name" data-tags="Tsinghua">
                 <span class="iconfont-archer">&#xe606;</span>
                 Tsinghua
             </span>
-        
             <span class="sidebar-tag-name" data-tags="Book">
                 <span class="iconfont-archer">&#xe606;</span>
                 Book
             </span>
-        
+            <span class="sidebar-tag-name" data-tags="ML">
+                <span class="iconfont-archer">&#xe606;</span>
+                ML
+            </span>
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -2147,7 +1037,6 @@
 
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
-    
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
     <div class="sidebar-categories-list"></div>
@@ -2158,32 +1047,29 @@
 
         <!-- site-meta -->
         <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
     var siteMeta = {
-        root: "/",
+        url: "https://yao-lirong.github.io",
+        root: siteMetaRoot,
         author: "Yao Lirong"
     }
 </script>
 
         <!-- import experimental options here -->
+        <!-- Custom Font -->
+
         <!-- main func -->
-        <script src="/scripts/main.js?v=20210823"></script>
-        <!-- dark mode -->
-        <script src="/scripts/dark.js?v=20210823"></script>
+        <script src="/scripts/main.js"></script>
         <!-- fancybox -->
-        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
         <!-- algolia -->
-        
         <!-- busuanzi -->
-        
             <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-        
-        <!-- CNZZ -->
-        
         <!-- async load share.js -->
-        
-            <script src="/scripts/share.js?v=20210823" async></script>
-        
+            <script src="/scripts/share.js" async></script>
         <!-- mermaid -->
-        
     </body>
 </html>
