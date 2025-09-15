@@ -6,7 +6,7 @@
   <link href="https://yao-lirong.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://yao-lirong.github.io/blog/"/>
-  <updated>2025-09-02T23:49:42.150Z</updated>
+  <updated>2025-09-15T17:52:19.640Z</updated>
   <id>https://yao-lirong.github.io/blog/</id>
   
   <author>
@@ -18,20 +18,15 @@
   
   <entry>
     <title>Matryoshka Representation Learning, Adaptive Retrieval and Binary Vector Search</title>
-    <link href="https://yao-lirong.github.io/blog/matryoshka-representation-learning-adaptive-retrieval-and-binary-vector-search/"/>
-    <id>https://yao-lirong.github.io/blog/matryoshka-representation-learning-adaptive-retrieval-and-binary-vector-search/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-12-25-Matryoshka-Representation-Learning,-Adaptive-Retrieval-and-Binary-Vector-Search/"/>
+    <id>https://yao-lirong.github.io/blog/2024-12-25-Matryoshka-Representation-Learning,-Adaptive-Retrieval-and-Binary-Vector-Search/</id>
     <published>2024-12-25T05:00:00.000Z</published>
-    <updated>2025-09-02T23:49:42.150Z</updated>
+    <updated>2025-09-15T17:52:19.640Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>Intro to Matryoshka Representation Learning</strong></p><p>In Matryoshka Representation Learning (MRL), we want to construct anencoding <spanclass="math inline"><em>e</em><sub><em>d</em></sub></span> withdimension <span class="math inline"><em>d</em></span> such that itstruncations of different lengths (<spanclass="math inline"><em>e</em><sub><em>d</em>/16</sub>, <em>e</em><sub><em>d</em>/8</sub>, <em>e</em><sub><em>d</em>/4</sub>, <em>e</em><sub><em>d</em>/2</sub></span>​)are each (somewhat) valid representations. Suppose you’re training on aclassification problem with the classic encoder + classifier headarchitecture. At train time:</p><ul><li>classic setting: you just use the vector <spanclass="math inline"><em>e</em><sub><em>d</em></sub></span> as input tothe classifier head</li><li>MRL: construct multiple classifier heads (in our case 5) and put oneon top of encoding of each length (<spanclass="math inline"><em>e</em><sub><em>d</em>/16</sub>, …, <em>e</em><sub><em>d</em></sub></span>)and average the loss of each classifier head. So we build heads of size<code>[d, num_class], [d/2, num_class], ... [d/16, num_class]</code>Note these classifier heads share weights.</li></ul><p><strong>Application: Adaptive Retrieval</strong></p><p>Online retrieval is one of the tasks where latency matters the most.Given a user query <span class="math inline"><em>q</em></span>, it isslow to compute KNN from a dataset of size 1M (<spanclass="math inline">10<sup>6</sup></span>) indexes if each index hasdimension 3072. With MRL, we can decompose the process into twostages:</p><ol type="1"><li>Shortlist: First retrieve 2K indexes where the distance is computedusing only 1024-d vector (the first 1024 elements of the 3072vector)</li><li>Rerank: Find KNN among these 2K indexes where the distance iscomputed using the full length 3072 vector</li></ol><p>The FLOP is therefore reduced from <spanclass="math inline">3072 × 10<sup>6</sup></span> to <spanclass="math inline">1024 × 10<sup>6</sup> + 3072 × 2<em>K</em></span>.Ce Gao tested full length 3072-dim vector vs adaptive retrieval usingMatryoshka 1024-dim. The accuracy dropped from 99% to 89% with RequestsPer Second (RPS) raises from 300 to 1000.</p><p>Find more details of Matryoshka Representation Learning and itsapplications in this wonderful <ahref="https://aniketrege.github.io/blog/2024/mrl/#what-is-mrl-really-this-time">blogpost. Read from section <em>What is MRL? (Really this Time)</em></a></p><p><strong>Binary Vector Search</strong></p><p><ahref="https://blog.pgvecto.rs/my-binary-vector-search-is-better-than-your-fp32-vectors">CeGao suggested</a> another way to reduce memory and FLOP use. He proposesto turn the length <span class="math inline"><em>d</em></span> FP32vector into a length <span class="math inline"><em>d</em></span> binaryvector, where original positive value is set to 1 and original negativevalue is set to 0.</p><p>Without using adaptive retrieval, the accuracy dropped from 99% to83%, but the latency (RPS = 3000) and memory has a significantimprovement because previously one single vector / encoding consists of<span class="math inline"><em>d</em></span> 32-bit number, whereas nowit only consists of <span class="math inline"><em>d</em></span> 1-bitnumber.</p><p>If you adapt the Adaptive Retrieval setup mentioned earlier:</p><ol type="1"><li>Shortlist: retrieve 2K indexes using full-length but binaryvector</li><li>Rerank: find KNN among 2K indexes using full-length, FP32vector</li></ol><p>you get a precision drop from 99% only to 96% with an RPS of1700.</p><p>P.S. I discovered this method on <ahref="https://simonwillison.net/2024/Mar/26/binary-vector-search/">SimonWillison’s blog</a>.</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="intro-to-matryoshka-representation-learning">Intro to MatryoshkaRepresentation Learning</h2><p>In Matryoshka Representation Learning (MRL), we want to construct anencoding <spanclass="math inline"><em>e</em><sub><em>d</em></sub></span> withdimension <span class="math inline"><em>d</em></span> such that itstruncations of different lengths (<spanclass="math inline"><em>e</em><sub><em>d</em>/16</sub>, <em>e</em><sub><em>d</em>/8</sub>, <em>e</em><sub><em>d</em>/4</sub>, <em>e</em><sub><em>d</em>/2</sub></span>​)are each (somewhat) valid representations. Suppose you’re training on aclassification problem with the classic encoder + classifier headarchitecture. At train time:</p><ul><li>classic setting: you just use the vector <spanclass="math inline"><em>e</em><sub><em>d</em></sub></span> as input tothe classifier head</li><li>MRL: construct multiple classifier heads (in our case 5) and put oneon top of encoding of each length (<spanclass="math inline"><em>e</em><sub><em>d</em>/16</sub>, …, <em>e</em><sub><em>d</em></sub></span>)and average the loss of each classifier head. So we build heads of size<code>[d, num_class], [d/2, num_class], ... [d/16, num_class]</code>Note these classifier heads share weights.</li></ul><h2 id="application-adaptive-retrieval">Application: AdaptiveRetrieval</h2><p>Online retrieval is one of the tasks where latency matters the most.Given a user query <span class="math inline"><em>q</em></span>, it isslow to compute KNN from a dataset of size 1M (<spanclass="math inline">10<sup>6</sup></span>) indexes if each index hasdimension 3072. With MRL, we can decompose the process into twostages:</p><ol type="1"><li>Shortlist: First retrieve 2K indexes where the distance is computedusing only 1024-d vector (the first 1024 elements of the 3072vector)</li><li>Rerank: Find KNN among these 2K indexes where the distance iscomputed using the full length 3072 vector</li></ol><p>The FLOP is therefore reduced from <spanclass="math inline">3072 × 10<sup>6</sup></span> to <spanclass="math inline">1024 × 10<sup>6</sup> + 3072 × 2<em>K</em></span>.Ce Gao tested full length 3072-dim vector vs adaptive retrieval usingMatryoshka 1024-dim. The accuracy dropped from 99% to 89% with RequestsPer Second (RPS) raises from 300 to 1000.</p><p>Find more details of Matryoshka Representation Learning and itsapplications in this wonderful <ahref="https://aniketrege.github.io/blog/2024/mrl/#what-is-mrl-really-this-time">blogpost. Read from section <em>What is MRL? (Really this Time)</em></a></p><h2 id="binary-vector-search">Binary Vector Search</h2><p><ahref="https://blog.pgvecto.rs/my-binary-vector-search-is-better-than-your-fp32-vectors">CeGao suggested</a> another way to reduce memory and FLOP use. He proposesto turn the length <span class="math inline"><em>d</em></span> FP32vector into a length <span class="math inline"><em>d</em></span> binaryvector, where original positive value is set to 1 and original negativevalue is set to 0.</p><p>Without using adaptive retrieval, the accuracy dropped from 99% to83%, but the latency (RPS = 3000) and memory has a significantimprovement because previously one single vector / encoding consists of<span class="math inline"><em>d</em></span> 32-bit number, whereas nowit only consists of <span class="math inline"><em>d</em></span> 1-bitnumber.</p><p>If you adapt the Adaptive Retrieval setup mentioned earlier:</p><ol type="1"><li>Shortlist: retrieve 2K indexes using full-length but binaryvector</li><li>Rerank: find KNN among 2K indexes using full-length, FP32vector</li></ol><p>you get a precision drop from 99% only to 96% with an RPS of1700.</p><p>P.S. I discovered this method on <ahref="https://simonwillison.net/2024/Mar/26/binary-vector-search/">SimonWillison’s blog</a>.</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;p&gt;&lt;strong&gt;Intro to Matryoshka Representation Learning&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In Matryoshka Representation Learning (MRL), we want to construct an
-</summary>
-      
+    <summary type="html">Introduces ways to make retrieval quicker</summary>
     
     
     
@@ -42,8 +37,8 @@
   
   <entry>
     <title>YouTube Recommendation Algorithms (2016)</title>
-    <link href="https://yao-lirong.github.io/blog/youtube-recommendation-algorithms-2016/"/>
-    <id>https://yao-lirong.github.io/blog/youtube-recommendation-algorithms-2016/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-10-15-YouTube-Recommendation-Algorithms-(2016)/"/>
+    <id>https://yao-lirong.github.io/blog/2024-10-15-YouTube-Recommendation-Algorithms-(2016)/</id>
     <published>2024-10-15T04:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.382Z</updated>
     
@@ -63,8 +58,8 @@ Neural Networks for YouTube Recommendations&lt;/a&gt;&lt;/p&gt;</summary>
   
   <entry>
     <title>Running MobileBert on Android with TensorFlow Lite</title>
-    <link href="https://yao-lirong.github.io/blog/running-mobilebert-on-android-with-tensorflow-lite/"/>
-    <id>https://yao-lirong.github.io/blog/running-mobilebert-on-android-with-tensorflow-lite/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-09-22-Running-MobileBert-on-Android-with-TensorFlow-Lite/"/>
+    <id>https://yao-lirong.github.io/blog/2024-09-22-Running-MobileBert-on-Android-with-TensorFlow-Lite/</id>
     <published>2024-09-22T04:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.391Z</updated>
     
@@ -80,8 +75,8 @@ Neural Networks for YouTube Recommendations&lt;/a&gt;&lt;/p&gt;</summary>
   
   <entry>
     <title>Variational Inference</title>
-    <link href="https://yao-lirong.github.io/blog/variational-inference/"/>
-    <id>https://yao-lirong.github.io/blog/variational-inference/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/"/>
+    <id>https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/</id>
     <published>2024-09-09T04:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.391Z</updated>
     
@@ -102,8 +97,8 @@ Variable Models&lt;/h2&gt;
   
   <entry>
     <title>Hyper-Parameter Tuning with Optuna</title>
-    <link href="https://yao-lirong.github.io/blog/hyper-parameter-tuning-with-optuna/"/>
-    <id>https://yao-lirong.github.io/blog/hyper-parameter-tuning-with-optuna/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-08-23-Hyper-Parameter-Tuning-with-Optuna/"/>
+    <id>https://yao-lirong.github.io/blog/2024-08-23-Hyper-Parameter-Tuning-with-Optuna/</id>
     <published>2024-08-23T04:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.391Z</updated>
     
@@ -123,8 +118,8 @@ existing tool to do the HP tuning for me.&lt;/p&gt;</summary>
   
   <entry>
     <title>KV Cache</title>
-    <link href="https://yao-lirong.github.io/blog/kv-cache/"/>
-    <id>https://yao-lirong.github.io/blog/kv-cache/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-07-02-KV-Cache/"/>
+    <id>https://yao-lirong.github.io/blog/2024-07-02-KV-Cache/</id>
     <published>2024-07-02T04:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.123Z</updated>
     
@@ -146,8 +141,8 @@ only cache past keys and values? How about past queries?&lt;/p&gt;</summary>
   
   <entry>
     <title>Conducting Multi-Round Conversation with Transformers</title>
-    <link href="https://yao-lirong.github.io/blog/conducting-multi-round-conversation-with-transformers/"/>
-    <id>https://yao-lirong.github.io/blog/conducting-multi-round-conversation-with-transformers/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-06-17-Conducting-Multi-Round-Conversation-with-Transformers/"/>
+    <id>https://yao-lirong.github.io/blog/2024-06-17-Conducting-Multi-Round-Conversation-with-Transformers/</id>
     <published>2024-06-17T04:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.124Z</updated>
     
@@ -169,8 +164,8 @@ internally with code?&lt;/p&gt;</summary>
   
   <entry>
     <title>GPT-4o Release</title>
-    <link href="https://yao-lirong.github.io/blog/gpt-4o-release/"/>
-    <id>https://yao-lirong.github.io/blog/gpt-4o-release/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-05-14-GPT-4o-Release/"/>
+    <id>https://yao-lirong.github.io/blog/2024-05-14-GPT-4o-Release/</id>
     <published>2024-05-14T04:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.133Z</updated>
     
@@ -191,8 +186,8 @@ href=&quot;https://openai.com/index/hello-gpt-4o/&quot;&gt;GPT4-o&lt;/a&gt;&lt;/
   
   <entry>
     <title>CLIP</title>
-    <link href="https://yao-lirong.github.io/blog/clip/"/>
-    <id>https://yao-lirong.github.io/blog/clip/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-04-22-CLIP/"/>
+    <id>https://yao-lirong.github.io/blog/2024-04-22-CLIP/</id>
     <published>2024-04-22T04:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.384Z</updated>
     
@@ -211,8 +206,8 @@ task-agnostic web-scale pre-training in NLP to another domain (CV).&lt;/p&gt;</s
   
   <entry>
     <title>Gradient Scaling</title>
-    <link href="https://yao-lirong.github.io/blog/gradient-scaling/"/>
-    <id>https://yao-lirong.github.io/blog/gradient-scaling/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-04-08-Gradient-Scaling/"/>
+    <id>https://yao-lirong.github.io/blog/2024-04-08-Gradient-Scaling/</id>
     <published>2024-04-08T04:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.133Z</updated>
     
@@ -231,8 +226,8 @@ when in practice.&lt;/p&gt;</summary>
   
   <entry>
     <title>Decoupled Weight Decay Regularization (SGDW &amp; AdamW)</title>
-    <link href="https://yao-lirong.github.io/blog/decoupled-weight-decay-regularization-sgdw-adamw/"/>
-    <id>https://yao-lirong.github.io/blog/decoupled-weight-decay-regularization-sgdw-adamw/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-03-13-Decoupled-Weight-Decay-Regularization-(SGDW-&amp;-AdamW)/"/>
+    <id>https://yao-lirong.github.io/blog/2024-03-13-Decoupled-Weight-Decay-Regularization-(SGDW-&amp;-AdamW)/</id>
     <published>2024-03-13T04:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.124Z</updated>
     
@@ -256,8 +251,8 @@ is the ultimate go-to choice.&lt;/p&gt;</summary>
   
   <entry>
     <title>Mixed-Precision Training</title>
-    <link href="https://yao-lirong.github.io/blog/mixed-precision-training/"/>
-    <id>https://yao-lirong.github.io/blog/mixed-precision-training/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-03-01-Mixed-Precision-Training/"/>
+    <id>https://yao-lirong.github.io/blog/2024-03-01-Mixed-Precision-Training/</id>
     <published>2024-03-01T05:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.127Z</updated>
     
@@ -283,8 +278,8 @@ with mixed precision&lt;/a&gt;.&lt;/p&gt;</summary>
   
   <entry>
     <title>Parameter and FLOP Count in Transformer Model</title>
-    <link href="https://yao-lirong.github.io/blog/parameter-and-flop-count-in-transformer-model/"/>
-    <id>https://yao-lirong.github.io/blog/parameter-and-flop-count-in-transformer-model/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-02-22-Parameter-and-FLOP-Count-in-Transformer-Model/"/>
+    <id>https://yao-lirong.github.io/blog/2024-02-22-Parameter-and-FLOP-Count-in-Transformer-Model/</id>
     <published>2024-02-22T05:00:00.000Z</published>
     <updated>2025-09-02T23:34:26.325Z</updated>
     
@@ -304,8 +299,8 @@ Neural Language Models&lt;/a&gt; Section 2.1&lt;/p&gt;</summary>
   
   <entry>
     <title>Memory Pinning and Transfer Data between Host (CPU) and Device (GPU)</title>
-    <link href="https://yao-lirong.github.io/blog/memory-pinning-and-transfer-data-between-host-cpu-and-device-gpu/"/>
-    <id>https://yao-lirong.github.io/blog/memory-pinning-and-transfer-data-between-host-cpu-and-device-gpu/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-02-09-Memory-Pinning-and-Transfer-Data-between-Host-(CPU)-and-Device-(GPU)/"/>
+    <id>https://yao-lirong.github.io/blog/2024-02-09-Memory-Pinning-and-Transfer-Data-between-Host-(CPU)-and-Device-(GPU)/</id>
     <published>2024-02-09T05:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.127Z</updated>
     
@@ -324,8 +319,8 @@ into more detail here.&lt;/p&gt;</summary>
   
   <entry>
     <title>Switching Personal Homepage Theme to al-folio</title>
-    <link href="https://yao-lirong.github.io/blog/switching-personal-homepage-theme-to-al-folio/"/>
-    <id>https://yao-lirong.github.io/blog/switching-personal-homepage-theme-to-al-folio/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-01-27-Switching-Personal-Webpage-Theme-to-al-folio/"/>
+    <id>https://yao-lirong.github.io/blog/2024-01-27-Switching-Personal-Webpage-Theme-to-al-folio/</id>
     <published>2024-01-27T05:00:00.000Z</published>
     <updated>2024-01-28T09:22:54.542Z</updated>
     
@@ -348,8 +343,8 @@ href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; and at the same time 
   
   <entry>
     <title>Visual Information Theory</title>
-    <link href="https://yao-lirong.github.io/blog/visual-information-theory/"/>
-    <id>https://yao-lirong.github.io/blog/visual-information-theory/</id>
+    <link href="https://yao-lirong.github.io/blog/2024-01-21-Visual-Information-Theory/"/>
+    <id>https://yao-lirong.github.io/blog/2024-01-21-Visual-Information-Theory/</id>
     <published>2024-01-21T05:00:00.000Z</published>
     <updated>2025-09-02T23:24:43.202Z</updated>
     
@@ -372,8 +367,8 @@ explanations.&lt;/p&gt;</summary>
   
   <entry>
     <title>Quantization</title>
-    <link href="https://yao-lirong.github.io/blog/quantization/"/>
-    <id>https://yao-lirong.github.io/blog/quantization/</id>
+    <link href="https://yao-lirong.github.io/blog/2023-12-01-Quantization/"/>
+    <id>https://yao-lirong.github.io/blog/2023-12-01-Quantization/</id>
     <published>2023-12-01T05:00:00.000Z</published>
     <updated>2025-09-02T23:51:12.130Z</updated>
     
@@ -397,8 +392,8 @@ Laws&lt;/a&gt;&lt;/h2&gt;
   
   <entry>
     <title>Fine-Tuning LLMs: Prompt Tuning, Adapter, LoRA</title>
-    <link href="https://yao-lirong.github.io/blog/fine-tuning-llms-prompt-tuning-adapter-lora/"/>
-    <id>https://yao-lirong.github.io/blog/fine-tuning-llms-prompt-tuning-adapter-lora/</id>
+    <link href="https://yao-lirong.github.io/blog/2023-11-20-Fine-Tuning-LLMs-Prompt-Tuning,-Adapter,-LoRA/"/>
+    <id>https://yao-lirong.github.io/blog/2023-11-20-Fine-Tuning-LLMs-Prompt-Tuning,-Adapter,-LoRA/</id>
     <published>2023-11-20T05:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.391Z</updated>
     
@@ -419,8 +414,8 @@ good.&lt;/p&gt;</summary>
   
   <entry>
     <title>Graph Networks &amp; GraphCast</title>
-    <link href="https://yao-lirong.github.io/blog/graph-networks-graphcast/"/>
-    <id>https://yao-lirong.github.io/blog/graph-networks-graphcast/</id>
+    <link href="https://yao-lirong.github.io/blog/2023-11-16-Graph-Networks-&amp;-GraphCast/"/>
+    <id>https://yao-lirong.github.io/blog/2023-11-16-Graph-Networks-&amp;-GraphCast/</id>
     <published>2023-11-16T05:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.384Z</updated>
     
@@ -443,8 +438,8 @@ Networks&lt;/a&gt;&lt;/h2&gt;
   
   <entry>
     <title>First Time Debugging with ChatGPT</title>
-    <link href="https://yao-lirong.github.io/blog/first-time-debugging-with-chatgpt/"/>
-    <id>https://yao-lirong.github.io/blog/first-time-debugging-with-chatgpt/</id>
+    <link href="https://yao-lirong.github.io/blog/2023-04-04-First-Time-Debugging-with-ChatGPT/"/>
+    <id>https://yao-lirong.github.io/blog/2023-04-04-First-Time-Debugging-with-ChatGPT/</id>
     <published>2023-04-04T04:00:00.000Z</published>
     <updated>2025-09-03T01:42:46.391Z</updated>
     

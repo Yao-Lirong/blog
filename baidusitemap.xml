@@ -1,175 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/first-time-debugging-with-chatgpt/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-12-25-Matryoshka-Representation-Learning,-Adaptive-Retrieval-and-Binary-Vector-Search/</loc>
+    <lastmod>2025-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://yao-lirong.github.io/blog/blog/2023-04-04-First-Time-Debugging-with-ChatGPT/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/fine-tuning-llms-prompt-tuning-adapter-lora/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2023-11-20-Fine-Tuning-LLMs-Prompt-Tuning,-Adapter,-LoRA/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/hyper-parameter-tuning-with-optuna/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-08-23-Hyper-Parameter-Tuning-with-Optuna/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/running-mobilebert-on-android-with-tensorflow-lite/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-09-09-Variational-Inference/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/variational-inference/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-09-22-Running-MobileBert-on-Android-with-TensorFlow-Lite/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/look-back-on-cornell-19fa/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/graph-networks-graphcast/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2023-11-16-Graph-Networks-&-GraphCast/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/clip/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-04-22-CLIP/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/youtube-recommendation-algorithms-2016/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-10-15-YouTube-Recommendation-Algorithms-(2016)/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/%E8%A7%A6%E4%B9%90-rpg-codex-rpg%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E8%AE%A8%E8%AE%BA/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-11-01-%E8%A7%A6%E4%B9%90-&-RPG-Codex-RPG%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E8%AE%A8%E8%AE%BA/</loc>
     <lastmod>2025-09-03</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/gradient-scaling/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-04-08-Gradient-Scaling/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/gpt-4o-release/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-05-14-GPT-4o-Release/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/quantization/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2023-12-01-Quantization/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/memory-pinning-and-transfer-data-between-host-cpu-and-device-gpu/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-02-09-Memory-Pinning-and-Transfer-Data-between-Host-(CPU)-and-Device-(GPU)/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/mixed-precision-training/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-03-01-Mixed-Precision-Training/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/decoupled-weight-decay-regularization-sgdw-adamw/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-03-13-Decoupled-Weight-Decay-Regularization-(SGDW-&-AdamW)/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/conducting-multi-round-conversation-with-transformers/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-06-17-Conducting-Multi-Round-Conversation-with-Transformers/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/kv-cache/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-07-02-KV-Cache/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/matryoshka-representation-learning-adaptive-retrieval-and-binary-vector-search/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-02-22-Parameter-and-FLOP-Count-in-Transformer-Model/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/parameter-and-flop-count-in-transformer-model/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-01-21-Visual-Information-Theory/</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/visual-information-theory/</loc>
-    <lastmod>2025-09-02</lastmod>
-  </url>
-  <url>
-    <loc>https://yao-lirong.github.io/blog/blog/python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-11-17-Python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/</loc>
     <lastmod>2025-04-10</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/switching-personal-homepage-theme-to-al-folio/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2024-01-27-Switching-Personal-Webpage-Theme-to-al-folio/</loc>
     <lastmod>2024-01-28</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/latex-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-11-23-Latex-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/</loc>
     <lastmod>2024-01-23</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/2022-web-journal/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2024-01-07</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/2021-web-journal/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2023-12-26</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/video-editing-ffmpeg-davinci/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-04-09-%E8%A7%86%E9%A2%91%E7%BC%96%E8%BE%91-(FFmpeg-DaVinci)/</loc>
     <lastmod>2023-05-18</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/cs2043-unix-tools-and-scripting/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-01-24-CS2043-Unix-Tools-and-Scripting/</loc>
     <lastmod>2023-05-18</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/c-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2023-05-15</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/javascript-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-06-11-JavaScript-Manual/</loc>
     <lastmod>2023-04-20</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/python-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2023-04-11</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/look-back-on-cornell-21fa/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-12-15-Look-Back-on-Cornell-21FA/</loc>
     <lastmod>2023-02-23</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/look-back-on-cornell-21sp/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-05-24-Look-Back-on-Cornell-21SP/</loc>
     <lastmod>2023-02-23</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/introduction-to-git-command/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/Intro-to-Git-Command/</loc>
     <lastmod>2022-11-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/how-to-succeed-in-cs6784-also-in-academic-life-in-general/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-08-23-How-to-Succeed-in-CS6784-(also-in-Academic-Life-in-General)/</loc>
     <lastmod>2022-10-25</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/deploy-a-reddit-bot-on-heroku/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/</loc>
     <lastmod>2022-09-07</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/java-quick-guide/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-09-10-Java-Quick-Guide/</loc>
     <lastmod>2022-09-05</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/import-junit-and-javafx-into-vscode/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2019-11-21-import-Junit-and-JavaFx-into-VSCode/</loc>
     <lastmod>2022-07-17</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/cs4820-%E5%8F%8A-algorithm-design-%E4%B8%80%E8%88%AC%E6%80%A7%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-10-13-Algorithm-Design-%E5%8F%8A-CS4820-%E4%B8%80%E8%88%AC%E6%80%A7%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/look-back-on-cornell-20sp/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/look-back-on-cornell-tsinghua-20fa/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/sql-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-09-16-Intro-to-SQL/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/tensorflow-1-x-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-05-28-Introduction-to-TensorFlow-1.x/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
@@ -177,115 +177,115 @@
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/%E5%8D%9A%E5%AE%A2seo%E4%BC%98%E5%8C%96/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2022-04-23-%E5%8D%9A%E5%AE%A2SEO%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/c-manual/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-08-31-Introduction-to-C/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/install-and-configure-aria2-on-wsl/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-06-28-Install-and-Configure-Aria2-on-Linux/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/add-pdf-file-to-hexo/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2019-12-17-add-pdf-file-to-hexo/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/kinect-as-web-cam/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-06-24-Kinekt-as-Web-Cam/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/windows%E4%B8%8B%E9%85%8D%E7%BD%AEpostgresql/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-09-05-Windows%E4%B8%8B%E9%85%8D%E7%BD%AEPostgreSQL/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/add-open-with-windows-terminal-to-right-click-menu/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-09-29-Add-Open-with-Windows-Terminalto-Right-Click-Menu/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/on-intelligence/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-06-23-On-Intelligence/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/tsinghua-dsa-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-1/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-02-09-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(1)/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/tsinghua-dsa-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-2/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-02-10-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(2)/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/tsinghua-dsa-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-3/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-02-11-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(3)/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/2020-web-journal/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-12-31-2020-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/info1998-intro-to-machine-learning-sklearn-pandas/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-10-02-INFO1998-Intro-to-Machine-Learning/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/cs2024-c-programming/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-09-07-CS2024-C++-Programming/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/installing-and-configuring-ocaml-on-linux/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-01-20-Installing-Ocaml-on-Linux/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98-%E8%BF%81%E7%A7%BBhexo%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-08-29-%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98--%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2022-04-23</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/setting-up-a-server/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2021-05-15-Setting-up-a-Server/</loc>
     <lastmod>2021-08-28</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/introduction-to-vim/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2020-03-15-Introduction-to-Vim/</loc>
     <lastmod>2020-04-02</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2019-07-07-P1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2/</loc>
     <lastmod>2019-10-06</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1141-01%E8%BF%B7%E5%AE%AB/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2019-07-04-P1141-01%E8%BF%B7%E5%AE%AB/</loc>
     <lastmod>2019-10-06</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1118-backward-digital-sums/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/2019-07-02-P1118-Backward-Digital-Sums/</loc>
     <lastmod>2019-10-06</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1031-%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P1031%20%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1019-%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P1019%20%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1101-%E5%8D%95%E8%AF%8D%E6%96%B9%E9%98%B5/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P1101%20%E5%8D%95%E8%AF%8D%E6%96%B9%E9%98%B5/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1219-%E5%85%AB%E7%9A%87%E5%90%8E/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P1219%20%E5%85%AB%E7%9A%87%E5%90%8E/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1090-%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P1090%20%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p2678-%E8%B7%B3%E7%9F%B3%E5%A4%B4/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
   <url>
-    <loc>https://yao-lirong.github.io/blog/blog/p1309-%E7%91%9E%E5%A3%AB%E8%BD%AE/</loc>
+    <loc>https://yao-lirong.github.io/blog/blog/P1309%20%E7%91%9E%E5%A3%AB%E8%BD%AE/</loc>
     <lastmod>2019-06-27</lastmod>
   </url>
 </urlset> 

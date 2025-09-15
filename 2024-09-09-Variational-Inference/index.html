@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+<!-- keywords -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Yao Lirong">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Yao Lirong">
+        <meta name="keywords" content="Cornell,AI,CS,Computer Science,Artificial Intelligence,Yao,Lirong,姚立嵘,Programming">
+    <meta name="description" content="姚立嵘 (Yao Lirong)'s Personal Website">
+    <meta name="description" content="Probabilistic Latent Variable Models The two general forms of probabilistic models are:  p(x): a typical probabilistic distribution. In this model, we call x the query. p(y ∣ x): a conditional probabi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Variational Inference">
+<meta property="og:url" content="https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/index.html">
+<meta property="og:site_name" content="Yao Lirong&#39;s Blog">
+<meta property="og:description" content="Probabilistic Latent Variable Models The two general forms of probabilistic models are:  p(x): a typical probabilistic distribution. In this model, we call x the query. p(y ∣ x): a conditional probabi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yao-lirong.github.io/images/Mixture-Gaussian-Distribution.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/p(xz)-with-entropy.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/entropy-example.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/p(xz)-with-entropy.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/KL-divergence.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/reparametrization-trick.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/computational-graph.png">
+<meta property="og:image" content="https://yao-lirong.github.io/images/vae-and-ae.png">
+<meta property="article:published_time" content="2024-09-09T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-03T01:42:46.391Z">
+<meta property="article:author" content="Yao Lirong">
+<meta property="article:tag" content="Yao Lirong, Lirong Yao, Cornell, Computer Science, Artificial Intelligence">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yao-lirong.github.io/images/Mixture-Gaussian-Distribution.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/blog/assets/favicon.ico">
+    <title>Variational Inference · Yao Lirong&#39;s Blog</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/blog/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .footer-fixed-btn,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(
+            -45deg,
+            #444 0,
+            #444 80px,
+            #333 80px,
+            #333 160px
+        );
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link id="stylesheet-fancybox" rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-base" rel="preload" href="/blog/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-mobile" rel="preload" href="/blog/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
+    <link id="stylesheet-theme-dark" rel="preload" href="/blog/css/dark.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/blog/scripts/main.js" as="script">
+    <link rel="preload" href="/blog/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+
+    <!-- 百度统计 -->
+    
+    <!-- CNZZ 统计 -->
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-225410555-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-225410555-1');
+        </script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Yao Lirong's Blog" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/blog/lib/jquery.min.js" />')
+        }
+    </script>
+        <body class="post-body">
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        <div class="header-sidebar-menu">
+            <div style="padding-left: 1px;">&#xe775;</div>
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href="/blog/">Yao Lirong's Blog</a>
+        </span>
+    </div>
+    <!-- toggle banner -->
+    <div class="banner">
+        <div class="blog-title header-element">
+            <a href="/blog/">Yao Lirong&#39;s Blog</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name">Variational Inference</a>
+        </div>
+    </div>
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- donate button -->
+
+    <!-- back to top button -->
+    <div class="footer-fixed-btn footer-fixed-btn--hidden back-top">
+        <div>&#xe639;</div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="    height:50vh;
+">
+    <!-- 主页  -->
+    <!-- 404页  -->
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/blog/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+                Variational Inference
+            <!-- 404 -->
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            <!-- 404 -->
+        </p>
+        <!-- 文章页 meta -->
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                    <div class="post-intro-tags">
+</div>
+
+                <!-- 文章字数统计 -->
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2024/09/09</span>
+                    <!-- busuanzi -->
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/blog/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/blog/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" alt="loading">
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="probabilistic-latent-variable-models">Probabilistic Latent
+Variable Models</h2>
+<p>The two general forms of probabilistic models are:</p>
+<ul>
+<li><span class="math inline"><em>p</em>(<em>x</em>)</span>: a typical
+probabilistic distribution. In this model, we call <span class="math inline"><em>x</em></span> the query.</li>
+<li><span class="math inline"><em>p</em>(<em>y</em> ∣ <em>x</em>)</span>: a
+conditional probabilistic distribution. In this model, we cal <span class="math inline"><em>x</em></span> the evidence and <span class="math inline"><em>y</em></span> the query.</li>
+</ul>
+<p>Latent variable models are models that have variables other than the
+query and the evidence.</p>
+<ul>
+<li><p><span class="math inline"><em>p</em>(<em>x</em>) = ∑<sub><em>z</em></sub><em>p</em>(<em>x</em> ∣ <em>z</em>) <em>p</em>(<em>z</em>)</span>​</p>
+<p>A classic latent variable model of <span class="math inline"><em>p</em>(<em>x</em>)</span> is the mixture model,
+where <span class="math inline"><em>p</em>(<em>x</em>)</span> is
+actually a mixture of several different probabilistic model. For
+example, in the following graph, <span class="math inline"><em>z</em></span> is a discrete variable
+representing which class a datapoint belongs to and is represented by
+different colors here. <span class="math inline"><em>p</em>(<em>x</em> ∣ <em>z</em>)</span> is each
+class’s probability distribution, where in this case can each be modeled
+by a Gaussian. And <span class="math inline"><em>p</em>(<em>x</em>)</span>​ when we observe it, is
+just a bunch of uncolored datapoints and is hard to fit a distribution
+on it. However, we can see it’s roughly spread in 3 clusters so we
+introduce the latent variable representing class and we can now well fit
+a Gaussian mixture model on it (a mixture of 3 Gaussians)</p>
+<figure>
+<img src="/images/Mixture-Gaussian-Distribution.png" alt="Gaussian Mixture Model">
+<figcaption aria-hidden="true">Gaussian Mixture Model</figcaption>
+</figure></li>
+<li><p><span class="math inline"><em>p</em>(<em>y</em> ∣ <em>x</em>) = ∑<sub><em>z</em></sub><em>p</em>(<em>y</em> ∣ <em>x</em>, <em>z</em>) <em>p</em>(<em>z</em>)</span>
+or <span class="math inline"><em>p</em>(<em>y</em> ∣ <em>x</em>) = ∑<sub><em>z</em></sub><em>p</em>(<em>y</em> ∣ <em>z</em>) <em>p</em>(<em>z</em> ∣ <em>x</em>)</span>:
+the conditional probability is a bit more free. You can decompose and
+model it using <span class="math inline"><em>z</em></span>​ as you
+like.</p>
+<p>An example of latent conditional model is the mixture density
+network, which we use in RL’s imitation learning to deal with
+multi-modal situations each requiring a different distribution.</p></li>
+</ul>
+<h3 id="latent-variable-models-in-general">Latent Variable Models in
+General</h3>
+<p>When we use latent variable models, it means we want to
+<strong>decompose a complicated distribution into several simple / easy
+distributions</strong>. By <strong>complicated</strong>, we mean it’s
+not possible to write it in a well-defined distribution. By
+<strong>simple / easy</strong>, we mean we can write it as a
+well-defined parametrized distribution, where the parameters can be
+complex, but the distribution itself is easy to write (a Gaussian of
+just mean and sigma, or as a Bernoulli with just one variable, etc.)
+<span class="math display"><em>p</em>(<em>x</em>) = ∫<em>p</em>(<em>x</em> ∣ <em>z</em>)<em>p</em>(<em>z</em>)<em>d</em><em>z</em></span></p>
+<ul>
+<li><span class="math inline"><em>p</em>(<em>z</em>)</span> is an “easy”
+prior we choose. For example a Gaussian, a categorical distribution,
+etc.</li>
+<li><span class="math inline"><em>p</em>(<em>x</em> ∣ <em>z</em>)</span>
+should also be an easy distribution, like a Gaussian: $ p(x z) =
+(<em>{nn}(z), </em>{nn}(z))$ even though the mapping from <span class="math inline"><em>z</em></span> to the actual parameters of
+Gaussian can be complex, where in this case we have to model the mapping
+through a neural network and this mapping is the learnable part.</li>
+<li><span class="math inline"><em>p</em>(<em>x</em>)</span> is
+complicated, not possible to write out as any well-defined distribution.
+Therefore, we decompose it into the two parts above that are
+<strong>easy to parametrize as a probability distribution and learn the
+parameters inside the distribution</strong>.</li>
+</ul>
+<p>Generative models are not equal to latent variable models. We usually
+model generative models as latent variable ones because generative
+models are usually complex probability distributions and we can make it
+easier by introducing one or more latent variable.</p>
+<h3 id="how-to-train-a-latent-variable-model">How to Train a Latent
+Variable Model</h3>
+<p>Given dataset <span class="math inline">𝒟 = {<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, …, <em>x</em><sub><em>N</em></sub>}</span>,
+to fit a typical probabilistic model <span class="math inline"><em>p</em><sub><em>θ</em></sub>(<em>x</em>)</span>,
+we use the maximum likelihood estimation: <span class="math display">$$
+\theta \leftarrow \underset{\theta}{arg\!\max} \frac 1 N \sum_i \log
+p_\theta(x_i)
+$$</span> In the latent variable model set up, we can substitute the
+definition in and an MLE would look like <span class="math display">$$
+\theta \leftarrow \underset{\theta}{arg\!\max} \frac 1 N
+\sum_i \log \left( \int p_\theta(x_i \mid z) p(z) dz \right)
+$$</span> <span class="math inline"><em>p</em><sub><em>θ</em></sub>(<em>x</em> ∣ <em>z</em>)</span>
+and <span class="math inline"><em>p</em>(<em>z</em>)</span> are
+distributions of our choices, but this integral is still intractable
+when <span class="math inline"><em>z</em></span> is continuous. So now
+it’s time to do some math tricks.</p>
+<h2 id="variational-inference">Variational Inference</h2>
+<h3 id="variational-approximation">Variational Approximation</h3>
+<p>First, we construct an easy / simple probability distribution <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+to approximate <span class="math inline"><em>p</em>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</span>
+- the posterior distribution specific to datapoint <span class="math inline"><em>x</em><sub><em>i</em></sub></span>. By easy we
+again mean it is easy to parametrize (a Gaussian, a Bernoulli, etc.)</p>
+<p>We will show that by introducing this <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>,
+we can actually construct a lower bound of <span class="math inline">log <em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>.
+What’s good with this lower bound? Later on, we will also prove this
+bound is sufficiently tight, so as we push up the value of this lower
+bound, we push up the value of <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>
+which is exactly what we want.</p>
+<p><span class="math display">$$
+\begin{align}
+\log p(x_{i})
+&amp;=    \log\int_{z}p(x_{i}|z)p(z)\\
+&amp;=    \log\int_{z}p(x_{i}|z)p(z) \frac{q_i(z)}{q_i(z)} \\
+&amp;=    \log \mathbb E_{z\sim q_{i}(z)} \left[\frac{p(x_{i}|z)p(z)}
+{q_{i}(z)}\right] \\
+&amp;\geq \mathbb E_{z\sim q_{i}(z)}
+\left[\log\frac{p(x_{i}|z)p(z)}{q_{i}(z)}\right] &amp;\text{\# Jensen's
+Inequality} \\
+&amp;=    \mathbb E_{z\sim q_{i}(z)} \left[\log p(x_{i}|z)+\log p(z)
+\right] - \mathbb E_{z\sim q_{i}(z)} \left[ \log {q_{i}(z)}\right]\\
+&amp;=    \mathbb E_{z\sim q_{i}(z)} \left[\log p(x_{i}|z)+\log p(z)
+\right] + \mathcal H_{z\sim q_{i}(z)} (q_i)
+=    \mathcal L_i(p, q_i)
+\end{align}
+$$</span> Recall <span class="math inline"><em>p</em>(<em>x</em>)</span>
+is a difficult probability distribution, so we decompose it into two
+easy distributions <span class="math inline"><em>p</em>(<em>x</em>|<em>z</em>)</span> and <span class="math inline"><em>p</em>(<em>z</em>)</span>, and use an easy
+distribution <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+to approximate the posterior <span class="math inline"><em>p</em>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</span>.
+Now the good thing is: everything here is tractable: for the first term,
+we can fix a <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+of our choice (recall <span class="math inline"><em>q</em><sub><em>i</em></sub></span> is a
+distribution we constructed), sample some <span class="math inline"><em>z</em></span>, and evaluate the expression. For
+the second term, we notice it is just the entropy of a distribution and
+for simple distributions (we constructed <span class="math inline"><em>q</em><sub><em>i</em></sub></span> to be
+simple), it has a closed form (even if it doesn’t, you can simply sample
+and evaluate)</p>
+<p>We call the final lower bound we derived here the <strong>variance
+lower bound</strong> or <strong>evidence lower bound (ELBO)</strong>.
+<span class="math display">$$
+\begin{align}
+\log p(x_{i})
+&amp;\geq \mathcal L_i(p, q_i) \\
+&amp;=    \mathbb E_{z\sim q_{i}(z)} \left[\log p(x_{i}|z)+\log p(z)
+\right] + \mathcal H_{z\sim q_{i}(z)} (q_i)
+\end{align}
+$$</span> ### Effect of Pushing Up ELBO (Intuitively)</p>
+<p>Assume our <span class="math inline"><em>p</em>(⋅)</span>​ is a fixed
+value, what does pushing up ELBO mean? Here, we give out an intuitive
+explanation. First, we look at <strong>the first term</strong> with the
+two log combined. <span class="math display">$$
+\begin{align}
+  &amp;\mathbb E_{z\sim q_{i}(z)} \left[\log p(x_{i}|z)+\log p(z)
+\right] \\
+= &amp;\mathbb E_{z\sim q_{i}(z)} \left[\log p(x_{i},z) \right]
+\end{align}
+$$</span> To maximize this value, we just have to find a distribution of
+<span class="math inline"><em>z</em></span>, inside which we have the
+largest value of <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)</span>.
+Therefore, we want <span class="math inline"><em>z</em></span> to
+distribute mostly under the peak of <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)</span>,
+Since <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+is the distribution we currently have for z, we want <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+to sit mostly under the peak of <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)</span>.
+In the following graph, the y-axis is <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)</span>,
+the distribution we try to maximize, and the x-axis is our latent
+variable z. There is also a hidden axis - the probability mass
+(distribution) of <span class="math inline"><em>z</em></span>. We
+project this hidden axis to the y-axis in this graph. To maximize this
+first term, we spread <span class="math inline"><em>z</em></span>’s mass
+as much under the peak of <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)</span>
+as possible, which makes the green part of this graph.</p>
+<figure>
+<img src="/images/p(xz)-with-entropy.png" alt="maximize ELBO">
+<figcaption aria-hidden="true">maximize ELBO</figcaption>
+</figure>
+<p>Now we take <strong>the second term entropy</strong> into
+consideration. <span class="math display">ℒ<sub><em>i</em></sub>(<em>p</em>, <em>q</em><sub><em>i</em></sub>) = 𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>i</em></sub>(<em>z</em>)</sub>[log <em>p</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)] + ℋ<sub><em>z</em> ∼ <em>q</em><sub><em>i</em></sub>(<em>z</em>)</sub>(<em>q</em><sub><em>i</em></sub>)</span>
+From our <a href="link!"><strong><em>entropy post</em></strong></a>, we
+know entropy measures the expected code length of communicating the
+event described by a random variable. So the more random this variable
+is, the more code words it’s required to communicate it. Therefore, the
+more spread out / uniform the distribution is, the higher the entropy.
+If we’re maxing the entropy, we don’t want the distribution to be
+skinny. See the following graph.</p>
+<figure>
+<img src="/images/entropy-example.png" alt="entropy-example">
+<figcaption aria-hidden="true">entropy-example</figcaption>
+</figure>
+<p>When we consider both entropy and the first term, we should achieve
+this probability distribution depicted in brown. If we don’t have the
+entropy, <span class="math inline"><em>z</em></span> will want to sit
+under the most likely point, but since we added entropy, <span class="math inline"><em>z</em></span> now tries to cover it. In
+conclusion, (equal sign “=” reads “in effect”) maximize evidence lower
+bound = cover most of the <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>|<em>z</em>)</span>
+distribution = maximize approximation between <span class="math inline"><em>q</em><sub><em>i</em></sub></span> and <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>|<em>z</em>)</span>.</p>
+<figure>
+<img src="/images/p(xz)-with-entropy.png" alt="maximize ELBO">
+<figcaption aria-hidden="true">maximize ELBO</figcaption>
+</figure>
+<h3 id="effect-of-pushing-up-elbo-analytically">Effect of Pushing Up
+ELBO (Analytically)</h3>
+<p>Can we measure how good our approximation is? That is, can we measure
+the distance between <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>|<em>z</em>)</span>
+and <span class="math inline"><em>q</em><sub><em>i</em></sub></span>? In
+fact, we have a nice, analytical way to look at it using <strong>KL
+divergence</strong>. For two arbitrary distribution <span class="math inline"><em>p</em>, <em>q</em></span> of <span class="math inline"><em>x</em></span>, the KL divergence of <span class="math inline"><em>q</em></span> from <span class="math inline"><em>p</em></span> (the distance from <span class="math inline"><em>q</em></span> to <span class="math inline"><em>p</em></span>, note KL divergence is not
+symmetric) is</p>
+<p><span class="math display">$$
+\begin{align}
+D_{\mathrm{KL}}(q|p)
+&amp;=E_{x\sim q(x)}\left[\log{\frac{q(x)}{p(x)}}\right]\\
+&amp;=E_{x \sim q(x)}[\log q(x)]-E_{x \sim q(x)}[\log p(x)]\\
+&amp;=-E_{x \sim q(x)}[\log p(x)]-H(q)
+\end{align}
+$$</span> Doesn’t this look similar to our evidence lower bound?
+Borrowing that explanation, minimizing KL divergence = cover most of the
+<span class="math inline"><em>p</em>(<em>z</em>)</span> distribution =
+maximize approximation between <span class="math inline"><em>q</em></span> and <span class="math inline"><em>p</em></span>.</p>
+<figure>
+<img src="/images/KL-divergence.png" alt="KL-divergence">
+<figcaption aria-hidden="true">KL-divergence</figcaption>
+</figure>
+<p>Having understood the definition of KL divergence, let’s use it to
+measure the distance between <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+and <span class="math inline"><em>p</em>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</span>
+- the distribution we want <span class="math inline"><em>q</em><sub><em>i</em></sub></span> to
+approximate: <span class="math display">$$
+\begin{align}
+D_{KL}(q_{i}(z)\|p(z \mid x_{i}))
+&amp;=  E_{z\sim
+q_{i}(z)}\left[\log{\frac{q_{i}(z)}{p(z|x_{i})}}\right]\\
+&amp;=  E_{z\sim
+q_{i}(z)}\left[\log{\frac{q_{i}(z)p(x_{i})}{p(x_{i},z)}}\right]\\
+&amp;= -E_{z\sim q_{i}(z)}\left[\log p(x_{i}|z)+\log p(z)\right] +
+E_{z\sim q_{i}(z)}\log q_i(z) + E_{z\sim q_{i}(z)}\log p(x_{i})\\
+&amp;= -E_{z\sim q_{i}(z)}\left[\log p(x_{i}|z)+\log p(z)\right] +
+\mathcal H(q_i) + E_{z\sim q_{i}(z)}\log p(x_{i})\\
+&amp;= -\mathcal L(p, q_i) + \log p(x_i)\\
+\log p(x_i) &amp;= \mathcal L(p, q_i) + D_{KL}(q_{i}(x_{i})\|p(z \mid
+x_{i}))
+\end{align}
+$$</span> Therefore, having a good approximation of <span class="math inline"><em>q</em><sub><em>i</em></sub></span> to <span class="math inline"><em>p</em>(<em>x</em><sub><em>i</em></sub>|<em>z</em>)</span>
+= driving KL divergence, which is always a non-negative number, to 0 =
+the evidence lower bound is a tight bound or even equal to <span class="math inline">log <em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>​
+- the ultimate thing we want to optimize.</p>
+<p>Looking at our optimization objective <span class="math inline">ℒ</span> here: <span class="math display">ℒ(<em>p</em>, <em>q</em><sub><em>i</em></sub>) = log <em>p</em>(<em>x</em><sub><em>i</em></sub>) − <em>D</em><sub><em>K</em><em>L</em></sub>(<em>q</em><sub><em>i</em></sub>(<em>x</em><sub><em>i</em></sub>)∥<em>p</em>(<em>z</em> ∣ <em>x</em><sub><em>i</em></sub>))</span></p>
+<ul>
+<li><p>When we optimize w.r.t. <span class="math inline"><em>q</em></span>: note the first term <span class="math inline">log <em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>
+is independent of <span class="math inline"><em>q</em></span>, so its
+value stays the same. We are in effect optimizing against the KL
+divergence only, making the distance between our approximation <span class="math inline"><em>q</em><sub><em>i</em></sub></span> and <span class="math inline"><em>p</em>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</span>
+smaller. The best / extreme case is we have <span class="math inline"><em>D</em><sub><em>K</em><em>L</em></sub> = 0</span>,
+so <span class="math inline">ℒ = log <em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>.</p></li>
+<li><p>When we optimize w.r.t. <span class="math inline"><em>p</em></span>: Recall our ultimate goal is to
+make <span class="math inline">log <em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>
+bigger, so we make a better model in theory. Only in theory because we
+don’t know whether the bound is tight or not.</p></li>
+</ul>
+<h3 id="the-learning-algorithm">The Learning Algorithm?</h3>
+<p>Therefore, when we optimize <span class="math inline">ℒ(<em>p</em>, <em>q</em><sub><em>i</em></sub>)</span>​
+w.r.t. <span class="math inline"><em>q</em></span>​, we make the bound
+tighter (make <span class="math inline">ℒ</span>​ a better approximation
+of <span class="math inline">log <em>p</em>(<em>x</em><sub><em>i</em></sub>)</span>​
+); when we optimize <span class="math inline">ℒ(<em>p</em>, <em>q</em><sub><em>i</em></sub>)</span>​
+w.r.t. <span class="math inline"><em>p</em></span>​, we make a better
+model in general.</p>
+<p>By alternating these two steps, we have <strong>the actual learning
+algorithm</strong>. Let’s review: which parts are learnable in these two
+distributions?</p>
+<ul>
+<li><p>In our <a href="#Latent-Variable-Models-in-General">latent
+variable model setup</a>, we decompose the complicated distribution
+<span class="math inline"><em>p</em>(<em>x</em>)</span> into two easy
+distributions <span class="math inline"><em>p</em>(<em>x</em>|<em>z</em>)</span> and <span class="math inline"><em>p</em>(<em>z</em>)</span>, where the mapping
+from <span class="math inline"><em>z</em></span> to actual parameters of
+this <span class="math inline"><em>p</em>(<em>x</em>|<em>z</em>)</span>
+distribution needs to be modeled by a complex network. Therefore, the
+only distribution in the <span class="math inline"><em>p</em></span>
+part with learnable parameters is <span class="math inline"><em>p</em>(<em>x</em>|<em>z</em>)</span>. We denote
+it with <span class="math inline"><em>p</em><sub><em>θ</em></sub>(<em>x</em>|<em>z</em>)</span>.</p></li>
+<li><p>In our <a href="#Variational-Approximation">ELBO setup</a>, we
+also introduced a simple <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>)</span>
+for each datapoint <span class="math inline"><em>x</em><sub><em>i</em></sub></span> to
+approximate the posterior <span class="math inline"><em>p</em>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</span>.
+To optimize w.r.t. <span class="math inline"><em>q</em></span>, we
+optimize the parameters of each distribution. If <span class="math inline"><em>q</em><sub><em>i</em></sub>(<em>z</em>) = 𝒩(<em>μ</em><sub><em>i</em></sub>, <em>σ</em><sub><em>i</em></sub>)</span>,
+we optimize each <span class="math inline"><em>μ</em><sub><em>i</em></sub>, <em>σ</em><sub><em>i</em></sub></span>.
+(<em>we can optimize the entropy value for sure, but I’m not entirely
+sure how you would take gradient of the expectation term <span class="math inline"><em>E</em><sub><em>z</em> ∼ <em>q</em><sub><em>i</em></sub>(<em>z</em>)</sub>[log <em>p</em>(<em>z</em>)]</span></em>)</p></li>
+</ul>
+<p>Therefore, we have our learning algorithm: <span class="math display">$$
+\begin{align}
+&amp;\text{for each $x_i$ in $\{x_1, \dots, x_N\}$: }\\
+&amp;\hspace{4mm} \text{sample $z \sim q_i(z)$}\\
+&amp;\hspace{4mm} \text{optimize against $p$:}\\
+&amp;\hspace{4mm} \hspace{4mm} \nabla_\theta \mathcal L (p_\theta, q_i)
+= \nabla_\theta \log p_\theta(x_i|z) \\
+&amp;\hspace{4mm} \hspace{4mm} \theta \leftarrow \theta + \alpha
+\nabla_\theta \mathcal L (p, q_i) \\
+&amp;\hspace{4mm} \text{optimize against $q$:}\\
+&amp;\hspace{4mm} \hspace{4mm} \nabla_{\mu_i, \sigma_i} \mathcal L
+(p_\theta, q_i) = \nabla_{\mu_i, \sigma_i} \left[\mathbb E_{z\sim
+q_{i}(z)} \left[\log p(x_{i}|z)+\log p(z) \right] + \mathcal H_{z\sim
+q_{i}(z)} (q_i) \right] \\
+&amp;\hspace{4mm} \hspace{4mm} (\mu_i, \sigma_i) \leftarrow (\mu_i,
+\sigma_i) + \alpha \nabla_{\mu_i, \sigma_i} \mathcal L (p, q_i) \\
+\end{align}
+$$</span></p>
+<p>There’s a problem with optimizing <span class="math inline"><em>q</em><sub><em>i</em></sub></span> though. Note
+we have a separate <span class="math inline"><em>q</em></span> for each
+data point <span class="math inline"><em>i</em></span>, which means if
+we have <span class="math inline"><em>N</em></span> data points, we will
+have to store <span class="math inline"><em>N</em> × (|<em>μ</em><sub><em>i</em></sub>| + |<em>σ</em><sub><em>i</em></sub>|)</span>
+parameters assuming we chose <span class="math inline"><em>q</em><sub><em>i</em></sub></span> to be
+Gaussian. In machine learning, the number of data points <span class="math inline"><em>N</em></span> is usually in millions, making
+this model unwieldily big. It’s true in inference time we do not use
+<span class="math inline"><em>q</em></span> at all (we’ll see why this
+is true in the last chapter about VAE), but in training time, we still
+need them so it’s necessary to keep all these parameters.</p>
+<p>Therefore, instead of having a separate <span class="math inline"><em>q</em><sub><em>i</em></sub>(⋅)</span> to
+approximate each data point’s <span class="math inline"><em>P</em>(⋅|<em>x</em><sub><em>i</em></sub>)</span>
+specifically, we use a learnable model <span class="math inline"><em>q</em><sub><em>ϕ</em></sub>(⋅|<em>x</em><sub><em>i</em></sub>)</span>
+to approximate <span class="math inline"><em>p</em>(⋅|<em>x</em><sub><em>i</em></sub>)</span>
+This learnable network will take in a datapoint <span class="math inline"><em>x</em><sub><em>i</em></sub></span>, predicts the
+corresponding <span class="math inline"><em>μ</em><sub><em>i</em></sub>, <em>σ</em><sub><em>i</em></sub></span>.
+We can then sample <span class="math inline"><em>z</em></span>​ from this
+predicted network.</p>
+<h2 id="amortized">Amortized</h2>
+<p>By adapting <span class="math inline"><em>q</em></span> to be a
+learnable network <span class="math inline"><em>q</em><sub><em>ϕ</em></sub></span>​ instead,
+model size does not depend on the number of datapoints anymore.
+Therefore, it is <strong>amortized</strong>.</p>
+<p>The variational lower bound becomes: <span class="math display">ℒ(<em>p</em><sub><em>θ</em></sub>(<em>x</em><sub><em>i</em></sub>|<em>z</em>), <em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)) = 𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</sub>[log <em>p</em><sub><em>θ</em></sub>(<em>x</em><sub><em>i</em></sub>|<em>z</em>) + log <em>p</em>(<em>z</em>)] + ℋ(<em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>))</span>
+The learning algorithm naturally becomes: $$ $$</p>
+<h3 id="gradient-over-expectation-policy-gradient">Gradient Over
+Expectation (Policy Gradient)</h3>
+<p>The question now boils down to how do we calculate this gradient
+<span class="math inline">∇<sub><em>ϕ</em></sub>ℒ(<em>p</em><sub><em>θ</em></sub>, <em>q</em><sub><em>ϕ</em></sub>)</span>.</p>
+<p>The second term entropy is easy. We purposefully chose <span class="math inline"><em>q</em></span> to be a simple distribution, so
+there is usually a close form of its entropy and we just have to look it
+up.</p>
+<p>The meat is in the first part. How do we take gradient w.r.t.
+parameter <span class="math inline"><em>ϕ</em></span> in the expectation
+term’s distribution <span class="math inline"><em>q</em><sub><em>ϕ</em></sub></span> ? Note the
+term inside expectation is independent of <span class="math inline"><em>ϕ</em></span>, so we can rewrite it as <span class="math inline"><em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>) = log <em>p</em><sub><em>θ</em></sub>(<em>x</em><sub><em>i</em></sub>|<em>z</em>) + log <em>p</em>(<em>z</em>)</span>
+and call the whole thing <span class="math inline"><em>J</em></span>.<br>
+<span class="math display"><em>J</em>(<em>ϕ</em>) = ∇<sub><em>ϕ</em></sub>𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</sub>[<em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)]</span>
+We chose these namings purposefully because we encountered something
+similar back in the <a target="_blank" rel="external nofollow noopener noreferrer" href="https://slides.com/sarahdean-2/sp24-cs-4789-lec-16?token=KNeurk-c#/11/0/4">policy
+gradient part of reinforcement learning <strong>LINK???</strong></a>.
+Say we have a trajectory <span class="math inline"><em>τ</em></span>,
+sampled from the state transition function with learnable policy <span class="math inline"><em>π</em><sub><em>θ</em></sub></span>, the final
+expected value we can get from starting state <span class="math inline"><em>s</em><sub>0</sub></span> can be written as the
+following, where <span class="math inline"><em>R</em>(<em>τ</em>)</span>
+is a reward function returning the reward of this trajectory. <span class="math display"><em>J</em>(<em>θ</em>) = <em>V</em><sup><em>π</em><sub><em>θ</em></sub></sup>(<em>s</em><sub>0</sub>) = 𝔼<sub><em>τ</em> ∼ <em>P</em><sub><em>s</em><sub>0</sub></sub><sup><em>π</em><sub><em>θ</em></sub></sup></sub>[<em>R</em>(<em>τ</em>)]</span>
+We can take the gradient of this value function <span class="math inline"><em>V</em></span> w.r.t our policy <span class="math inline"><em>π</em><sub><em>θ</em></sub></span>, so this is
+called policy gradient. If you’re unfamiliar with RL setup, you just
+have to know we can derive the following gradient and we can approximate
+it by sampling <span class="math inline"><em>M</em></span> trajectories.
+$$ <span class="math display">$$
+Pugging in our $q$ and $\phi$,
+$$</span> $$</p>
+<h3 id="reparametrization-trick">Reparametrization Trick</h3>
+<p>We have our full learning algorithm and it’s ready to go now.
+However, there is a tiny improvement we can do.</p>
+<p>We defined our <span class="math inline"><em>q</em><sub><em>ϕ</em></sub></span> to be a
+normal distribution <span class="math inline">𝒩(<em>μ</em><sub><em>ϕ</em></sub>, <em>σ</em><sub><em>ϕ</em></sub>)</span>
+Observe that all normal distributions can be written as a function of
+the unit normal distribution. Therefore, a sample <span class="math inline"><em>z</em></span> is in effect: <span class="math display"><em>z</em> ∼ 𝒩(<em>μ</em><sub><em>ϕ</em></sub>, <em>σ</em><sub><em>ϕ</em></sub>) ⇔ <em>z</em> = <em>μ</em><sub><em>ϕ</em></sub> + <em>ϵ</em><em>σ</em><sub><em>ϕ</em></sub>, <em>ϵ</em> ∼ 𝒩(0, 1)</span>
+Let’s rewrite our expectation term to now sample an <span class="math inline"><em>ϵ</em></span> from the unit normal distribution
+instead. By decomposing <span class="math inline"><em>z</em></span> into
+these two parts, we separate the stochastic part and changed <span class="math inline"><em>z</em></span> from a sample of some stochastic
+distribution into a deterministic function <span class="math inline"><em>z</em>(<em>ϕ</em>, <em>ϵ</em>)</span>
+parametrized by <span class="math inline"><em>ϕ</em></span> and random
+variable <span class="math inline"><em>ϵ</em></span> that is independent
+of <span class="math inline"><em>ϕ</em></span>. <span class="math inline"><em>ϵ</em></span> takes the stochastic part alone.
+Our learnable parameter <span class="math inline"><em>ϕ</em></span> now
+only parametrizes deterministic quantity. <span class="math display">∇<sub><em>ϕ</em></sub><em>J</em>(<em>ϕ</em>) = ∇<sub><em>ϕ</em></sub>𝔼<sub><em>ϵ</em> ∼ 𝒩(0, 1)</sub>[<em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>μ</em><sub><em>ϕ</em></sub> + <em>ϵ</em><em>σ</em><sub><em>ϕ</em></sub>)]</span>
+Aside from these theoretical benefits, mathematically, we do not have to
+take gradient w.r.t an expectation of parametrized distribution anymore.
+Instead, the gradient can go straight into the expectation term now like
+how we usually interchange gradient and expectation (think about
+discrete case, expectation is just a big sum so we can do it). <span class="math display">∇<sub><em>ϕ</em></sub><em>J</em>(<em>ϕ</em>) = 𝔼<sub><em>ϵ</em> ∼ 𝒩(0, 1)</sub>[∇<sub><em>ϕ</em></sub><em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>μ</em><sub><em>ϕ</em></sub> + <em>ϵ</em><em>σ</em><sub><em>ϕ</em></sub>)]</span>
+Further, to approximate this expectation, we just sample some <span class="math inline"><em>ϵ</em></span> from this normal distribution.
+<span class="math display">$$
+\nabla_\phi J(\phi)
+\approx \frac 1 M \sum_j^M \nabla_\phi R(x_i, \mu_\phi + \epsilon_j
+\sigma_\phi)
+$$</span></p>
+<p>With reparametrization, we achieve a lower variance than policy
+gradient because we are using the derivative of R. (<em>Unfortunately
+the lecturer didn’t provide a quantitative analysis on this and I don’t
+know how to prove it</em>) On the other hand, previously, we only took
+derivative w.r.t. the probability distribution. Why didn’t we use
+derivative of R back in RL with policy gradient? It’s not we don’t want
+to but we can’t: we can’t use reparametrization in RL because in RL we
+usually cannot take derivative w.r.t. reward R.</p>
+<table>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Formula</th>
+<th>Approximation</th>
+<th>Benefit</th>
+<th>Deficit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Policy Gradient</td>
+<td><span class="math inline">∇<sub><em>ϕ</em></sub>𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>ϕ</em></sub>(<em>z</em> ∣ <em>x</em><sub><em>i</em></sub>)</sub>[<em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)]</span></td>
+<td><span class="math inline">$\frac 1 M \sum_j^M \nabla_\phi[\log
+q_\phi(z_j \mid x_i)] R(x_i,z_j)$</span></td>
+<td>works with both discrete and continuous latent variable <span class="math inline"><em>z</em></span></td>
+<td>High variance, requires multiple samples &amp; small learning
+rates</td>
+</tr>
+<tr class="even">
+<td>Reparametrization</td>
+<td><span class="math inline">𝔼<sub><em>ϵ</em> ∼ 𝒩(0, 1)</sub>[∇<sub><em>ϕ</em></sub><em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>μ</em><sub><em>ϕ</em></sub> + <em>ϵ</em><em>σ</em><sub><em>ϕ</em></sub>)]</span></td>
+<td><span class="math inline">$\frac 1 M \sum_j^M \nabla_\phi R(x_i,
+\mu_\phi + \epsilon_j \sigma_\phi)$</span></td>
+<td>low variance, simple to implement (we’ll see soon)</td>
+<td>only works with continuous variable <span class="math inline"><em>z</em></span> and have to model it with a
+Gaussian</td>
+</tr>
+</tbody>
+</table>
+<p>In fact, you can forget about the policy gradient method and simply
+take it for granted that you cannot back propagate a sampled value <span class="math inline">∇<sub><em>ϕ</em></sub>𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</sub></span>,
+so you have to find some way to make our <span class="math inline"><em>z</em></span>​ deterministic, which is what we’re
+doing here with our reparametrization trick.</p>
+<figure>
+<img src="/images/reparametrization-trick.png" alt="reparametrization-trick">
+<figcaption aria-hidden="true">reparametrization-trick</figcaption>
+</figure>
+<p>Left is without the “reparameterization trick”, and right is with it.
+Red shows sampling operations that are non-differentiable. Blue shows
+loss layers. We forward the network by going up and back propagate it by
+going down. The forward behavior of these networks is identical, but
+back propagation can be applied only to the right network. Figure copied
+from <a target="_blank" rel="external nofollow noopener noreferrer" href="https://arxiv.org/abs/1606.05908">Carl Doersch: Tutorial
+on Variational Autoencoders</a></p>
+<h3 id="looking-at-mathcal-l-directly">Looking at <span class="math inline">ℒ</span> Directly</h3>
+<p><span class="math display">$$
+\begin{align}
+\mathcal L_i = \mathcal L \left( p_\theta(x_i | z), q_\phi(z | x_i)
+\right)
+&amp;=  \mathbb E_{z\sim q_\phi(z | x_i)} \left[\log
+p_\theta(x_{i}|z)+\log p(z) \right] + \mathcal H (q_\phi(z|x_i))\\
+&amp;=  \mathbb E_{z\sim q_\phi(z | x_i)} \left[\log p_\theta(x_{i}|z)
+\right] +
+    \mathbb E_{z\sim q_\phi(z | x_i)} \left[\log p(z) \right] + \mathcal
+H (q_\phi(z|x_i))\\
+&amp;= \mathbb E_{z\sim q_\phi(z | x_i)} \left[\log
+p_\theta(x_{i}|z)\right] - D_{KL}(q_\phi(z | x_i)\|p(z)) \\
+&amp;= \mathbb E_{\epsilon \sim \mathcal N(0,1)} \left[\log
+p_\theta(x_{i}| \mu_\phi + \epsilon \sigma_\phi)\right] -
+D_{KL}(q_\phi(z | x_i)\|p(z)) \\
+&amp;\approx \frac 1 M \sum_j^M \log p_\theta(x_{i}| \mu_\phi +
+\epsilon_j \sigma_\phi) - D_{KL}(q_\phi(z | x_i)\|p(z)) \\
+\end{align}
+$$</span></p>
+<p>For the first term, we can just evaluate it. For the second KL term,
+since we chose both distributions to be easy (in this case Gaussian),
+there often is a nice analytical form for it.</p>
+<p>Therefore, we can go ahead to maximize the variational lower bound
+<span class="math inline">ℒ</span>​. We can also draw out the following
+computational graph for the log term and conclude we can back propagate
+this graph without any problem. On the other hand, if we didn’t do the
+reparametrization trick, we will get stuck at <span class="math inline"><em>z</em></span>: you cannot back propagate <span class="math inline"><em>z</em></span> - a sampled value instead of a
+variable. And we will have to seek help from policy gradient. With
+reparametrization, we decompose <span class="math inline"><em>z</em></span> into two variables <span class="math inline"><em>μ</em><sub><em>ϕ</em></sub>, <em>σ</em><sub><em>ϕ</em></sub></span>
+we can back propagate through and one stochastic value <span class="math inline"><em>ϵ</em></span> we do not care about.</p>
+<figure>
+<img src="/images/computational-graph.png" alt="computational-graph">
+<figcaption aria-hidden="true">computational-graph</figcaption>
+</figure>
+<h2 id="variational-autoencoder">Variational Autoencoder</h2>
+<h3 id="setup-and-interpretation">Setup and Interpretation</h3>
+<p>What we have gone though constitutes the full pipeline of a
+variational autoencoder.</p>
+<p>In a variation autoencoder, we have observed variable <span class="math inline"><em>x</em></span> and latent variable <span class="math inline"><em>z</em></span></p>
+<ul>
+<li>encoder <span class="math inline"><em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em>) = 𝒩(<em>μ</em><sub><em>ϕ</em></sub>(<em>x</em>), <em>σ</em><sub><em>ϕ</em></sub>(<em>x</em>))</span></li>
+<li>decoder <span class="math inline"><em>p</em><sub><em>θ</em></sub>(<em>x</em>|<em>z</em>) = 𝒩(<em>μ</em><sub><em>θ</em></sub>(<em>z</em>), <em>σ</em><sub><em>θ</em></sub>(<em>z</em>))</span></li>
+</ul>
+<p>In training, given an observed sample <span class="math inline"><em>x</em><sub><em>i</em></sub></span>, we encode it
+to latent variable <span class="math inline"><em>z</em><sub><em>i</em></sub></span> using <span class="math inline"><em>q</em><sub><em>ϕ</em></sub></span>, then tries
+to decode it back with decoder <span class="math inline"><em>p</em><sub><em>θ</em></sub></span>. We maximize
+the variational lower bound during the process. For all <span class="math inline"><em>N</em></span> samples, the training objective
+looks like: (where the <span class="math inline"><em>ϵ</em></span> is a
+sampled value) <span class="math display">$$
+\max_{\phi,\theta} \frac 1 N \sum_i^N \log p_\theta\left(x_{i}|
+\mu_\phi(x_i) + \epsilon \sigma_\phi(x_i)\right) - D_{KL}(q_\phi(z |
+x_i)\|p(z)) \\
+$$</span> In inference (generation), we sample a <span class="math inline"><em>z</em></span> from our prior <span class="math inline"><em>p</em>(<em>z</em>)</span>, then decode it using
+<span class="math inline"><em>p</em><sub><em>θ</em></sub></span>: <span class="math inline"><em>z</em> ∼ <em>p</em>(<em>z</em>), <em>x</em> ∼ <em>p</em><sub><em>θ</em></sub>(<em>x</em>|<em>z</em>)</span></p>
+<p>Why does the variational autoencoder work? We talked about many
+benefits of maximizing this variational lower bound in <a href="#Effect-of-Pushing-Up-ELBO-(Analytically)">previous chapter</a>.
+Let’s look at it again in this decoder-encoder setup,. <span class="math display">ℒ<sub><em>i</em></sub> = 𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)</sub>[log <em>p</em><sub><em>θ</em></sub>(<em>x</em><sub><em>i</em></sub>|<em>z</em>)] − <em>D</em><sub><em>K</em><em>L</em></sub>(<em>q</em><sub><em>ϕ</em></sub>(<em>z</em>|<em>x</em><sub><em>i</em></sub>)∥<em>p</em>(<em>z</em>))</span></p>
+<ul>
+<li>The first <span class="math inline">log <em>p</em><sub><em>θ</em></sub></span> term
+maximizes the probability of our observed image <span class="math inline"><em>x</em></span> given a sample <span class="math inline"><em>z</em></span>, so the model makes decoder <span class="math inline"><em>p</em><sub><em>θ</em></sub></span> to
+reconstruct image <span class="math inline"><em>x</em></span>​ as
+accurate as possible.</li>
+<li>The second KL term restricts the encoding of an image to be close to
+the actual prior, which makes sure at inference / generate time, we can
+directly sample from the prior.</li>
+</ul>
+<h3 id="comparison-with-auto-encoder">Comparison with Auto-Encoder</h3>
+<figure>
+<img src="/images/vae-and-ae.png" alt="vae-and-ae">
+<figcaption aria-hidden="true">vae-and-ae</figcaption>
+</figure>
+<p>The VAE’s decoder is trained to convert random points in the
+embedding space (generated by perturbing the input encodings) to
+sensible outputs. By contrast, the decoder for the deterministic
+autoencoder only ever gets as inputs the exact encodings of the training
+set, so it does not know what to do with random inputs that are outside
+what it was trained on. So a standard autoencoder cannot create new
+samples.</p>
+<p>The reason the VAE is better at sample is that it embeds images into
+Gaussians in latent space, whereas the AE embeds images into points,
+which are like delta functions. The advantage of using a latent
+distribution is that it encourages local smoothness, since a given image
+may map to multiple nearby places, depending on the stochastic sampling.
+By contrast, in an AE, the latent space is typically not smooth, so
+images from different classes often end up next to each other. Figure
+copied from <a target="_blank" rel="external nofollow noopener noreferrer" href="https://probml.github.io/pml-book/book1.html">Probabilistic
+Machine Learning: An Introduction - Figure 20.26</a></p>
+<p>We can leverage the smoothness of the latent space to perform image
+interpolation in latent space.</p>
+<h2 id="reference">Reference</h2>
+<p>Most content of this blog post comes from <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.youtube.com/watch?v=UTMpM4orS30">Berkeley CS 285
+(Sergey Levine): Lecture 18, Variational Inference</a>, which I think
+organized his lecture based on <a target="_blank" rel="external nofollow noopener noreferrer" href="https://arxiv.org/abs/1906.02691">An Introduction to Variational
+Autoencoders</a> (2.1-2.7, and 2.9.1), or more in-depth on the author’s
+PhD thesis <a target="_blank" rel="external nofollow noopener noreferrer" href="http://dpkingma.com/#phdthesis">Variational
+Inference and Deep Learning: A New Synthesis</a> I found this wonderful
+tutorial in <a target="_blank" rel="external nofollow noopener noreferrer" href="https://probml.github.io/pml-book/book2.html">Probabilistic
+Machine Learning: Advanced Topics</a></p>
+<p>Some graph come from <a target="_blank" rel="external nofollow noopener noreferrer" href="https://probml.github.io/pml-book/book1.html">Probabilistic
+Machine Learning: An Introduction</a> itself and <a target="_blank" rel="external nofollow noopener noreferrer" href="https://arxiv.org/abs/1606.05908">Carl Doersch: Tutorial on
+Variational Autoencoders</a>, which is referenced in the previous
+book.</p>
+<p>Note though the <em>Probabilistic Machine Learning</em> book itself
+is a horrible book with extremely confusing explanations.</p>
+
+    </article>
+    <!-- license -->
+        <div class="license-wrapper">
+            <p>Author：<a href="https://yao-lirong.github.io/blog">Yao Lirong</a>
+            </p><p>Link：<a href="https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/">https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/</a>
+            </p><p>Publish date：<a href="https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/">September 9th 2024, 12:00:00 am</a>
+            </p><p>Update date：<a href="https://yao-lirong.github.io/blog/2024-09-09-Variational-Inference/">September 2nd 2025, 9:42:46 pm</a>
+            </p><p>License：本文采用 <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> 进行许可</p>
+        </div>
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+                <div class="nextSlogan">Next Post</div>
+                <a href="/blog/2024-09-22-Running-MobileBert-on-Android-with-TensorFlow-Lite/" title="Running MobileBert on Android with TensorFlow Lite">
+                    <div class="nextTitle">Running MobileBert on Android with TensorFlow Lite</div>
+                </a>
+        </li>
+        <li class="previous">
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/blog/2024-08-23-Hyper-Parameter-Tuning-with-Optuna/" title="Hyper-Parameter Tuning with Optuna">
+                    <div class="prevTitle">Hyper-Parameter Tuning with Optuna</div>
+                </a>
+        </li>
+    </ul>
+    <!-- comment -->
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+            
+            
+            
+            <!-- utteranc评论 -->
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+            
+            
+            
+        </div>
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    <!-- Mathjax -->
+    <!---->
+</main>
+
+                <!-- profile -->
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+        <div class="social">
+                            <a href="//github.com/Yao-Lirong" class="iconfont-archer github" target="_blank" title="github"></a>
+                <a href="//twitter.com/yao_lirong" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
+                <a href="//www.linkedin.com/in/yao-lirong/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
+                <a href="/blog/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+
+        </div>
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="external nofollow noopener noreferrer">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    <!-- 不蒜子  -->
+        <div class="busuanzi-container">
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+        </div>
+</footer>
+
+        </div>
+        <!-- toc -->
+            <div class="toc-wrapper toc-wrapper-loding" style="top:50vh;">
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#probabilistic-latent-variable-models"><span class="toc-number">1.</span> <span class="toc-text">Probabilistic Latent
+Variable Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#latent-variable-models-in-general"><span class="toc-number">1.1.</span> <span class="toc-text">Latent Variable Models in
+General</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#how-to-train-a-latent-variable-model"><span class="toc-number">1.2.</span> <span class="toc-text">How to Train a Latent
+Variable Model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#variational-inference"><span class="toc-number">2.</span> <span class="toc-text">Variational Inference</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#variational-approximation"><span class="toc-number">2.1.</span> <span class="toc-text">Variational Approximation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#effect-of-pushing-up-elbo-analytically"><span class="toc-number">2.2.</span> <span class="toc-text">Effect of Pushing Up
+ELBO (Analytically)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-learning-algorithm"><span class="toc-number">2.3.</span> <span class="toc-text">The Learning Algorithm?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#amortized"><span class="toc-number">3.</span> <span class="toc-text">Amortized</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gradient-over-expectation-policy-gradient"><span class="toc-number">3.1.</span> <span class="toc-text">Gradient Over
+Expectation (Policy Gradient)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reparametrization-trick"><span class="toc-number">3.2.</span> <span class="toc-text">Reparametrization Trick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#looking-at-mathcal-l-directly"><span class="toc-number">3.3.</span> <span class="toc-text">Looking at ℒ Directly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#variational-autoencoder"><span class="toc-number">4.</span> <span class="toc-text">Variational Autoencoder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup-and-interpretation"><span class="toc-number">4.1.</span> <span class="toc-text">Setup and Interpretation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comparison-with-auto-encoder"><span class="toc-number">4.2.</span> <span class="toc-text">Comparison with Auto-Encoder</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+            </div>
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 72
+        </div>
+        <!-- search  -->
+    </div>
+    <div class="post-archive">
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/blog/2024-12-25-Matryoshka-Representation-Learning,-Adaptive-Retrieval-and-Binary-Vector-Search/">Matryoshka Representation Learning, Adaptive Retrieval and Binary Vector Search</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span>
+            <a class="archive-post-title" href="/blog/2024-10-15-YouTube-Recommendation-Algorithms-(2016)/">YouTube Recommendation Algorithms (2016)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/blog/2024-09-22-Running-MobileBert-on-Android-with-TensorFlow-Lite/">Running MobileBert on Android with TensorFlow Lite</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/09</span>
+            <a class="archive-post-title" href="/blog/2024-09-09-Variational-Inference/">Variational Inference</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/blog/2024-08-23-Hyper-Parameter-Tuning-with-Optuna/">Hyper-Parameter Tuning with Optuna</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span>
+            <a class="archive-post-title" href="/blog/2024-07-02-KV-Cache/">KV Cache</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span>
+            <a class="archive-post-title" href="/blog/2024-06-17-Conducting-Multi-Round-Conversation-with-Transformers/">Conducting Multi-Round Conversation with Transformers</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span>
+            <a class="archive-post-title" href="/blog/2024-05-14-GPT-4o-Release/">GPT-4o Release</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span>
+            <a class="archive-post-title" href="/blog/2024-04-22-CLIP/">CLIP</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span>
+            <a class="archive-post-title" href="/blog/2024-04-08-Gradient-Scaling/">Gradient Scaling</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span>
+            <a class="archive-post-title" href="/blog/2024-03-13-Decoupled-Weight-Decay-Regularization-(SGDW-&-AdamW)/">Decoupled Weight Decay Regularization (SGDW & AdamW)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span>
+            <a class="archive-post-title" href="/blog/2024-03-01-Mixed-Precision-Training/">Mixed-Precision Training</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span>
+            <a class="archive-post-title" href="/blog/2024-02-22-Parameter-and-FLOP-Count-in-Transformer-Model/">Parameter and FLOP Count in Transformer Model</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span>
+            <a class="archive-post-title" href="/blog/2024-02-09-Memory-Pinning-and-Transfer-Data-between-Host-(CPU)-and-Device-(GPU)/">Memory Pinning and Transfer Data between Host (CPU) and Device (GPU)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span>
+            <a class="archive-post-title" href="/blog/2024-01-27-Switching-Personal-Webpage-Theme-to-al-folio/">Switching Personal Homepage Theme to al-folio</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/21</span>
+            <a class="archive-post-title" href="/blog/2024-01-21-Visual-Information-Theory/">Visual Information Theory</a>
+        </li>
+                </ul>
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span>
+            <a class="archive-post-title" href="/blog/2023-12-01-Quantization/">Quantization</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span>
+            <a class="archive-post-title" href="/blog/2023-11-20-Fine-Tuning-LLMs-Prompt-Tuning,-Adapter,-LoRA/">Fine-Tuning LLMs: Prompt Tuning, Adapter, LoRA</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/blog/2023-11-16-Graph-Networks-&-GraphCast/">Graph Networks & GraphCast</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span>
+            <a class="archive-post-title" href="/blog/2023-04-04-First-Time-Debugging-with-ChatGPT/">First Time Debugging with ChatGPT</a>
+        </li>
+                </ul>
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/31</span>
+            <a class="archive-post-title" href="/blog/2022-12-31-2022-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2022 Web Journal</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/blog/2022-11-01-%E8%A7%A6%E4%B9%90-&-RPG-Codex-RPG%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E8%AE%A8%E8%AE%BA/">触乐 & RPG Codex: RPG文本写作讨论</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span>
+            <a class="archive-post-title" href="/blog/2022-09-04-Deploy-a-Reddit-Bot-on-Heroku/">Deploy a Reddit Bot on Heroku</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/blog/2022-08-23-How-to-Succeed-in-CS6784-(also-in-Academic-Life-in-General)/">How to Succeed in CS6784 (also in Academic Life in General)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/11</span>
+            <a class="archive-post-title" href="/blog/2022-06-11-JavaScript-Manual/">JavaScript Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span>
+            <a class="archive-post-title" href="/blog/2022-04-23-%E5%8D%9A%E5%AE%A2SEO%E4%BC%98%E5%8C%96/">博客SEO优化</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span>
+            <a class="archive-post-title" href="/blog/2022-04-09-%E8%A7%86%E9%A2%91%E7%BC%96%E8%BE%91-(FFmpeg-DaVinci)/">Video Editing (FFmpeg DaVinci)</a>
+        </li>
+                </ul>
+            <div class="archive-year"> 2021 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/31</span>
+            <a class="archive-post-title" href="/blog/2021-12-31-2021-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2021 Web Journal</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span>
+            <a class="archive-post-title" href="/blog/2021-12-15-Look-Back-on-Cornell-21FA/">Look Back on Cornell 21FA</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/16</span>
+            <a class="archive-post-title" href="/blog/2021-09-16-Intro-to-SQL/">SQL Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span>
+            <a class="archive-post-title" href="/blog/2021-09-10-Java-Quick-Guide/">Java Quick Guide</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span>
+            <a class="archive-post-title" href="/blog/2021-08-31-Introduction-to-C/">C Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span>
+            <a class="archive-post-title" href="/blog/2021-08-29-%E6%9B%B4%E6%96%B0archer%E4%B8%BB%E9%A2%98--%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2/">更新archer主题 / 迁移Hexo博客</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span>
+            <a class="archive-post-title" href="/blog/2021-06-28-Install-and-Configure-Aria2-on-Linux/">Install and Configure Aria2 on WSL</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span>
+            <a class="archive-post-title" href="/blog/2021-06-23-On-Intelligence/">On Intelligence</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span>
+            <a class="archive-post-title" href="/blog/2021-05-28-Introduction-to-TensorFlow-1.x/">TensorFlow 1.x Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span>
+            <a class="archive-post-title" href="/blog/2021-05-24-Look-Back-on-Cornell-21SP/">Look Back on Cornell 21SP</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span>
+            <a class="archive-post-title" href="/blog/2021-05-15-Setting-up-a-Server/">Setting up a Server</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span>
+            <a class="archive-post-title" href="/blog/2021-02-11-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(3)/">Tsinghua DSA 作业总结 (3)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span>
+            <a class="archive-post-title" href="/blog/2021-02-10-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(2)/">Tsinghua DSA 作业总结 (2)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span>
+            <a class="archive-post-title" href="/blog/2021-02-09-Tsinghua-DSA-%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93-(1)/">Tsinghua DSA 作业总结 (1)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/11</span>
+            <a class="archive-post-title" href="/blog/2021-01-11-CornellTsinghua-20FA-%E6%80%BB%E7%BB%93/">Look Back on Cornell/Tsinghua 20FA</a>
+        </li>
+                </ul>
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/31</span>
+            <a class="archive-post-title" href="/blog/2020-12-31-2020-%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97/">2020 Web Journal</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/29</span>
+            <a class="archive-post-title" href="/blog/2020-11-29-C++-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++ Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/29</span>
+            <a class="archive-post-title" href="/blog/2020-11-29-Python-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Python Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span>
+            <a class="archive-post-title" href="/blog/2020-11-23-Latex-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C/">LaTeX Manual</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/17</span>
+            <a class="archive-post-title" href="/blog/2020-11-17-Python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">Python网络爬虫与信息提取</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/blog/2020-10-13-Algorithm-Design-%E5%8F%8A-CS4820-%E4%B8%80%E8%88%AC%E6%80%A7%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/">CS4820 及 Algorithm Design 一般性内容总结</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span>
+            <a class="archive-post-title" href="/blog/2020-10-02-INFO1998-Intro-to-Machine-Learning/">INFO1998 Intro to Machine Learning (sklearn, pandas)</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span>
+            <a class="archive-post-title" href="/blog/2020-09-29-Add-Open-with-Windows-Terminalto-Right-Click-Menu/">Add "Open with Windows Terminal" to Right-Click Menu</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span>
+            <a class="archive-post-title" href="/blog/2020-09-07-CS2024-C++-Programming/">CS2024 C++ Programming</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span>
+            <a class="archive-post-title" href="/blog/2020-09-05-Windows%E4%B8%8B%E9%85%8D%E7%BD%AEPostgreSQL/">Windows下配置PostgreSQL</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/24</span>
+            <a class="archive-post-title" href="/blog/2020-06-24-Kinekt-as-Web-Cam/">Kinect as Web Cam</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span>
+            <a class="archive-post-title" href="/blog/2020-05-27-Cornell-20SP-%E6%80%BB%E7%BB%93/">Look Back on Cornell 20SP</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span>
+            <a class="archive-post-title" href="/blog/2020-03-15-Introduction-to-Vim/">Introduction to Vim</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/24</span>
+            <a class="archive-post-title" href="/blog/2020-01-24-CS2043-Unix-Tools-and-Scripting/">CS2043 Unix Tools and Scripting</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/20</span>
+            <a class="archive-post-title" href="/blog/2020-01-20-Installing-Ocaml-on-Linux/">Installing and Configuring Ocaml on Linux</a>
+        </li>
+                </ul>
+            <div class="archive-year"> 2019 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/22</span>
+            <a class="archive-post-title" href="/blog/2019-12-22-Cornell-19FA-%E6%80%BB%E7%BB%93/">Look Back on Cornell 19FA</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span>
+            <a class="archive-post-title" href="/blog/2019-12-17-add-pdf-file-to-hexo/">Add pdf file to hexo</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/blog/2019-11-21-import-Junit-and-JavaFx-into-VSCode/">Import Junit and JavaFx into VSCode</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/07</span>
+            <a class="archive-post-title" href="/blog/2019-07-07-P1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2/">P1162 填涂颜色</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/04</span>
+            <a class="archive-post-title" href="/blog/2019-07-04-P1141-01%E8%BF%B7%E5%AE%AB/">P1141 01迷宫</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span>
+            <a class="archive-post-title" href="/blog/2019-07-02-P1118-Backward-Digital-Sums/">P1118 Backward Digital Sums</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/26</span>
+            <a class="archive-post-title" href="/blog/P1019%20%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/">P1019 单词接龙</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span>
+            <a class="archive-post-title" href="/blog/P1101%20%E5%8D%95%E8%AF%8D%E6%96%B9%E9%98%B5/">P1101 单词方阵</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/16</span>
+            <a class="archive-post-title" href="/blog/P1219%20%E5%85%AB%E7%9A%87%E5%90%8E/">P1219 八皇后</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span>
+            <a class="archive-post-title" href="/blog/P1031%20%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/">P1031 均分纸牌</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span>
+            <a class="archive-post-title" href="/blog/P2678%20%E8%B7%B3%E7%9F%B3%E5%A4%B4/">P2678 跳石头</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span>
+            <a class="archive-post-title" href="/blog/P1090%20%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90/">P1090 合并果子</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span>
+            <a class="archive-post-title" href="/blog/P1309%20%E7%91%9E%E5%A3%AB%E8%BD%AE/">P1309 瑞士轮</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span>
+            <a class="archive-post-title" href="/blog/Intro-to-Git-Command/">Introduction to Git Command</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span>
+            <a class="archive-post-title" href="/blog/hello-world/">Hello World</a>
+        </li>
+            </ul>
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+            <span class="sidebar-tag-name" data-tags="NOI">
+                <span class="iconfont-archer">&#xe606;</span>
+                NOI
+            </span>
+            <span class="sidebar-tag-name" data-tags="Logistics">
+                <span class="iconfont-archer">&#xe606;</span>
+                Logistics
+            </span>
+            <span class="sidebar-tag-name" data-tags="Cornell">
+                <span class="iconfont-archer">&#xe606;</span>
+                Cornell
+            </span>
+            <span class="sidebar-tag-name" data-tags="Review">
+                <span class="iconfont-archer">&#xe606;</span>
+                Review
+            </span>
+            <span class="sidebar-tag-name" data-tags="CS3110">
+                <span class="iconfont-archer">&#xe606;</span>
+                CS3110
+            </span>
+            <span class="sidebar-tag-name" data-tags="Manual">
+                <span class="iconfont-archer">&#xe606;</span>
+                Manual
+            </span>
+            <span class="sidebar-tag-name" data-tags="Vim">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vim
+            </span>
+            <span class="sidebar-tag-name" data-tags="Journal">
+                <span class="iconfont-archer">&#xe606;</span>
+                Journal
+            </span>
+            <span class="sidebar-tag-name" data-tags="Tsinghua">
+                <span class="iconfont-archer">&#xe606;</span>
+                Tsinghua
+            </span>
+            <span class="sidebar-tag-name" data-tags="Book">
+                <span class="iconfont-archer">&#xe606;</span>
+                Book
+            </span>
+            <span class="sidebar-tag-name" data-tags="ML">
+                <span class="iconfont-archer">&#xe606;</span>
+                ML
+            </span>
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/blog/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://yao-lirong.github.io/blog",
+        root: siteMetaRoot,
+        author: "Yao Lirong"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+        <!-- main func -->
+        <script src="/blog/scripts/main.js"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
+        <!-- algolia -->
+        <!-- busuanzi -->
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        <!-- async load share.js -->
+            <script src="/blog/scripts/share.js" async></script>
+        <!-- mermaid -->
+    </body>
+</html>
