@@ -468,64 +468,64 @@
 <col style="width: 69%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>名称</th>
 <th>类型</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>INT</td>
 <td>整型</td>
 <td>4字节整数类型，范围约+/-21亿</td>
 </tr>
-<tr class="even">
+<tr>
 <td>BIGINT</td>
 <td>长整型</td>
 <td>8字节整数类型，范围约+/-922亿亿</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>REAL</td>
 <td>浮点型</td>
 <td>4字节浮点数，范围约+/-1038</td>
 </tr>
-<tr class="even">
+<tr>
 <td>DOUBLE</td>
 <td>浮点型</td>
 <td>8字节浮点数，范围约+/-10308</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DECIMAL(M,N)</td>
 <td>高精度小数</td>
 <td>由用户指定精度的小数，例如，DECIMAL(20,10)表示一共20位，其中小数10位，通常用于财务计算</td>
 </tr>
-<tr class="even">
+<tr>
 <td>CHAR(N)</td>
 <td>定长字符串</td>
 <td>存储指定长度的字符串，例如，CHAR(100)总是存储100个字符的字符串</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>VARCHAR(N)</td>
 <td>变长字符串</td>
 <td>存储可变长度的字符串，例如，VARCHAR(100)可以存储0~100个字符的字符串</td>
 </tr>
-<tr class="even">
+<tr>
 <td>BOOLEAN</td>
 <td>布尔类型</td>
 <td>存储True或者False</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DATE</td>
 <td>日期类型</td>
 <td>存储日期，例如，2018-06-22</td>
 </tr>
-<tr class="even">
+<tr>
 <td>TIME</td>
 <td>时间类型</td>
 <td>存储时间，例如，12:20:59</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DATETIME</td>
 <td>日期和时间类型</td>
 <td>存储日期+时间，例如，2018-06-22 12:20:59</td>
@@ -539,43 +539,43 @@
 <col style="width: 75%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Constraint</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>PRIMARY KEY</code></td>
 <td>This means that the values in this column are unique, and each value
 can be used to identify a single row in this table.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>AUTOINCREMENT</code></td>
 <td>For integer values, this means that the value is automatically
 filled in and incremented with each row insertion. Not supported in all
 databases.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>UNIQUE</code></td>
 <td>This means that the values in this column have to be unique, so you
 can’t insert another row with the same value in this column as another
 row in the table. Differs from the <code>PRIMARY KEY</code> in that it
 doesn’t have to be a key for a row in the table.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>NOT NULL</code></td>
 <td>This means that the inserted value can not be
 <code>NULL</code>.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>CHECK (expression)</code></td>
 <td>This allows you to run a more complex expression to test whether the
 values inserted are valid. For example, you can check that values are
 positive, or greater than a specific size, or start with a certain
 prefix, etc.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>FOREIGN KEY</code></td>
 <td>This is a consistency check which ensures that each value in this
 column corresponds to another value in a column in another table. For
@@ -641,25 +641,25 @@ to show part of the result.</p>
 <p>和 <code>COUNT</code> 类似的还有以下函数：</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>函数</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>SUM</td>
 <td>计算某一列的合计值，该列必须为数值类型</td>
 </tr>
-<tr class="even">
+<tr>
 <td>AVG</td>
 <td>计算某一列的平均值，该列必须为数值类型</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MAX</td>
 <td>计算某一列的最大值，如果是字符串类型则返回排序最后的字符</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MIN</td>
 <td>计算某一列的最小值，如果是字符串类型则返回排序最前的字符</td>
 </tr>

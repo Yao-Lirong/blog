@@ -487,40 +487,40 @@ we have here is defined as <span class="math inline"><em>d</em><sub><em>k</em></
 <col style="width: 72%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Part</th>
 <th>Parameters</th>
 <th>Explanation</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Embed</td>
 <td><span class="math inline">$n_{vocab}\times d_{model} \\ +n_{ctx}
 \times d_{model}$</span></td>
 <td>One word embedding matrix (mapping each token to corresponding
 embedding ) and one positional embedding matrix</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Attention: Q K V Matrix</td>
 <td><span class="math inline"><em>L</em>3<em>d</em><sub><em>m</em><em>o</em><em>d</em><em>e</em><em>l</em></sub><em>d</em><sub><em>a</em><em>t</em><em>t</em><em>n</em></sub></span></td>
 <td><span class="math inline"><em>W</em><sub><em>Q</em></sub></span> has
 shape <span class="math inline">(<em>d</em><sub><em>m</em><em>o</em><em>d</em><em>e</em><em>l</em></sub>, <em>d</em><sub><em>a</em><em>t</em><em>t</em><em>n</em></sub>)</span>.
 There’re also <span class="math inline"><em>W</em><sub><em>K</em></sub></span> and <span class="math inline"><em>W</em><sub><em>V</em></sub></span></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Attention: Multi-head Projection</td>
 <td>$L d_{attn} d_{model} $</td>
 <td>After we concat the output from all heads, there’s one projection
 from all-head output to the final output. This is that matrix. It was
 defined as <span class="math inline"><em>W</em><sup><em>O</em></sup></span> in <a target="_blank" rel="external nofollow noopener noreferrer" href="https://arxiv.org/pdf/1706.03762.pdf">Attention is All You Need 3.2.2</a>.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Feedforward Network</td>
 <td><span class="math inline"><em>L</em>2<em>d</em><sub><em>m</em><em>o</em><em>d</em><em>e</em><em>l</em></sub><em>d</em><sub><em>f</em><em>f</em></sub></span></td>
 <td>Explained in the definition of <span class="math inline"><em>d</em><sub><em>f</em><em>f</em></sub></span> above.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Total (Non-Embedding)</td>
 <td><span class="math inline">2<em>L</em><em>d</em><sub><em>m</em><em>o</em><em>d</em><em>e</em><em>l</em></sub>(2<em>d</em><sub><em>a</em><em>t</em><em>t</em><em>n</em></sub> + <em>d</em><sub><em>f</em><em>f</em></sub>)</span></td>
 <td></td>

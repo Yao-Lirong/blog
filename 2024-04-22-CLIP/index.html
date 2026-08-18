@@ -532,25 +532,25 @@ training method learns.</p>
 <col style="width: 39%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Approach</th>
 <th>Output Space</th>
 <th>Answer Space: In ideal scenario, what do we choose from?</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Transformer Language Model</td>
 <td>All English sentences (permutation of all English words)</td>
 <td>500K queries</td>
 </tr>
-<tr class="even">
+<tr>
 <td>BoW prediction model</td>
 <td>Word count bucket of all English sentences (combination of all
 English words)</td>
 <td>500K queries</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Contrastive pairing model</td>
 <td>Sentences describing class and labels</td>
 <td><code>batch_size</code> pre-selected queries (32768 in CLIP)</td>

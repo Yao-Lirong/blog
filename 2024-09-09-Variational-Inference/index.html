@@ -766,7 +766,7 @@ $$</span></p>
 we have a separate <span class="math inline"><em>q</em></span> for each
 data point <span class="math inline"><em>i</em></span>, which means if
 we have <span class="math inline"><em>N</em></span> data points, we will
-have to store <span class="math inline"><em>N</em> × (|<em>μ</em><sub><em>i</em></sub>| + |<em>σ</em><sub><em>i</em></sub>|)</span>
+have to store <span class="math inline"><em>N</em> × (|<em>μ</em><sub><em>i</em></sub>|+|<em>σ</em><sub><em>i</em></sub>|)</span>
 parameters assuming we chose <span class="math inline"><em>q</em><sub><em>i</em></sub></span> to be
 Gaussian. In machine learning, the number of data points <span class="math inline"><em>N</em></span> is usually in millions, making
 this model unwieldily big. It’s true in inference time we do not use
@@ -860,7 +860,7 @@ usually cannot take derivative w.r.t. reward R.</p>
 <col style="width: 23%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Method</th>
 <th>Formula</th>
 <th>Approximation</th>
@@ -869,7 +869,7 @@ usually cannot take derivative w.r.t. reward R.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Policy Gradient</td>
 <td><span class="math inline">∇<sub><em>ϕ</em></sub>𝔼<sub><em>z</em> ∼ <em>q</em><sub><em>ϕ</em></sub>(<em>z</em> ∣ <em>x</em><sub><em>i</em></sub>)</sub>[<em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>z</em>)]</span></td>
 <td><span class="math inline">$\frac 1 M \sum_j^M \nabla_\phi[\log
@@ -878,7 +878,7 @@ q_\phi(z_j \mid x_i)] R(x_i,z_j)$</span></td>
 <td>High variance, requires multiple samples &amp; small learning
 rates</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Reparametrization</td>
 <td><span class="math inline">𝔼<sub><em>ϵ</em> ∼ 𝒩(0, 1)</sub>[∇<sub><em>ϕ</em></sub><em>R</em>(<em>x</em><sub><em>i</em></sub>, <em>μ</em><sub><em>ϕ</em></sub> + <em>ϵ</em><em>σ</em><sub><em>ϕ</em></sub>)]</span></td>
 <td><span class="math inline">$\frac 1 M \sum_j^M \nabla_\phi R(x_i,

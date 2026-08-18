@@ -769,7 +769,7 @@ where the validation accuracy roughly flattens.</p>
 <col style="width: 7%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Quantization</th>
 <th>Logit Difference</th>
 <th>Accuracy</th>
@@ -782,7 +782,7 @@ where the validation accuracy roughly flattens.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>float32 (No quant)</td>
 <td>0</td>
 <td>75.01%</td>
@@ -793,7 +793,7 @@ where the validation accuracy roughly flattens.</p>
 <td>108.02</td>
 <td>267.11</td>
 </tr>
-<tr class="even">
+<tr>
 <td>float16</td>
 <td>0.015%</td>
 <td>75.01%</td>
@@ -804,7 +804,7 @@ where the validation accuracy roughly flattens.</p>
 <td>108.77</td>
 <td>377.11</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>int8</td>
 <td>4.251%</td>
 <td>63.49%</td>
@@ -821,24 +821,24 @@ where the validation accuracy roughly flattens.</p>
 <code>last_hidden_state</code> has a difference:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>Quantization</th>
 <th>Logit Difference</th>
 <th>Model Size (MB)</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>float32 (No quant)</td>
 <td>0</td>
 <td>97</td>
 </tr>
-<tr class="even">
+<tr>
 <td>float16</td>
 <td>0.1%</td>
 <td>48.1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>int8</td>
 <td>19.8%</td>
 <td>24.9</td>
